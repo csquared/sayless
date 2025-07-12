@@ -6,13 +6,12 @@ Official SAYLESS Branding
 
 ### Official Logo
 
-In `logo/SAYLESS-TRANSPARENT.png`:
+`logo/SAYLESS-TRANSPARENT.png`
 
 ![SAYLESS](logo/SAYLESS-TRANSPARENT.png)
 
 ### Official Font
 
-fonts/StencilGothic.ttf
+`fonts/StencilGothic.ttf`
 
-Example:
 ![SAYLESS](etc/SAYLESS-font-sample.png)
