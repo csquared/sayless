@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="YOU MADE IT">
+    <meta property="og:description" content="You found the secret entrance">
+    <meta property="og:image" content="logo/SAYLESS-TRANSPARENT.png">
+    <meta property="og:url" content="https://sayless.com/entrance.html">
+    <title>YOU MADE IT</title>
+    <style>
+        @font-face {
+            font-family: 'Stencil Gothic';
+            src: url('fonts/StencilGothic.ttf') format('truetype');
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .text {
+            color: white;
+            font-family: 'Stencil Gothic', monospace;
+            font-size: 72px;
+            letter-spacing: 8px;
+            text-align: center;
+            animation: flicker 2s infinite;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .back-link {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: #333;
+            text-decoration: none;
+            font-family: 'Stencil Gothic', monospace;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="text">YOU MADE IT</div>
+    <a href="index.html" class="back-link">← back</a>
+</body>
+</html>
