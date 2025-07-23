@@ -26,11 +26,53 @@
     window.sayless = {
         reveal: function() {
             console.clear();
-            console.log('%cINNER CIRCLE', 'color: #fff; font-size: 20px; letter-spacing: 6px; padding: 20px 0;');
-            console.log('%cEMAIL: void@sayless.xyz', 'color: #fff; font-size: 14px; font-family: monospace;');
-            console.log('%cSUBJECT: "CONSOLE"', 'color: #fff; font-size: 14px; font-family: monospace;');
-            console.log('%cPROVE YOU WERE HERE', 'color: #888; font-size: 12px; letter-spacing: 2px; padding-top: 20px;');
-            return '🌑';
+            console.log('%c█▀█ █▀▀ █▀▄▀█ █ ▀▄▀   █▄█ █▀█ █ █ █▀█   █ █ █ █▀█ █▀█ █   █▀▄', 'color: #fff; font-family: monospace; font-size: 12px;');
+            console.log('%c█▀▄ ██▄ █ ▀ █ █ █ █    █  █▄█ █▄█ █▀▄   ▀▄▀▄▀ █▄█ █▀▄ █▄▄ █▄▀', 'color: #fff; font-family: monospace; font-size: 12px;');
+            console.log('');
+            console.log('%cYOU\'VE ACCESSED THE VOID', 'color: #fff; font-size: 16px; letter-spacing: 4px; padding: 10px 0;');
+            console.log('%cTYPE: sayless.remix() TO BEGIN', 'color: #fff; font-size: 14px; background: #111; padding: 10px; border: 1px solid #333;');
+            console.log('');
+            console.log('%cINNER CIRCLE CONTACT:', 'color: #888; font-size: 12px; letter-spacing: 2px;');
+            console.log('%cvoid@sayless.xyz', 'color: #fff; font-size: 14px; font-family: monospace;');
+            console.log('%cSUBJECT: "REMIX [YOUR_CREATION]"', 'color: #fff; font-size: 14px; font-family: monospace;');
+            return 'VOID ACCESSED';
+        },
+        
+        remix: function() {
+            const remixMessages = [
+                'INITIATING REALITY REMIX...',
+                'DECONSTRUCTING PATTERNS...',
+                'REASSEMBLING FRAGMENTS...',
+                'REMIX COMPLETE'
+            ];
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                console.log('%c' + remixMessages[i], 'color: #fff; font-size: 14px; letter-spacing: 2px;');
+                i++;
+                if (i >= remixMessages.length) {
+                    clearInterval(interval);
+                    console.log('');
+                    console.log('%c░█▀▀░█▀█░█░█░█░░░█▀▀░█▀▀░█▀▀', 'color: #fff; font-family: monospace;');
+                    console.log('%c░▀▀█░█▀█░░█░░█░░░█▀▀░▀▀█░▀▀█', 'color: #fff; font-family: monospace;');
+                    console.log('%c░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀', 'color: #fff; font-family: monospace;');
+                    console.log('');
+                    console.log('%cYOUR WORLD HAS BEEN REMIXED', 'color: #fff; font-size: 16px; letter-spacing: 4px;');
+                    console.log('%cSHARE YOUR CREATION: #SAYLESSREMIX', 'color: #888; font-size: 12px; letter-spacing: 2px;');
+                    
+                    // Visual effect
+                    document.body.style.transition = 'all 0.5s ease';
+                    document.body.style.transform = 'rotate(1deg)';
+                    setTimeout(() => {
+                        document.body.style.transform = 'rotate(-1deg)';
+                        setTimeout(() => {
+                            document.body.style.transform = 'rotate(0deg)';
+                        }, 500);
+                    }, 500);
+                }
+            }, 1000);
+            
+            return 'REMIXING...';
         },
         
         // Extra hidden functions
