@@ -15,6 +15,7 @@
     const messages = [
         { text: saylessArt, style: 'color: #fff; font-family: monospace; font-size: 10px; line-height: 1.2;' },
         { text: '%cNOT FOR SALE', style: 'color: #fff; font-size: 24px; font-weight: bold; text-transform: uppercase; letter-spacing: 8px; padding: 20px 0;' },
+        { text: '%cREMIX YOUR WORLD', style: 'color: #fff; font-size: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 6px; padding: 10px 0;' },
         { text: '%cYOU FOUND THE VOID', style: 'color: #fff; font-size: 16px; letter-spacing: 4px;' },
         { text: '%cMAKE YOUR MARK • LEAVE NO TRACE', style: 'color: #888; font-size: 12px; letter-spacing: 2px;' },
         { text: '%c🖤', style: 'font-size: 40px; padding: 20px 0;' },
