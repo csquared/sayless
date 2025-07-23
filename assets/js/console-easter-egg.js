@@ -26,12 +26,10 @@
     window.sayless = {
         reveal: function() {
             console.clear();
-            console.log('%c█▀█ █▀▀ █▀▄▀█ █ ▀▄▀   █▄█ █▀█ █ █ █▀█   █ █ █ █▀█ █▀█ █   █▀▄', 'color: #fff; font-family: monospace; font-size: 12px;');
-            console.log('%c█▀▄ ██▄ █ ▀ █ █ █ █    █  █▄█ █▄█ █▀▄   ▀▄▀▄▀ █▄█ █▀▄ █▄▄ █▄▀', 'color: #fff; font-family: monospace; font-size: 12px;');
-            console.log('');
-            console.log('%cYOU\'VE ACCESSED THE VOID', 'color: #fff; font-size: 16px; letter-spacing: 4px; padding: 10px 0;');
+            console.log('█▀█ █▀▀ █▀▄▀█ █ ▀▄▀   █▄█ █▀█ █ █ █▀█   █ █ █ █▀█ █▀█ █   █▀▄\n█▀▄ ██▄ █ ▀ █ █ █ █    █  █▄█ █▄█ █▀▄   ▀▄▀▄▀ █▄█ █▀▄ █▄▄ █▄▀');
+            console.log(' ');
             console.log('%cTYPE: sayless.remix() TO BEGIN', 'color: #fff; font-size: 14px; background: #111; padding: 10px; border: 1px solid #333;');
-            console.log('');
+            console.log(' ');
             console.log('%cINNER CIRCLE CONTACT:', 'color: #888; font-size: 12px; letter-spacing: 2px;');
             console.log('%cvoid@sayless.xyz', 'color: #fff; font-size: 14px; font-family: monospace;');
             console.log('%cSUBJECT: "REMIX [YOUR_CREATION]"', 'color: #fff; font-size: 14px; font-family: monospace;');
@@ -52,11 +50,9 @@
                 i++;
                 if (i >= remixMessages.length) {
                     clearInterval(interval);
-                    console.log('');
-                    console.log('%c░█▀▀░█▀█░█░█░█░░░█▀▀░█▀▀░█▀▀', 'color: #fff; font-family: monospace;');
-                    console.log('%c░▀▀█░█▀█░░█░░█░░░█▀▀░▀▀█░▀▀█', 'color: #fff; font-family: monospace;');
-                    console.log('%c░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀', 'color: #fff; font-family: monospace;');
-                    console.log('');
+                    console.log(' ');
+                    console.log('░█▀▀░█▀█░█░█░█░░░█▀▀░█▀▀░█▀▀\n░▀▀█░█▀█░░█░░█░░░█▀▀░▀▀█░▀▀█\n░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀');
+                    console.log(' ');
                     console.log('%cYOUR WORLD HAS BEEN REMIXED', 'color: #fff; font-size: 16px; letter-spacing: 4px;');
                     console.log('%cSHARE YOUR CREATION: #SAYLESSREMIX', 'color: #888; font-size: 12px; letter-spacing: 2px;');
                     
