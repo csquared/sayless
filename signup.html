@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAYLESS - SIGNUP</title>
+    <style>
+        @font-face {
+            font-family: 'StencilGothic';
+            src: url('fonts/StencilGothic.ttf') format('truetype');
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'StencilGothic', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 200px;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: 0.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            letter-spacing: 0.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        input[type="email"] {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 1rem;
+            font-family: 'StencilGothic', monospace;
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        
+        input[type="email"]:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        input[type="email"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+        }
+        
+        button {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            font-family: 'StencilGothic', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 0.2rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button:hover {
+            background: #000;
+            color: #fff;
+            box-shadow: inset 0 0 0 2px #fff;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        .message {
+            margin-top: 2rem;
+            font-size: 1rem;
+            letter-spacing: 0.1rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .message.show {
+            opacity: 1;
+        }
+        
+        .message.error {
+            color: #ff6b6b;
+        }
+        
+        .message.success {
+            color: #51cf66;
+        }
+        
+        .back-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 0.1rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .back-link:hover {
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">← BACK</a>
+    
+    <div class="container">
+        <img src="logo/SAYLESS-TRANSPARENT.png" alt="SAYLESS" class="logo">
+        
+        <h1>STAY UPDATED</h1>
+        <p class="tagline">NOT FOR SALE • COMING SOON</p>
+        
+        <form id="signup-form">
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="YOUR EMAIL" 
+                required
+                autocomplete="email"
+            >
+            <button type="submit">SIGNUP</button>
+        </form>
+        
+        <div id="message" class="message"></div>
+    </div>
+    
+    <script>
+        const form = document.getElementById('signup-form');
+        const message = document.getElementById('message');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const button = form.querySelector('button');
+            
+            button.disabled = true;
+            button.textContent = 'SIGNING UP...';
+            
+            try {
+                const response = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showMessage('THANKS FOR SIGNING UP', 'success');
+                    form.reset();
+                } else {
+                    showMessage(data.error || 'SOMETHING WENT WRONG', 'error');
+                }
+            } catch (error) {
+                showMessage('CONNECTION ERROR', 'error');
+            } finally {
+                button.disabled = false;
+                button.textContent = 'SIGNUP';
+            }
+        });
+        
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = `message ${type}`;
+            setTimeout(() => {
+                message.classList.add('show');
+            }, 10);
+            
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
