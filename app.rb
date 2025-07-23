@@ -5,7 +5,7 @@ require 'json'
 require 'time'
 
 # Configure Sinatra
-set :port, 4567
+set :port, ENV['PORT'] || 4567
 set :public_folder, '.'
 set :static, true
 
