@@ -30,6 +30,7 @@ This is a static HTML site with no build process or package management. Changes 
 - Stencil Gothic typography
 - Minimalist approach ("making your stamp or mark, not advertising")
 - "NOT FOR SALE" brand ethos
+- "Remix your world" - the brand catchphrase
 
 ### Working with Large Files
 The index.html file exceeds 256KB. Use grep or specific line ranges when reading/editing this file.
