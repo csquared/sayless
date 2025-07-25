@@ -346,6 +346,342 @@
             </div>
         </div>
         <a href="index.html" class="back-link">← back</a>
+        
+        <!-- Retro Audio Player -->
+        <div class="audio-player">
+            <div class="player-container">
+                <div class="track-info">
+                    <span class="track-title">HIGH FIDELITY - AUTOBIOGRAPHICAL RECORD COLLECTION</span>
+                </div>
+                <div class="controls">
+                    <button class="play-btn" id="playBtn">▶</button>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="time" id="timeDisplay">0:00 / 0:00</span>
+                    <div class="volume-control">
+                        <button class="mute-btn" id="muteBtn">VOL</button>
+                        <div class="volume-slider-container">
+                            <div class="volume-slider" id="volumeSlider"></div>
+                            <div class="volume-fill" id="volumeFill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <audio id="audioPlayer" src="assets/High Fidelity - autobiographical record collection_-8dB.mp3"></audio>
+        
+        <style>
+            .audio-player {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: #0a0a0a;
+                border-top: 1px solid #1a1a1a;
+                padding: 15px 20px;
+                z-index: 1000;
+                font-family: "Stencil Gothic", monospace;
+            }
+            
+            .player-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .track-info {
+                color: #00ff00;
+                font-size: 12px;
+                letter-spacing: 2px;
+                text-shadow: 0 0 5px #00ff0080;
+                animation: terminal-flicker 4s infinite;
+            }
+            
+            @keyframes terminal-flicker {
+                0%, 100% { opacity: 1; }
+                92% { opacity: 0.8; }
+                93% { opacity: 1; }
+                94% { opacity: 0.9; }
+            }
+            
+            .controls {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .play-btn {
+                background: none;
+                border: 1px solid #00ff00;
+                color: #00ff00;
+                font-family: monospace;
+                font-size: 14px;
+                padding: 8px 12px;
+                cursor: pointer;
+                transition: all 0.2s;
+                border-radius: 2px;
+                box-shadow: inset 0 0 10px #00ff0020, 0 0 5px #00ff0040;
+            }
+            
+            .play-btn:hover {
+                background: #00ff0010;
+                box-shadow: inset 0 0 15px #00ff0030, 0 0 10px #00ff0060;
+                text-shadow: 0 0 5px #00ff00;
+            }
+            
+            .play-btn:active {
+                transform: scale(0.95);
+            }
+            
+            .progress-container {
+                flex: 1;
+                height: 4px;
+                background: #1a1a1a;
+                border-radius: 2px;
+                position: relative;
+                cursor: pointer;
+                box-shadow: inset 0 0 5px #00000080;
+            }
+            
+            .progress-bar {
+                position: absolute;
+                top: -8px;
+                left: 0;
+                right: 0;
+                height: 20px;
+                z-index: 10;
+            }
+            
+            .progress-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #00ff00, #00cc00);
+                border-radius: 2px;
+                width: 0%;
+                transition: width 0.1s;
+                box-shadow: 0 0 10px #00ff0060;
+                position: relative;
+            }
+            
+            .progress-fill::after {
+                content: '';
+                position: absolute;
+                right: -2px;
+                top: -3px;
+                width: 10px;
+                height: 10px;
+                background: #00ff00;
+                border-radius: 50%;
+                box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff0080;
+                animation: glow-pulse 2s infinite;
+            }
+            
+            @keyframes glow-pulse {
+                0%, 100% { box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff0080; }
+                50% { box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00; }
+            }
+            
+            .time {
+                color: #00ff00;
+                font-family: monospace;
+                font-size: 12px;
+                min-width: 100px;
+                text-align: right;
+                text-shadow: 0 0 3px #00ff0060;
+            }
+            
+            .volume-control {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .mute-btn {
+                background: none;
+                border: 1px solid #00ff00;
+                color: #00ff00;
+                font-family: "Stencil Gothic", monospace;
+                font-size: 10px;
+                letter-spacing: 1px;
+                padding: 4px 8px;
+                cursor: pointer;
+                transition: all 0.2s;
+                border-radius: 2px;
+                box-shadow: inset 0 0 10px #00ff0020, 0 0 5px #00ff0040;
+                line-height: 1;
+                text-shadow: 0 0 5px #00ff0060;
+            }
+            
+            .mute-btn:hover {
+                background: #00ff0010;
+                box-shadow: inset 0 0 15px #00ff0030, 0 0 10px #00ff0060;
+                text-shadow: 0 0 10px #00ff00;
+            }
+            
+            .mute-btn.muted {
+                opacity: 0.5;
+                text-decoration: line-through;
+            }
+            
+            .volume-slider-container {
+                width: 80px;
+                height: 4px;
+                background: #1a1a1a;
+                border-radius: 2px;
+                position: relative;
+                cursor: pointer;
+                box-shadow: inset 0 0 5px #00000080;
+            }
+            
+            .volume-slider {
+                position: absolute;
+                top: -8px;
+                left: 0;
+                right: 0;
+                height: 20px;
+                z-index: 10;
+            }
+            
+            .volume-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #00ff00, #00cc00);
+                border-radius: 2px;
+                width: 70%;
+                transition: width 0.1s;
+                box-shadow: 0 0 10px #00ff0060;
+                position: relative;
+            }
+            
+            .volume-fill::after {
+                content: '';
+                position: absolute;
+                right: -2px;
+                top: -3px;
+                width: 8px;
+                height: 8px;
+                background: #00ff00;
+                border-radius: 50%;
+                box-shadow: 0 0 8px #00ff00, 0 0 16px #00ff0080;
+            }
+            
+            /* Adjust page content to account for player */
+            body {
+                padding-bottom: 100px;
+            }
+            
+            /* Mobile responsive */
+            @media (max-width: 768px) {
+                .track-info {
+                    font-size: 10px;
+                    letter-spacing: 1px;
+                }
+                
+                .controls {
+                    gap: 10px;
+                }
+                
+                .play-btn {
+                    padding: 6px 10px;
+                    font-size: 12px;
+                }
+                
+                .time {
+                    font-size: 10px;
+                    min-width: 80px;
+                }
+            }
+        </style>
+        
+        <script>
+            const audio = document.getElementById('audioPlayer');
+            const playBtn = document.getElementById('playBtn');
+            const progressBar = document.getElementById('progressBar');
+            const progressFill = document.getElementById('progressFill');
+            const timeDisplay = document.getElementById('timeDisplay');
+            const muteBtn = document.getElementById('muteBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const volumeFill = document.getElementById('volumeFill');
+            
+            let isPlaying = false;
+            
+            // Set initial volume
+            audio.volume = 0.6;
+            volumeFill.style.width = '60%';
+            
+            // Play/Pause
+            playBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    audio.pause();
+                    playBtn.textContent = '▶';
+                } else {
+                    audio.play();
+                    playBtn.textContent = '❚❚';
+                }
+                isPlaying = !isPlaying;
+            });
+            
+            // Update progress
+            audio.addEventListener('timeupdate', () => {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = progress + '%';
+                
+                const currentMins = Math.floor(audio.currentTime / 60);
+                const currentSecs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+                const totalMins = Math.floor(audio.duration / 60);
+                const totalSecs = Math.floor(audio.duration % 60).toString().padStart(2, '0');
+                
+                timeDisplay.textContent = `${currentMins}:${currentSecs} / ${totalMins}:${totalSecs}`;
+            });
+            
+            // Seek
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                audio.currentTime = pos * audio.duration;
+            });
+            
+            // Handle end
+            audio.addEventListener('ended', () => {
+                playBtn.textContent = '▶';
+                isPlaying = false;
+                progressFill.style.width = '0%';
+            });
+            
+            // Volume control
+            volumeSlider.addEventListener('click', (e) => {
+                const rect = volumeSlider.getBoundingClientRect();
+                const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+                audio.volume = pos;
+                volumeFill.style.width = (pos * 100) + '%';
+                
+                // Update mute button based on volume
+                if (pos === 0) {
+                    muteBtn.classList.add('muted');
+                } else {
+                    muteBtn.classList.remove('muted');
+                }
+            });
+            
+            // Mute button click
+            let previousVolume = 0.6;
+            muteBtn.addEventListener('click', () => {
+                if (audio.volume > 0) {
+                    previousVolume = audio.volume;
+                    audio.volume = 0;
+                    volumeFill.style.width = '0%';
+                    muteBtn.classList.add('muted');
+                } else {
+                    audio.volume = previousVolume;
+                    volumeFill.style.width = (previousVolume * 100) + '%';
+                    muteBtn.classList.remove('muted');
+                }
+            });
+        </script>
+        
         <script src="assets/js/console-easter-egg.js"></script>
     </body>
 </html>
