@@ -5,19 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- SEO Meta Tags -->
-        <meta
-            name="description"
-            content="SAYLESS"
-        />
+        <meta name="description" content="SAYLESS" />
         <meta name="robots" content="noindex, follow" />
 
         <!-- Open Graph Meta Tags -->
         <meta property="og:type" content="website" />
         <meta property="og:title" content="HELLO, WORLD" />
-        <meta
-            property="og:description"
-            content="Remix your world"
-        />
+        <meta property="og:description" content="Remix your world" />
         <meta
             property="og:image"
             content="https://justsayless.xyz/assets/images/logo.png"
@@ -84,7 +78,7 @@
                 }
                 85% {
                     stroke-dasharray: 10 5;
-                    stroke: #00ff00;
+                    stroke: #11ee11;
                 }
                 88% {
                     stroke-dasharray: 3 3;
@@ -181,27 +175,32 @@
                 82% {
                     fill: #ff0000;
                     transform: scale(0.85) translateX(-2px) skewX(5deg);
-                    filter: brightness(0.2) drop-shadow(0 0 10px black) blur(0.5px);
+                    filter: brightness(0.2) drop-shadow(0 0 10px black)
+                        blur(0.5px);
                 }
                 85% {
                     fill: #ff69b4;
                     transform: scale(1.1) translateY(2px) rotate(-2deg);
-                    filter: brightness(0.15) drop-shadow(0 0 15px black) contrast(200%);
+                    filter: brightness(0.15) drop-shadow(0 0 15px black)
+                        contrast(200%);
                 }
                 88% {
                     fill: #0000ff;
                     transform: scale(0.9) translateX(1px) skewY(-3deg);
-                    filter: brightness(0.25) drop-shadow(0 0 12px black) saturate(0.3);
+                    filter: brightness(0.25) drop-shadow(0 0 12px black)
+                        saturate(0.3);
                 }
                 92% {
                     fill: #ff00ff;
                     transform: scale(0.95) translateY(-1px) rotate(1deg);
-                    filter: brightness(0.2) drop-shadow(0 0 18px black) invert(0.1);
+                    filter: brightness(0.2) drop-shadow(0 0 18px black)
+                        invert(0.1);
                 }
                 95% {
                     fill: #ffff00;
                     transform: scale(0.88) translateX(-1px) skewX(-2deg);
-                    filter: brightness(0.3) drop-shadow(0 0 10px black) sepia(0.5);
+                    filter: brightness(0.3) drop-shadow(0 0 10px black)
+                        sepia(0.5);
                 }
             }
 
@@ -253,7 +252,16 @@
         </style>
     </head>
     <body>
-        <div style="display: flex; flex-direction: column; align-items: center; padding: 40px 0; min-height: 100vh; justify-content: center;">
+        <div
+            style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+                min-height: 100vh;
+                justify-content: center;
+            "
+        >
             <div class="text">HELLO, WORLD</div>
             <div style="display: flex; gap: 30px; margin-top: 40px">
                 <a
@@ -276,7 +284,9 @@
                             stroke="white"
                             stroke-width="2"
                             fill="none"
-                            style="animation: glitch-stroke-instagram 3s infinite"
+                            style="
+                                animation: glitch-stroke-instagram 3s infinite;
+                            "
                         />
                         <circle
                             cx="12"
@@ -285,7 +295,10 @@
                             stroke="white"
                             stroke-width="2"
                             fill="none"
-                            style="animation: glitch-stroke-instagram 3s infinite reverse"
+                            style="
+                                animation: glitch-stroke-instagram 3s infinite
+                                    reverse;
+                            "
                         />
                         <circle
                             cx="17.5"
@@ -315,14 +328,18 @@
                     </svg>
                 </a>
             </div>
-            <div style="
-                margin-top: 30px;
-                text-align: center;
-                color: white;
-                font-family: 'Stencil Gothic', monospace;
-                font-size: 16px;
-                letter-spacing: 2px;
-            ">COME FIND ME</div>
+            <div
+                style="
+                    margin-top: 30px;
+                    text-align: center;
+                    color: white;
+                    font-family: &quot;Stencil Gothic&quot;, monospace;
+                    font-size: 16px;
+                    letter-spacing: 2px;
+                "
+            >
+                COME FIND ME
+            </div>
             <div
                 style="
                     margin-top: 60px;
@@ -331,7 +348,19 @@
                     padding: 0 20px;
                 "
             >
-                <div style="font-family: 'Stencil Gothic', sans-serif; font-size: 2rem; color: white; text-align: left; margin-bottom: 20px; position: relative;" class="noise-header">UNRELEASED TRACKS</div>
+                <div
+                    style="
+                        font-family: &quot;Stencil Gothic&quot;, sans-serif;
+                        font-size: 2rem;
+                        color: white;
+                        text-align: left;
+                        margin-bottom: 20px;
+                        position: relative;
+                    "
+                    class="noise-header"
+                >
+                    UNRELEASED TRACKS
+                </div>
                 <!-- monsters ball -->
                 <iframe
                     width="100%"
@@ -354,12 +383,15 @@
             </div>
         </div>
         <a href="index.html" class="back-link">← back</a>
-        
+
         <!-- Retro Audio Player -->
         <div class="audio-player">
             <div class="player-container">
                 <div class="track-info">
-                    <span class="track-title">HIGH FIDELITY - AUTOBIOGRAPHICAL RECORD COLLECTION</span>
+                    <span class="track-title"
+                        >HIGH FIDELITY - AUTOBIOGRAPHICAL RECORD
+                        COLLECTION</span
+                    >
                 </div>
                 <div class="controls">
                     <button class="play-btn" id="playBtn">▶</button>
@@ -378,9 +410,12 @@
                 </div>
             </div>
         </div>
-        
-        <audio id="audioPlayer" src="assets/high-fidelity-autobiographical-record-collection.mp3"></audio>
-        
+
+        <audio
+            id="audioPlayer"
+            src="assets/high-fidelity-autobiographical-record-collection.mp3"
+        ></audio>
+
         <style>
             .audio-player {
                 position: fixed;
@@ -393,7 +428,7 @@
                 z-index: 1000;
                 font-family: "Stencil Gothic", monospace;
             }
-            
+
             .player-container {
                 max-width: 1200px;
                 margin: 0 auto;
@@ -401,7 +436,7 @@
                 flex-direction: column;
                 gap: 10px;
             }
-            
+
             .track-info {
                 color: #00cc00;
                 font-size: 12px;
@@ -409,20 +444,29 @@
                 text-shadow: 0 0 3px #00cc0040;
                 animation: terminal-flicker 4s infinite;
             }
-            
+
             @keyframes terminal-flicker {
-                0%, 100% { opacity: 1; }
-                92% { opacity: 0.8; }
-                93% { opacity: 1; }
-                94% { opacity: 0.9; }
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                92% {
+                    opacity: 0.8;
+                }
+                93% {
+                    opacity: 1;
+                }
+                94% {
+                    opacity: 0.9;
+                }
             }
-            
+
             .controls {
                 display: flex;
                 align-items: center;
                 gap: 15px;
             }
-            
+
             .play-btn {
                 background: none;
                 border: 1px solid #00aa00;
@@ -433,19 +477,23 @@
                 cursor: pointer;
                 transition: all 0.2s;
                 border-radius: 2px;
-                box-shadow: inset 0 0 5px #00aa0010, 0 0 3px #00aa0020;
+                box-shadow:
+                    inset 0 0 5px #00aa0010,
+                    0 0 3px #00aa0020;
             }
-            
+
             .play-btn:hover {
                 background: #00aa0010;
-                box-shadow: inset 0 0 10px #00aa0020, 0 0 5px #00aa0040;
+                box-shadow:
+                    inset 0 0 10px #00aa0020,
+                    0 0 5px #00aa0040;
                 text-shadow: 0 0 3px #00aa00;
             }
-            
+
             .play-btn:active {
                 transform: scale(0.95);
             }
-            
+
             .progress-container {
                 flex: 1;
                 height: 4px;
@@ -455,7 +503,7 @@
                 cursor: pointer;
                 box-shadow: inset 0 0 5px #00000080;
             }
-            
+
             .progress-bar {
                 position: absolute;
                 top: -8px;
@@ -464,7 +512,7 @@
                 height: 20px;
                 z-index: 10;
             }
-            
+
             .progress-fill {
                 height: 100%;
                 background: linear-gradient(90deg, #00aa00, #008800);
@@ -474,9 +522,9 @@
                 box-shadow: 0 0 5px #00aa0030;
                 position: relative;
             }
-            
+
             .progress-fill::after {
-                content: '';
+                content: "";
                 position: absolute;
                 right: -2px;
                 top: -3px;
@@ -484,15 +532,26 @@
                 height: 10px;
                 background: #00aa00;
                 border-radius: 50%;
-                box-shadow: 0 0 5px #00aa00, 0 0 10px #00aa0040;
+                box-shadow:
+                    0 0 5px #00aa00,
+                    0 0 10px #00aa0040;
                 animation: glow-pulse 2s infinite;
             }
-            
+
             @keyframes glow-pulse {
-                0%, 100% { box-shadow: 0 0 5px #00aa00, 0 0 10px #00aa0040; }
-                50% { box-shadow: 0 0 8px #00aa00, 0 0 15px #00aa0060; }
+                0%,
+                100% {
+                    box-shadow:
+                        0 0 5px #00aa00,
+                        0 0 10px #00aa0040;
+                }
+                50% {
+                    box-shadow:
+                        0 0 8px #00aa00,
+                        0 0 15px #00aa0060;
+                }
             }
-            
+
             .time {
                 color: #00aa00;
                 font-family: monospace;
@@ -501,13 +560,13 @@
                 text-align: right;
                 text-shadow: 0 0 2px #00aa0030;
             }
-            
+
             .volume-control {
                 display: flex;
                 align-items: center;
                 gap: 8px;
             }
-            
+
             .mute-btn {
                 background: none;
                 border: 1px solid #00aa00;
@@ -519,22 +578,26 @@
                 cursor: pointer;
                 transition: all 0.2s;
                 border-radius: 2px;
-                box-shadow: inset 0 0 5px #00aa0010, 0 0 3px #00aa0020;
+                box-shadow:
+                    inset 0 0 5px #00aa0010,
+                    0 0 3px #00aa0020;
                 line-height: 1;
                 text-shadow: 0 0 2px #00aa0030;
             }
-            
+
             .mute-btn:hover {
                 background: #00aa0010;
-                box-shadow: inset 0 0 10px #00aa0020, 0 0 5px #00aa0040;
+                box-shadow:
+                    inset 0 0 10px #00aa0020,
+                    0 0 5px #00aa0040;
                 text-shadow: 0 0 5px #00aa00;
             }
-            
+
             .mute-btn.muted {
                 opacity: 0.5;
                 text-decoration: line-through;
             }
-            
+
             .volume-slider-container {
                 width: 80px;
                 height: 4px;
@@ -544,7 +607,7 @@
                 cursor: pointer;
                 box-shadow: inset 0 0 5px #00000080;
             }
-            
+
             .volume-slider {
                 position: absolute;
                 top: -8px;
@@ -553,7 +616,7 @@
                 height: 20px;
                 z-index: 10;
             }
-            
+
             .volume-fill {
                 height: 100%;
                 background: linear-gradient(90deg, #00aa00, #008800);
@@ -563,9 +626,9 @@
                 box-shadow: 0 0 5px #00aa0030;
                 position: relative;
             }
-            
+
             .volume-fill::after {
-                content: '';
+                content: "";
                 position: absolute;
                 right: -2px;
                 top: -3px;
@@ -573,142 +636,153 @@
                 height: 8px;
                 background: #00aa00;
                 border-radius: 50%;
-                box-shadow: 0 0 4px #00aa00, 0 0 8px #00aa0040;
+                box-shadow:
+                    0 0 4px #00aa00,
+                    0 0 8px #00aa0040;
             }
-            
+
             .noise-header {
                 animation: subtle-glitch 3s infinite;
             }
-            
+
             @keyframes subtle-glitch {
-                0%, 96%, 100% { 
+                0%,
+                96%,
+                100% {
                     transform: translateY(0px);
                 }
-                97% { 
+                97% {
                     transform: translateY(-1px);
                 }
-                98% { 
+                98% {
                     transform: translateY(1px);
                 }
-                99% { 
+                99% {
                     transform: translateY(-1px);
                 }
             }
-            
+
             /* Adjust page content to account for player */
             body {
                 padding-bottom: 100px;
             }
-            
+
             /* Mobile responsive */
             @media (max-width: 768px) {
                 .track-info {
                     font-size: 10px;
                     letter-spacing: 1px;
                 }
-                
+
                 .controls {
                     gap: 10px;
                 }
-                
+
                 .play-btn {
                     padding: 6px 10px;
                     font-size: 12px;
                 }
-                
+
                 .time {
                     font-size: 10px;
                     min-width: 80px;
                 }
             }
         </style>
-        
+
         <script>
-            const audio = document.getElementById('audioPlayer');
-            const playBtn = document.getElementById('playBtn');
-            const progressBar = document.getElementById('progressBar');
-            const progressFill = document.getElementById('progressFill');
-            const timeDisplay = document.getElementById('timeDisplay');
-            const muteBtn = document.getElementById('muteBtn');
-            const volumeSlider = document.getElementById('volumeSlider');
-            const volumeFill = document.getElementById('volumeFill');
-            
+            const audio = document.getElementById("audioPlayer");
+            const playBtn = document.getElementById("playBtn");
+            const progressBar = document.getElementById("progressBar");
+            const progressFill = document.getElementById("progressFill");
+            const timeDisplay = document.getElementById("timeDisplay");
+            const muteBtn = document.getElementById("muteBtn");
+            const volumeSlider = document.getElementById("volumeSlider");
+            const volumeFill = document.getElementById("volumeFill");
+
             let isPlaying = false;
-            
+
             // Set initial volume
             audio.volume = 0.6;
-            volumeFill.style.width = '60%';
-            
+            volumeFill.style.width = "60%";
+
             // Play/Pause
-            playBtn.addEventListener('click', () => {
+            playBtn.addEventListener("click", () => {
                 if (isPlaying) {
                     audio.pause();
-                    playBtn.textContent = '▶';
+                    playBtn.textContent = "▶";
                 } else {
                     audio.play();
-                    playBtn.textContent = '❚❚';
+                    playBtn.textContent = "❚❚";
                 }
                 isPlaying = !isPlaying;
             });
-            
+
             // Update progress
-            audio.addEventListener('timeupdate', () => {
+            audio.addEventListener("timeupdate", () => {
                 const progress = (audio.currentTime / audio.duration) * 100;
-                progressFill.style.width = progress + '%';
-                
+                progressFill.style.width = progress + "%";
+
                 const currentMins = Math.floor(audio.currentTime / 60);
-                const currentSecs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+                const currentSecs = Math.floor(audio.currentTime % 60)
+                    .toString()
+                    .padStart(2, "0");
                 const totalMins = Math.floor(audio.duration / 60);
-                const totalSecs = Math.floor(audio.duration % 60).toString().padStart(2, '0');
-                
+                const totalSecs = Math.floor(audio.duration % 60)
+                    .toString()
+                    .padStart(2, "0");
+
                 timeDisplay.textContent = `${currentMins}:${currentSecs} / ${totalMins}:${totalSecs}`;
             });
-            
+
             // Seek
-            progressBar.addEventListener('click', (e) => {
+            progressBar.addEventListener("click", (e) => {
                 const rect = progressBar.getBoundingClientRect();
                 const pos = (e.clientX - rect.left) / rect.width;
                 audio.currentTime = pos * audio.duration;
             });
-            
+
             // Handle end
-            audio.addEventListener('ended', () => {
-                playBtn.textContent = '▶';
+            audio.addEventListener("ended", () => {
+                playBtn.textContent = "▶";
                 isPlaying = false;
-                progressFill.style.width = '0%';
+                progressFill.style.width = "0%";
             });
-            
+
             // Volume control
-            volumeSlider.addEventListener('click', (e) => {
+            volumeSlider.addEventListener("click", (e) => {
                 const rect = volumeSlider.getBoundingClientRect();
-                const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+                const pos = Math.max(
+                    0,
+                    Math.min(1, (e.clientX - rect.left) / rect.width),
+                );
                 audio.volume = pos;
-                volumeFill.style.width = (pos * 100) + '%';
-                
+                volumeFill.style.width = pos * 100 + "%";
+
                 // Update mute button based on volume
                 if (pos === 0) {
-                    muteBtn.classList.add('muted');
+                    muteBtn.classList.add("muted");
                 } else {
-                    muteBtn.classList.remove('muted');
+                    muteBtn.classList.remove("muted");
                 }
             });
-            
+
             // Mute button click
             let previousVolume = 0.6;
-            muteBtn.addEventListener('click', () => {
+            muteBtn.addEventListener("click", () => {
                 if (audio.volume > 0) {
                     previousVolume = audio.volume;
                     audio.volume = 0;
-                    volumeFill.style.width = '0%';
-                    muteBtn.classList.add('muted');
+                    volumeFill.style.width = "0%";
+                    muteBtn.classList.add("muted");
                 } else {
                     audio.volume = previousVolume;
-                    volumeFill.style.width = (previousVolume * 100) + '%';
-                    muteBtn.classList.remove('muted');
+                    volumeFill.style.width = previousVolume * 100 + "%";
+                    muteBtn.classList.remove("muted");
                 }
             });
         </script>
-        
+
         <script src="assets/js/console-easter-egg.js"></script>
     </body>
 </html>
