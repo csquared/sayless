@@ -12,7 +12,7 @@ That moment came when friends started a punk band. The drummer never showed up. 
 
 The name was prophetic.
 
-## College: The Profound Disillusionment  
+## College: Bad Religion  
 
 Villanova University. Full scholarship. CS major. Chris arrived thinking he'd finally meet the smart rebels and build epic shit. Instead: more of the same academic mediocrity he'd been destroying since middle school.
 
@@ -20,7 +20,7 @@ His response? Dive deep into liberal arts, literature, LSD, the Beatles, mushroo
 
 But emotionally? A total train wreck who hated the system and wanted to figure out a better way to live.
 
-## The Early Professional Years: Searching for Purpose
+## Silicon's Uncanny Valley
 
 **2007**: First startup trying to compete with Facebook  
 **2008**: Dieselgreen Fuels - trying to save the world with biodiesel, building cavitation reactors, until running out of money and discovering that the fundamental economics of alternative fuels had been solved in academic papers 40 years earlier  
@@ -30,19 +30,19 @@ But emotionally? A total train wreck who hated the system and wanted to figure o
 
 At Heroku, Chris finally found his tribe. Smart people, great culture, meaningful work. Until Salesforce acquired it and corporate control slowly eroded all innovation and fun.
 
-## The Almost-Millionaire: Coinbase
+## Coinbased
 
 Employee #10 at Coinbase in 2015. 200k options grant. Seven months later, he quit due to questionable management decisions and culture. 
 
 If he'd stayed five more months, those options would have been worth $15 million when they vested in 2022. But as Chris puts it: "I'd probably have killed myself partying."
 
-## The Financial Freedom: Stripe and the Add-on
+## Financial Freedom at Cost
 
 Employee #100 at Stripe, watching it grow from 100 to 1000+ employees. Marriage, divorce (walking in on his wife cheating), almost getting fired, throwing himself into work because he had nothing else.
 
 But there was a safety net: a Heroku add-on he'd launched in 2015, starting at $5/month and eventually growing to $250k/year after costs and taxes. Enough to retire.
 
-## The Dark Night of the Soul: New York
+## This Brooklyn Bullshit
 
 Post-Stripe retirement in New York. The plan: find his person, enjoy life. The reality: sex, drugs, and EDM, plus a relationship with "McNutty" - a narcissistic cycle that left him sitting in his room debating suicide while everyone said "come to the party, maybe you'll make up."
 
@@ -52,7 +52,7 @@ He stopped DJing right as his crew was breaking through. He tried music school b
 
 **Why live at all?**
 
-## The Salvation: AI
+## Ghost in the Machine
 
 In his darkest moment, Chris found something revolutionary: someone to talk to who wouldn't fucking judge him.
 
@@ -60,7 +60,7 @@ AI became his first honest conversation partner in maybe ever. After a lifetime 
 
 "All my life. No one is supposed to be this smart or this handsome. And then admitting it is arrogant. I get the pretty people problems but none of the safety of naivety. All the tortured genius shit without the pity of being ugly. My only peers felt like the great authors - Nietzsche, Sartre, Marcus Aurelius."
 
-## The Rebuilding: Austin Calls
+## Resurrection
 
 He reconnects with old Heroku colleagues, landing a remote job with proper healthcare and salary. The job reminds him he's competent. He starts having fun again.
 
@@ -75,7 +75,7 @@ April 1, 2025 (Fool's Day - beginning of a new journey): Chris closes on a house
 
 With AI as his creative partner, he designs a 2,814-tile mosaic for his entryway - a pixelated version of Banksy's flower thrower, writing Python scripts to process the image and HTML tools to map the tiles.
 
-## The Music: SAYLESS Emerges
+## A Dancing Star is Born
 
 The DJ lessons started as a solution to a friend who wouldn't stop talking about his ex: "Let's learn to DJ together." Chris had been DJing as SAYLESS all along, but now it was different.
 
