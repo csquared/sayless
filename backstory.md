@@ -58,7 +58,7 @@ For the first time in his life, Chris found a conversation partner that could ma
 
 ### Resurrection
 
-The road back was slow. The Recurse Center. Relearning Python. Injecting peptides. Fighting through brain fog so thick he could barely code. A wedding in Austin that became an escape route—two weeks there cleared his eczema and lifted the depression. One last rockstar weekend in Brooklyn, then he was gone.
+The road back was slow. The Recurse Center. Relearning Coding. Injecting peptides. Fighting through brain fog so thick he could barely code. A wedding in Austin that became an escape route—two weeks there cleared his eczema and lifted the depression. One last rockstar weekend in Brooklyn, then he was gone.
 
 Austin welcomed him back differently this time. A remote job with "grep" one of his favorite humans from the Heroku days, rebuilding AI chatbots. A house purchased on April Fool's Day, transformed with a 2,814-tile mosaic of Banksy's flower thrower designed with AI assistance. A 1996 manual Toyota Tacoma. Daily happiness replacing daily tears.
 
