@@ -254,7 +254,7 @@
     </head>
     <body>
         <div style="display: flex; flex-direction: column; align-items: center; padding: 40px 0; min-height: 100vh; justify-content: center;">
-            <div class="text">HELLO, WORLD</div>
+            <div class="text">HELLO, WORLD?</div>
             <div style="display: flex; gap: 30px; margin-top: 40px">
                 <a
                     href="https://instagram.com/just.sayless"
@@ -315,6 +315,14 @@
                     </svg>
                 </a>
             </div>
+            <div style="
+                margin-top: 30px;
+                text-align: center;
+                color: white;
+                font-family: 'Stencil Gothic', monospace;
+                font-size: 16px;
+                letter-spacing: 2px;
+            ">COME FIND ME</div>
             <div
                 style="
                     margin-top: 60px;
@@ -323,7 +331,7 @@
                     padding: 0 20px;
                 "
             >
-                <div style="font-family: 'Stencil Gothic', sans-serif; font-size: 2rem; color: white; text-align: left; margin-bottom: 20px;">UNRELEASED TRACKS</div>
+                <div style="font-family: 'Stencil Gothic', sans-serif; font-size: 2rem; color: white; text-align: left; margin-bottom: 20px; position: relative;" class="noise-header">UNRELEASED TRACKS</div>
                 <!-- monsters ball -->
                 <iframe
                     width="100%"
@@ -566,6 +574,25 @@
                 background: #00ff00;
                 border-radius: 50%;
                 box-shadow: 0 0 8px #00ff00, 0 0 16px #00ff0080;
+            }
+            
+            .noise-header {
+                animation: subtle-glitch 3s infinite;
+            }
+            
+            @keyframes subtle-glitch {
+                0%, 96%, 100% { 
+                    transform: translateY(0px);
+                }
+                97% { 
+                    transform: translateY(-1px);
+                }
+                98% { 
+                    transform: translateY(1px);
+                }
+                99% { 
+                    transform: translateY(-1px);
+                }
             }
             
             /* Adjust page content to account for player */

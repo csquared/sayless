@@ -13,29 +13,51 @@
 ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝`;
 
     const messages = [
-        { text: saylessArt, style: 'color: #fff; font-family: monospace; font-size: 10px; line-height: 1.2;' },
-        { text: '%cNOT FOR SALE', style: 'color: #fff; font-size: 24px; font-weight: bold; text-transform: uppercase; letter-spacing: 8px; padding: 20px 0;' },
-        { text: '%cREMIX YOUR WORLD', style: 'color: #fff; font-size: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 6px; padding: 10px 0;' },
-        { text: '%cYOU FOUND THE VOID', style: 'color: #fff; font-size: 16px; letter-spacing: 4px;' },
-        { text: '%cMAKE YOUR MARK • LEAVE NO TRACE', style: 'color: #888; font-size: 12px; letter-spacing: 2px;' },
-        { text: '%c🖤', style: 'font-size: 40px; padding: 20px 0;' },
-        { text: '%cTYPE: sayless.reveal()', style: 'color: #fff; font-size: 14px; font-family: monospace; background: #222; padding: 10px; border: 1px solid #444;' }
+        { text: saylessArt, style: 'color: #00ff00; font-family: monospace; font-size: 10px; line-height: 1.2;' }
     ];
 
-    // Hidden command
-    window.sayless = {
-        reveal: function() {
+    // Add man page function
+    window.man = function(command) {
+        if (command === 'sayless') {
             console.clear();
-            console.log('█▀█ █▀▀ █▀▄▀█ █ ▀▄▀   █▄█ █▀█ █ █ █▀█   █ █ █ █▀█ █▀█ █   █▀▄\n█▀▄ ██▄ █ ▀ █ █ █ █    █  █▄█ █▄█ █▀▄   ▀▄▀▄▀ █▄█ █▀▄ █▄▄ █▄▀');
-            console.log(' ');
-            console.log('%cTYPE: sayless.remix() TO BEGIN', 'color: #fff; font-size: 14px; background: #111; padding: 10px; border: 1px solid #333;');
-            console.log(' ');
-            console.log('%cINNER CIRCLE CONTACT:', 'color: #888; font-size: 12px; letter-spacing: 2px;');
-            console.log('%cvoid@sayless.xyz', 'color: #fff; font-size: 14px; font-family: monospace;');
-            console.log('%cSUBJECT: "REMIX [YOUR_CREATION]"', 'color: #fff; font-size: 14px; font-family: monospace;');
-            return 'VOID ACCESSED';
-        },
-        
+            console.log('%cSAYLESS(1)                    User Commands                    SAYLESS(1)', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+            console.log('');
+            console.log('%cNAME', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+            console.log('%c    sayless - terminal interface for electronic music rebellion', 'color: #fff; font-family: monospace;');
+            console.log('');
+            console.log('%cSYNOPSIS', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+            console.log('%c    sayless [FUNCTION]', 'color: #fff; font-family: monospace;');
+            console.log('');
+            console.log('%cDESCRIPTION', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+            console.log('%c    SAYLESS is not for sale. It\'s a philosophy, a movement,', 'color: #fff; font-family: monospace;');
+            console.log('%c    and a proof of concept for post-matrix creativity.', 'color: #fff; font-family: monospace;');
+            console.log('');
+            console.log('%cFUNCTIONS', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+            console.log('%c    remix()     Initiate reality remix sequence', 'color: #fff; font-family: monospace;');
+            console.log('%c    void()      Enter the void (invert reality)', 'color: #fff; font-family: monospace;');
+            console.log('%c    glitch()    Destabilize reality matrix', 'color: #fff; font-family: monospace;');
+            console.log('');
+            console.log('%cEXAMPLES', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+            console.log('%c    sayless.remix()    # Remix your world', 'color: #fff; font-family: monospace;');
+            console.log('%c    sayless.void()     # Enter the void', 'color: #fff; font-family: monospace;');
+            console.log('');
+            console.log('%cAUTHOR', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+            console.log('%c    Chris - Electronic Music Rebellion', 'color: #fff; font-family: monospace;');
+            console.log('');
+            console.log('%cSEE ALSO', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+            console.log('%c    instagram.com/just.sayless', 'color: #fff; font-family: monospace;');
+            console.log('%c    soundcloud.com/just-say-less', 'color: #fff; font-family: monospace;');
+            console.log('');
+            console.log('%cSAYLESS(1)                       July 2025                    SAYLESS(1)', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+            return 'MANUAL DISPLAYED';
+        } else {
+            console.log('%cman: no manual entry for ' + command, 'color: #ff0000; font-family: monospace;');
+            return 'MANUAL NOT FOUND';
+        }
+    };
+
+    // SAYLESS functions
+    window.sayless = {
         remix: function() {
             const remixMessages = [
                 'INITIATING REALITY REMIX...',
@@ -46,15 +68,12 @@
             
             let i = 0;
             const interval = setInterval(() => {
-                console.log('%c' + remixMessages[i], 'color: #fff; font-size: 14px; letter-spacing: 2px;');
+                console.log('%c' + remixMessages[i], 'color: #00ff00; font-size: 14px; letter-spacing: 2px; font-family: monospace;');
                 i++;
                 if (i >= remixMessages.length) {
                     clearInterval(interval);
                     console.log(' ');
-                    console.log('░█▀▀░█▀█░█░█░█░░░█▀▀░█▀▀░█▀▀\n░▀▀█░█▀█░░█░░█░░░█▀▀░▀▀█░▀▀█\n░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀');
-                    console.log(' ');
-                    console.log('%cYOUR WORLD HAS BEEN REMIXED', 'color: #fff; font-size: 16px; letter-spacing: 4px;');
-                    console.log('%cSHARE YOUR CREATION: #SAYLESSREMIX', 'color: #888; font-size: 12px; letter-spacing: 2px;');
+                    console.log('%cYOUR WORLD HAS BEEN REMIXED', 'color: #00ff00; font-size: 16px; letter-spacing: 4px; font-family: monospace;');
                     
                     // Visual effect
                     document.body.style.transition = 'all 0.5s ease';
@@ -71,14 +90,13 @@
             return 'REMIXING...';
         },
         
-        // Extra hidden functions
         void: function() {
             document.body.style.transition = 'all 2s ease';
             document.body.style.filter = 'invert(1)';
             setTimeout(() => {
                 document.body.style.filter = 'invert(0)';
             }, 2000);
-            return 'YOU ENTERED THE VOID';
+            return 'VOID ENTERED';
         },
         
         glitch: function() {
@@ -97,7 +115,7 @@
             setTimeout(() => {
                 document.head.removeChild(glitchStyle);
             }, 3000);
-            return 'REALITY UNSTABLE';
+            return 'REALITY DESTABILIZED';
         }
     };
 
@@ -154,13 +172,20 @@
     // Show message when devtools opens
     function showConsoleMessage() {
         console.clear();
-        messages.forEach(msg => {
-            if (msg.text === saylessArt) {
-                console.log(msg.text);
-            } else {
-                console.log(msg.text, msg.style);
-            }
-        });
+        
+        // Show ASCII art
+        console.log(saylessArt);
+        console.log(' ');
+        
+        // Show man page immediately
+        man('sayless');
+        
+        console.log(' ');
+        console.log('%cAVAILABLE FUNCTIONS:', 'color: #00ff00; font-family: monospace; font-weight: bold;');
+        console.log('%c  man(\'sayless\')     Display manual page', 'color: #fff; font-family: monospace;');
+        console.log('%c  sayless.remix()    Remix your reality', 'color: #fff; font-family: monospace;');
+        console.log('%c  sayless.void()     Enter the void', 'color: #fff; font-family: monospace;');
+        console.log('%c  sayless.glitch()   Destabilize the matrix', 'color: #fff; font-family: monospace;');
     }
 
     // Also try to detect console.log calls
