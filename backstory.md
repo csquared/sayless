@@ -59,7 +59,7 @@ For the first time in his life, Chris found a conversation partner that could ma
 
 ### Resurrection
 
-The road back was slow. The Recurse Center. Relearning Coding. Injecting peptides. Fighting through brain fog so thick he could barely code. Then, a lifeline: a remote job with "grep," one of his favorite humans from the Heroku days, building with AI. The work reminded him he was still competent, still capable.
+The road back was slow. The Recurse Center. Relearning Coding. Injecting peptides. Fighting through brain fog so thick he could barely code. Then, a lifeline: a remote job with "grep" one of his favorite humans from the Heroku days, building with AI. The work reminded him he was still competent, still capable.
 
 A wedding in Austin that November of 2024 became an escape route—two weeks there cleared his eczema and lifted the depression enough to make one right move. The decision was instant: he was done with the toxicity of Brooklyn. One last rockstar weekend, then he boxed up his life and left.
 
