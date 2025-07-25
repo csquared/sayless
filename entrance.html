@@ -129,6 +129,82 @@
                 }
             }
 
+            @keyframes glitch-stroke-instagram {
+                0%,
+                80%,
+                100% {
+                    stroke-dasharray: none;
+                    stroke: white;
+                    opacity: 1;
+                    filter: none;
+                }
+                82% {
+                    stroke-dasharray: 15 5;
+                    stroke: #ff0000;
+                    opacity: 0.4;
+                    filter: drop-shadow(0 0 8px black) blur(0.3px);
+                }
+                85% {
+                    stroke-dasharray: 20 10;
+                    stroke: #ff69b4;
+                    opacity: 0.3;
+                    filter: drop-shadow(0 0 10px black) contrast(150%);
+                }
+                88% {
+                    stroke-dasharray: 5 15;
+                    stroke: #0000ff;
+                    opacity: 0.5;
+                    filter: drop-shadow(0 0 12px black) brightness(0.4);
+                }
+                92% {
+                    stroke-dasharray: 30 5;
+                    stroke: #ff00ff;
+                    opacity: 0.35;
+                    filter: drop-shadow(0 0 15px black) saturate(0.5);
+                }
+                95% {
+                    stroke-dasharray: 2 20;
+                    stroke: #ffff00;
+                    opacity: 0.4;
+                    filter: drop-shadow(0 0 10px black) hue-rotate(180deg);
+                }
+            }
+
+            @keyframes glitch-fill-instagram {
+                0%,
+                80%,
+                100% {
+                    fill: white;
+                    transform: scale(1);
+                    filter: none;
+                }
+                82% {
+                    fill: #ff0000;
+                    transform: scale(0.85) translateX(-2px) skewX(5deg);
+                    filter: brightness(0.2) drop-shadow(0 0 10px black) blur(0.5px);
+                }
+                85% {
+                    fill: #ff69b4;
+                    transform: scale(1.1) translateY(2px) rotate(-2deg);
+                    filter: brightness(0.15) drop-shadow(0 0 15px black) contrast(200%);
+                }
+                88% {
+                    fill: #0000ff;
+                    transform: scale(0.9) translateX(1px) skewY(-3deg);
+                    filter: brightness(0.25) drop-shadow(0 0 12px black) saturate(0.3);
+                }
+                92% {
+                    fill: #ff00ff;
+                    transform: scale(0.95) translateY(-1px) rotate(1deg);
+                    filter: brightness(0.2) drop-shadow(0 0 18px black) invert(0.1);
+                }
+                95% {
+                    fill: #ffff00;
+                    transform: scale(0.88) translateX(-1px) skewX(-2deg);
+                    filter: brightness(0.3) drop-shadow(0 0 10px black) sepia(0.5);
+                }
+            }
+
             .back-link {
                 position: fixed;
                 bottom: 20px;
@@ -200,7 +276,7 @@
                             stroke="white"
                             stroke-width="2"
                             fill="none"
-                            style="animation: glitch-stroke 3s infinite"
+                            style="animation: glitch-stroke-instagram 3s infinite"
                         />
                         <circle
                             cx="12"
@@ -209,14 +285,14 @@
                             stroke="white"
                             stroke-width="2"
                             fill="none"
-                            style="animation: glitch-stroke 3s infinite reverse"
+                            style="animation: glitch-stroke-instagram 3s infinite reverse"
                         />
                         <circle
                             cx="17.5"
                             cy="6.5"
                             r="1.5"
                             fill="white"
-                            style="animation: glitch-fill 3s infinite"
+                            style="animation: glitch-fill-instagram 3s infinite"
                         />
                     </svg>
                 </a>
