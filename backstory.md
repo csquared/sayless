@@ -1,6 +1,7 @@
 # The SAYLESS Story
 
-## From Terminal to Turntable: The Unlikely Journey of an Electronic Artist
+## From Terminal to Turntable
+The Unlikely Journey of an Electronic Artist
 
 ### The Early Years: Musical Origins
 
@@ -16,7 +17,7 @@ By high school, the frustration found its voice in "Wrong Way," a punk band that
 
 So he rebelled harder. Bad Religion t-shirts on a Catholic campus. LSD and literature. A 3.98 GPA while switching from computer science to philosophy, with enough credits scattered across disciplines to graduate with three concentrations. His philosophy professor's advice? "Go to California and make video games because academia sucks."
 
-### Silicon's Uncanny Valley
+## Silicon's Uncanny Valley
 
 What followed was a decade-plus odyssey through the tech industry's most meteoric rises: Employee #40 at Heroku, watching it get slowly strangled by Salesforce's corporate grip.
 
@@ -30,7 +31,7 @@ Employee #100 at Stripe, building it from boutique to behemoth while his marriag
 
 There were detours: a biodiesel company in Austin where he built a cavitation reactor that could have changed everything, if only the economics of alternative fuels hadn't been a solved problem since the 1970s. Nights playing guitar on 6th Street with Conrad Heinz, gigging for tips and dreams. Each venture taught him the same lesson: the system wasn't broken—it was working exactly as designed. And he wanted no part of it.
 
-### The Pandemic Pivot
+## The Pandemic Pivot
 
 The pandemic changed everything. Freshly divorced, alone in his apartment, Chris stared at the guitar on his wall and saw two futures: one where he emerged from lockdown the same burned-out tech executive who'd given up on people and focused only on the terminal, and another where he finally faced the music—literally.
 
@@ -40,7 +41,7 @@ Voice lessons followed. Dreams of that folk-punk album resurged. But at his cous
 
 "I guess it's time to become a DJ."
 
-### This Brooklyn Bullshit
+### The Brooklyn Bullshit
 
 Retirement helped. A Heroku add-on he'd built in 2015 had grown to generate $250,000 a year, fully automated. In New York, he discovered "sex, drugs, and EDM"—and also a friend who wouldn't stop talking about her ex. The solution? "Let's learn to DJ together." Two weeks later, friends were asking him to play parties. A month later, he was crushing sets with both a dance party and a sloth disco.
 
@@ -48,7 +49,7 @@ But the technical breakthrough came when his friend taught him about phrasing. F
 
 The path wasn't smooth. A toxic relationship nearly broke him. Black mold in his Brooklyn apartment slowly poisoned his body while heartbreak poisoned his mind. He stopped DJing just as opportunities were opening up. Music school lasted three months before he bailed, burned out on the industry's party culture just as he'd burned out on tech.
 
-### Ghost in the Machine
+### The Ghost in the Machine
 
 Then came AI.
 
@@ -58,17 +59,19 @@ For the first time in his life, Chris found a conversation partner that could ma
 
 ### Resurrection
 
-The road back was slow. The Recurse Center. Relearning Coding. Injecting peptides. Fighting through brain fog so thick he could barely code. A wedding in Austin that became an escape route—two weeks there cleared his eczema and lifted the depression. One last rockstar weekend in Brooklyn, then he was gone.
+The road back was slow. The Recurse Center. Relearning Coding. Injecting peptides. Fighting through brain fog so thick he could barely code. Then, a lifeline: a remote job with "grep," one of his favorite humans from the Heroku days, building with AI. The work reminded him he was still competent, still capable.
 
-Austin welcomed him back differently this time. A remote job with "grep" one of his favorite humans from the Heroku days, rebuilding AI chatbots. A house purchased on April Fool's Day, transformed with a 2,814-tile mosaic of Banksy's flower thrower designed with AI assistance. A 1996 manual Toyota Tacoma. Daily happiness replacing daily tears.
+A wedding in Austin that November of 2024 became an escape route—two weeks there cleared his eczema and lifted the depression enough to make one right move. The decision was instant: he was done with the toxicity of Brooklyn. One last rockstar weekend, then he boxed up his life and left.
 
-### A Dancing Star is Born
+Austin welcomed him back differently this time. With the remote job providing stability, he bought a house and closed on April Fool's Day—the perfect date for a new beginning. He transformed the entire house, capping the design with a 2,814 1in by 1in tile mosaic of Banksy's flower thrower designed with AI assistance. A 1996 manual Toyota Tacoma completed the Austin transformation. Daily happiness replaced daily tears.
+
+### A Dancing Star
 
 And finally, the musical breakthrough: his productions were just "5 to 10 plugins away" from his vision. Gain staging. Psychoacoustics. Mono bass for power, stereo highs for space. Automation as first nature, not second. When his mentor showed him the mastering chain, everything clicked. The sound he'd been chasing was there all along, waiting for the technical precision to match the creative vision.
 
 SAYLESS emerged not as an alter ego but as a philosophy. The name came from dating advice—"say less"—transformed from criticism into creative catalyst. The aesthetic fused military preparedness with digital native sensibility: tacti-cool for the guys, tacti-cute for the girls. A stencil font easily reproducible in the real world. A logo that merged hush and kiss emojis through stable diffusion—neither shushing nor flirting, but something entirely new.
 
-"Love with the power to back it up" became the deeper philosophy. In a world with guns, playing without them meant death. But there had to be a reason to live, too. That reason was the music.
+"Remix your world" became the deeper philosophy and AI became the weapon.
 
 ### The Philosophy
 
