@@ -2,9 +2,6 @@
 
 Official SAYLESS Branding
 
-Branding - making your "stamp" or "mark", not advertising.
-NOT FOR SALE
-
 **Remix your world**
 
 ## Assets
