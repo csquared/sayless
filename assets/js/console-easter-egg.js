@@ -105,35 +105,17 @@
         },
         
         remix: function() {
-            const remixMessages = [
-                'INITIATING REALITY REMIX...',
-                'DECONSTRUCTING PATTERNS...',
-                'REASSEMBLING FRAGMENTS...',
-                'REMIX COMPLETE'
-            ];
+            // Visual effect
+            document.body.style.transition = 'all 0.5s ease';
+            document.body.style.transform = 'rotate(1deg)';
+            setTimeout(() => {
+                document.body.style.transform = 'rotate(-1deg)';
+                setTimeout(() => {
+                    document.body.style.transform = 'rotate(0deg)';
+                }, 500);
+            }, 500);
             
-            let i = 0;
-            const interval = setInterval(() => {
-                console.log('%c' + remixMessages[i], 'color: #00ff00; font-size: 14px; letter-spacing: 2px; font-family: monospace;');
-                i++;
-                if (i >= remixMessages.length) {
-                    clearInterval(interval);
-                    console.log(' ');
-                    console.log('%cYOUR WORLD HAS BEEN REMIXED', 'color: #00ff00; font-size: 16px; letter-spacing: 4px; font-family: monospace;');
-                    
-                    // Visual effect
-                    document.body.style.transition = 'all 0.5s ease';
-                    document.body.style.transform = 'rotate(1deg)';
-                    setTimeout(() => {
-                        document.body.style.transform = 'rotate(-1deg)';
-                        setTimeout(() => {
-                            document.body.style.transform = 'rotate(0deg)';
-                        }, 500);
-                    }, 500);
-                }
-            }, 1000);
-            
-            return 'REMIXING...';
+            return 'REALITY REMIXED';
         },
         
         void: function() {
