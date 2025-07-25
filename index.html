@@ -1,106 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="SAYLESS - NOT FOR SALE. Make your mark, leave no trace.">
-    <meta name="keywords" content="SAYLESS, stencil, underground, not for sale">
-    <meta name="author" content="SAYLESS">
-    
-    <!-- Essential Open Graph tags -->
-    <meta property="og:title" content="SAYLESS">
-    <meta property="og:description" content="NOT FOR SALE. Make your mark, leave no trace.">
-    <meta property="og:image" content="https://justsayless.xyz/assets/images/logo.png">
-    <meta property="og:url" content="https://justsayless.xyz">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="SAYLESS">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SAYLESS">
-    <meta name="twitter:description" content="NOT FOR SALE. Make your mark, leave no trace.">
-    <meta name="twitter:image" content="https://justsayless.xyz/assets/images/logo.png">
-    <title>SAYLESS</title>
-    <style>
-        @font-face {
-            font-family: 'Stencil Gothic';
-            src: url('assets/fonts/StencilGothic.ttf') format('truetype');  
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: black;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Stencil Gothic', sans-serif;
-        }
-        
-        .logo {
-            max-width: 300px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        
-        .text {
-            color: white;
-            font-size: 48px;
-            letter-spacing: 2px;
-            text-align: center;
-        }
-        
-        .enter-link {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            color: #444;
-            text-decoration: none;
-            font-family: 'Stencil Gothic', monospace;
-            font-size: 36px;
-            cursor: pointer;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- SEO Meta Tags -->
+        <meta
+            name="description"
+            content="SAYLESS - NOT FOR SALE. Make your mark, leave no trace."
+        />
+        <meta
+            name="keywords"
+            content="SAYLESS, stencil, underground, not for sale"
+        />
+        <meta name="author" content="SAYLESS" />
+
+        <!-- Essential Open Graph tags -->
+        <meta property="og:title" content="SAYLESS" />
+        <meta
+            property="og:description"
+            content="NOT FOR SALE. Make your mark, leave no trace."
+        />
+        <meta
+            property="og:image"
+            content="https://justsayless.xyz/assets/images/logo.png"
+        />
+        <meta property="og:url" content="https://justsayless.xyz" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="SAYLESS" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="SAYLESS" />
+        <meta
+            name="twitter:description"
+            content="NOT FOR SALE. Make your mark, leave no trace."
+        />
+        <meta
+            name="twitter:image"
+            content="https://justsayless.xyz/assets/images/logo.png"
+        />
+        <title>SAYLESS</title>
+        <style>
+            @font-face {
+                font-family: "Stencil Gothic";
+                src: url("assets/fonts/StencilGothic.ttf") format("truetype");
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                font-family: "Stencil Gothic", sans-serif;
+            }
+
             .logo {
-                max-width: 200px;
+                max-width: 300px;
+                height: auto;
+                margin-bottom: 20px;
             }
-            
+
             .text {
-                font-size: 32px;
-                letter-spacing: 1px;
+                color: white;
+                font-size: 48px;
+                letter-spacing: 2px;
+                text-align: center;
             }
-            
+
             .enter-link {
-                font-size: 24px;
-                bottom: 15px;
-                right: 15px;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                color: #00cc00;
+                text-decoration: none;
+                font-family: "Stencil Gothic", monospace;
+                font-size: 36px;
+                cursor: pointer;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .logo {
-                max-width: 150px;
-                margin-bottom: 15px;
+
+            /* Mobile Responsive */
+            @media (max-width: 768px) {
+                .logo {
+                    max-width: 200px;
+                }
+
+                .text {
+                    font-size: 32px;
+                    letter-spacing: 1px;
+                }
+
+                .enter-link {
+                    font-size: 24px;
+                    bottom: 15px;
+                    right: 15px;
+                }
             }
-            
-            .text {
-                font-size: 24px;
+
+            @media (max-width: 480px) {
+                .logo {
+                    max-width: 150px;
+                    margin-bottom: 15px;
+                }
+
+                .text {
+                    font-size: 24px;
+                }
+
+                .enter-link {
+                    font-size: 20px;
+                }
             }
-            
-            .enter-link {
-                font-size: 20px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <img src="assets/images/logo.png" class="logo">
-    <div class="text">SAYLESS</div>
-    <a href="entrance.html" class="enter-link">ENTER HERE</a>
-</body>
-</html> 
+        </style>
+    </head>
+    <body>
+        <img src="assets/images/logo.png" class="logo" />
+        <div class="text">SAYLESS</div>
+        <a href="entrance.html" class="enter-link">ENTER HERE</a>
+    </body>
+</html>
