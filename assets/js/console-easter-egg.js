@@ -58,6 +58,53 @@
 
     // SAYLESS functions
     window.sayless = {
+        help: function() {
+            console.clear();
+            console.log('SAYLESS(1)                    User Commands                    SAYLESS(1)');
+            console.log('');
+            console.log('NAME');
+            console.log('    sayless - terminal interface for electronic music rebellion');
+            console.log('');
+            console.log('SYNOPSIS');
+            console.log('    sayless [FUNCTION]');
+            console.log('');
+            console.log('DESCRIPTION');
+            console.log('    SAYLESS is not for sale. It\'s a philosophy, a movement,');
+            console.log('    and a proof of concept for post-matrix creativity.');
+            console.log('');
+            console.log('FUNCTIONS');
+            console.log('    help()      Display this manual page');
+            console.log('    print()     Display ASCII art');
+            console.log('    ascii()     Display ASCII art');
+            console.log('    remix()     Initiate reality remix sequence');
+            console.log('    void()      Enter the void (invert reality)');
+            console.log('    glitch()    Destabilize reality matrix');
+            console.log('');
+            console.log('EXAMPLES');
+            console.log('    sayless.remix()    # Remix your world');
+            console.log('    sayless.void()     # Enter the void');
+            console.log('');
+            console.log('AUTHOR');
+            console.log('    Chris - Electronic Music Rebellion');
+            console.log('');
+            console.log('SEE ALSO');
+            console.log('    instagram.com/just.sayless');
+            console.log('    soundcloud.com/just-say-less');
+            console.log('');
+            console.log('SAYLESS(1)                       July 2025                    SAYLESS(1)');
+            return 'MANUAL DISPLAYED';
+        },
+        
+        print: function() {
+            console.log(saylessArt);
+            return 'ASCII ART DISPLAYED';
+        },
+        
+        ascii: function() {
+            console.log(saylessArt);
+            return 'ASCII ART DISPLAYED';
+        },
+        
         remix: function() {
             const remixMessages = [
                 'INITIATING REALITY REMIX...',
@@ -173,19 +220,10 @@
     function showConsoleMessage() {
         console.clear();
         
-        // Show ASCII art
+        // Show ASCII art in plain black/white
         console.log(saylessArt);
         console.log(' ');
-        
-        // Show man page immediately
-        man('sayless');
-        
-        console.log(' ');
-        console.log('%cAVAILABLE FUNCTIONS:', 'color: #00ff00; font-family: monospace; font-weight: bold;');
-        console.log('%c  man(\'sayless\')     Display manual page', 'color: #fff; font-family: monospace;');
-        console.log('%c  sayless.remix()    Remix your reality', 'color: #fff; font-family: monospace;');
-        console.log('%c  sayless.void()     Enter the void', 'color: #fff; font-family: monospace;');
-        console.log('%c  sayless.glitch()   Destabilize the matrix', 'color: #fff; font-family: monospace;');
+        console.log('TYPE: sayless.help()');
     }
 
     // Also try to detect console.log calls
