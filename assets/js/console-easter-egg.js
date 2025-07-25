@@ -177,13 +177,6 @@
         }
     }
 
-    // Trigger on any console interaction
-    const originalLog = console.log;
-    console.log = function() {
-        showConsoleMessage();
-        originalLog.apply(console, arguments);
-    };
-    
-    // Also show immediately for direct console access
-    setTimeout(showConsoleMessage, 100);
+    // Just show the message once when the script loads
+    showConsoleMessage();
 })();
