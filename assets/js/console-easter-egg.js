@@ -1,7 +1,4 @@
 (function() {
-    let devtoolsOpen = false;
-    let threshold = 160;
-    let emitEvent = false;
     
     // ASCII art for console
     const saylessArt = `
@@ -60,6 +57,8 @@
     window.sayless = {
         help: function() {
             console.clear();
+            console.log(saylessArt);
+            console.log(' ');
             console.log('SAYLESS(1)                    User Commands                    SAYLESS(1)');
             console.log('');
             console.log('NAME');
@@ -166,66 +165,25 @@
         }
     };
 
-    // Devtools detection methods
-    const devtools = {
-        open: false,
-        orientation: null
-    };
-
-    // Method 1: Element toString detection
-    const element = new Image();
-    Object.defineProperty(element, 'id', {
-        get: function() {
-            devtoolsOpen = true;
-            emitEvent = true;
-        }
-    });
-
-    // Method 2: Performance detection
-    const checkDevtools = function() {
-        if (window.outerHeight - window.innerHeight > threshold || 
-            window.outerWidth - window.innerWidth > threshold) {
-            if (!devtoolsOpen) {
-                devtoolsOpen = true;
-                emitEvent = true;
-            }
-        } else {
-            devtoolsOpen = false;
-        }
-    };
-
-    // Method 3: Debugger statement timing
-    const checkDebugger = function() {
-        const start = performance.now();
-        debugger;
-        const end = performance.now();
-        if (end - start > 100) {
-            if (!devtoolsOpen) {
-                devtoolsOpen = true;
-                emitEvent = true;
-            }
-        }
-    };
-
-    // Check periodically
-    setInterval(function() {
-        checkDevtools();
-        if (emitEvent && devtoolsOpen) {
-            emitEvent = false;
-            showConsoleMessage();
-        }
-    }, 500);
-
-    // Show message when devtools opens
+    // Simple devtools detection - just show the message once
+    let messageShown = false;
+    
     function showConsoleMessage() {
-        console.clear();
-        
-        // Show ASCII art in plain black/white
-        console.log(saylessArt);
-        console.log(' ');
-        console.log('TYPE: sayless.help()');
+        if (!messageShown) {
+            console.log(saylessArt);
+            console.log(' ');
+            console.log('TYPE: sayless.help()');
+            messageShown = true;
+        }
     }
 
-    // Also try to detect console.log calls
-    console.log(element);
+    // Trigger on any console interaction
+    const originalLog = console.log;
+    console.log = function() {
+        showConsoleMessage();
+        originalLog.apply(console, arguments);
+    };
+    
+    // Also show immediately for direct console access
+    setTimeout(showConsoleMessage, 100);
 })();
