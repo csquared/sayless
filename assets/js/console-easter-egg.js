@@ -105,15 +105,27 @@
         },
         
         remix: function() {
-            // Visual effect
-            document.body.style.transition = 'all 0.5s ease';
-            document.body.style.transform = 'rotate(1deg)';
-            setTimeout(() => {
-                document.body.style.transform = 'rotate(-1deg)';
-                setTimeout(() => {
-                    document.body.style.transform = 'rotate(0deg)';
-                }, 500);
-            }, 500);
+            // Get all elements and throw them around
+            const elements = document.querySelectorAll('*');
+            elements.forEach((el, i) => {
+                if (el.tagName !== 'HTML' && el.tagName !== 'BODY') {
+                    const randomX = (Math.random() - 0.5) * 200;
+                    const randomY = (Math.random() - 0.5) * 200;
+                    const randomRotate = (Math.random() - 0.5) * 360;
+                    
+                    el.style.transition = 'transform 0.5s ease';
+                    el.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg)`;
+                    
+                    // Settle into new position after chaos
+                    setTimeout(() => {
+                        const newX = (Math.random() - 0.5) * 20;
+                        const newY = (Math.random() - 0.5) * 20;
+                        const newRotate = (Math.random() - 0.5) * 10;
+                        el.style.transition = 'transform 1s ease-out';
+                        el.style.transform = `translate(${newX}px, ${newY}px) rotate(${newRotate}deg)`;
+                    }, 500);
+                }
+            });
             
             return 'REALITY REMIXED';
         },
