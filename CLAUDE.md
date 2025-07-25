@@ -30,6 +30,12 @@ Now - we're remixing the world.
 
 This repository is doing branding, web properties, etc in a true open source way.
 
+## Web properites:
+
+  - soundcloud.com/just-say-less/
+  - instagram.com/justsayless
+  - justsayless.xyx
+
 
 ## Project Structure
 
