@@ -18,9 +18,13 @@ So he rebelled harder. Bad Religion t-shirts on a Catholic campus. LSD and liter
 
 ### Silicon's Uncanny Valley
 
-What followed was a decade-plus odyssey through the tech industry's most meteoric rises: Employee #40 at Heroku, watching it get slowly strangled by Salesforce's corporate grip. Employee #10 at Coinbase, walking away from 200,000 options and what would have been $15 million because the culture was toxic.
+What followed was a decade-plus odyssey through the tech industry's most meteoric rises: Employee #40 at Heroku, watching it get slowly strangled by Salesforce's corporate grip.
 
-### Coinbased ### Financial Freedom at Cost
+### Coinbased
+
+Employee #10 at Coinbase, walking away from 200,000 options and what would have been $15 million because the culture was toxic.
+
+### Financial Freedom at Cost
 
 Employee #100 at Stripe, building it from boutique to behemoth while his marriage crumbled.
 
