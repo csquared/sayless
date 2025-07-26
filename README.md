@@ -2,21 +2,41 @@
 
 **Remix your world**
 
-## Branding
+Electronic music rebellion. Indie dance with purpose. Code with beats.
 
-### Website
+## Find Me
 
-![http://justsayless.xyx](http://justsayless.xyz)
-Currently hosted via github pages.
+- **Web**: [justsayless.xyz](https://justsayless.xyz)
+- **Instagram**: [@justsayless](https://instagram.com/justsayless)
+- **SoundCloud**: [just-say-less](https://soundcloud.com/just-say-less)
 
-### Official Logo
+## What's Here
 
-`logo/SAYLESS-TRANSPARENT.png`
+This repo is the open-source home of SAYLESS - branding, web properties, philosophy. 
+
+Follow the rabbit:
+- `entrance.html` - Start here
+- `brand/` - Visual identity and philosophy docs
+- `sound/` - Production notes (some encrypted, some not)
+- `logo/` - Official marks
+
+## Philosophy
+
+I'll remix anything. Including Instagram. Including the web. Including this README.
+
+The full experience lives beyond the repo. This is just the invitation.
+
+## Tech Stack
+
+- Static HTML with tactical aesthetics
+- Stencil Gothic typography
+- Black and white when it matters
+- Hidden features for the curious
+
+## Logo
 
 ![SAYLESS](logo/SAYLESS-TRANSPARENT.png)
 
-### Official Font
+---
 
-`fonts/StencilGothic.ttf`
-
-![SAYLESS](etc/SAYLESS-font-sample.png)
+*Making marks, not advertisements*
