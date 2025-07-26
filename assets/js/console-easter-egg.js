@@ -26,7 +26,7 @@
             console.log('%c    sayless [FUNCTION]', 'color: #fff; font-family: monospace;');
             console.log('');
             console.log('%cDESCRIPTION', 'color: #00ff00; font-family: monospace; font-weight: bold;');
-            console.log('%c    SAYLESS is not for sale. It\'s a philosophy, a movement,', 'color: #fff; font-family: monospace;');
+            console.log('%c    SAYLESS is a philosophy, a movement,', 'color: #fff; font-family: monospace;');
             console.log('%c    and a proof of concept for post-matrix creativity.', 'color: #fff; font-family: monospace;');
             console.log('');
             console.log('%cFUNCTIONS', 'color: #00ff00; font-family: monospace; font-weight: bold;');
@@ -68,7 +68,7 @@
             console.log('    sayless [FUNCTION]');
             console.log('');
             console.log('DESCRIPTION');
-            console.log('    SAYLESS is not for sale. It\'s a philosophy, a movement,');
+            console.log('    SAYLESS is a philosophy, a movement,');
             console.log('    and a proof of concept for post-matrix creativity.');
             console.log('');
             console.log('FUNCTIONS');

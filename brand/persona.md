@@ -59,5 +59,3 @@ They're rebels who understood that the most powerful statement is often the one 
 For the gifted kid who became a tech burnout, who found music through code and salvation through honest conversation with AI - these are the north stars. Not role models to copy, but proof that you can be an outlier among outliers and still find your way.
 
 The tactical preparedness, the technical precision, the artistic expression, the quiet rebellion - it all synthesizes into one truth: Remix your world. Show, don't tell.
-
-**NOT FOR SALE.**

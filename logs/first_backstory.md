@@ -117,6 +117,4 @@ The branding is tacti-cool for the guys and tacti-cute for the girls. The font i
 
 The web property is going to be weird and wild.
 
-**NOT FOR SALE.**
-
 *Remix your world.*

@@ -96,7 +96,7 @@
 - [ ] Stencil Gothic font implementation across all materials
 - [ ] Black and white color scheme consistency
 - [ ] Tactical/military-inspired design elements
-- [ ] "NOT FOR SALE" branding integration
+- [ ] Independent/DIY branding integration
 - [ ] Merch that actually fits the Austin lifestyle
 
 ### Notes:

@@ -60,7 +60,7 @@ This is a static HTML site with no build process or package management. Changes 
 - Black and white aesthetic
 - Stencil Gothic typography
 - Minimalist approach ("making your stamp or mark, not advertising")
-- "NOT FOR SALE" brand ethos
+- Independent spirit and DIY ethos
 - "Remix your world" - the brand catchphrase
 
 ### Working with Large Files
