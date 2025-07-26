@@ -12,7 +12,7 @@ Electronic music rebellion. Indie dance with purpose. Code with beats.
 
 ## What's Here
 
-This repo is the open-source home of SAYLESS - branding, web properties, philosophy. 
+This repo is the open-source home of SAYLESS - branding, philosophy, arsenal. 
 
 Follow the rabbit:
 - `entrance.html` - Start here
