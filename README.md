@@ -33,6 +33,12 @@ The full experience lives beyond the repo. This is just the invitation.
 - Black and white when it matters
 - Hidden features for the curious
 
+## Font
+
+`fonts/StencilGothic.ttf`
+
+![SAYLESS Font](etc/SAYLESS-font-sample.png)
+
 ## Logo
 
 ![SAYLESS](logo/SAYLESS-TRANSPARENT.png)
