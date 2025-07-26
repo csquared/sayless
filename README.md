@@ -2,7 +2,7 @@
 
 **Remix your world**
 
-Electronic music rebellion. Indie dance with purpose. Code with beats.
+From the terminal to the turntables, indie dance with purpose.
 
 ## Find Me
 
