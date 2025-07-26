@@ -24,8 +24,6 @@ Follow the rabbit:
 
 I'll remix anything, but don't take my word for it. Pay attention.
 
-The full experience lives beyond the repo. This is just the invitation.
-
 ## Tech Stack
 
 - Static HTML with tactical aesthetics
