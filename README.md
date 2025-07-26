@@ -41,6 +41,11 @@ The full experience lives beyond the repo. This is just the invitation.
 
 ## Logo
 
+`logo/` directory contains:
+- `SAYLESS-TRANSPARENT.png` - Transparent background
+- `SAYLESS-BLACK-BG.png` - Black background
+- `SAYLESS.png` - White background
+
 ![SAYLESS](logo/SAYLESS-TRANSPARENT.png)
 
 ---
