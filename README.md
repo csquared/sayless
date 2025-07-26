@@ -26,10 +26,9 @@ I'll remix anything, but don't take my word for it. Pay attention.
 
 ## Tech Stack
 
-- Static HTML with tactical aesthetics
-- Stencil Gothic typography
-- Black and white when it matters
-- Hidden features for the curious
+- Static HTML for the website
+- Ableton for music production
+- Recordbox for performance creation
 
 ## Font
 
