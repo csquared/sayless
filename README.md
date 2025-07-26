@@ -22,7 +22,7 @@ Follow the rabbit:
 
 ## Philosophy
 
-I'll remix anything. Including Instagram. Including the web. Including this README.
+I'll remix anything, but don't take my word for it. Pay attention.
 
 The full experience lives beyond the repo. This is just the invitation.
 
