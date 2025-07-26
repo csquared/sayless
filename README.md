@@ -28,7 +28,7 @@ I'll remix anything, but don't take my word for it. Pay attention.
 
 - Static HTML for the website
 - Ableton for music production
-- Recordbox for performance creation
+- Rekordbox for DJ sets
 
 ## Font
 
