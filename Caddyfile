@@ -1,0 +1,4 @@
+:$PORT
+
+root * public
+file_server
