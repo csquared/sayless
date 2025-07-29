@@ -1,4 +1,4 @@
-:$PORT
+:{$PORT}
 
-root * public
+root * .
 file_server
