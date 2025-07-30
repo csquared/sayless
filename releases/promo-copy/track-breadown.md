@@ -71,9 +71,11 @@ Angsty funk rock SAYLESS has entered the chat.
 Time flies.
 Shoutout to maryjane.
 
-### Get down on it.
-Shut up and dance.
-Love your work, adamten!
+### Heroes
+Shout out to oldnews!
+
+### Love down
+Shoud out to maryjane!
 
 ### Alright
 "We gon be alright"
