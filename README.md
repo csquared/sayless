@@ -2,7 +2,7 @@
 
 **Remix your world**
 
-From the terminal to the turntables, indie dance with purpose.
+From the terminal to the turntables.
 
 ## Find Me
 
