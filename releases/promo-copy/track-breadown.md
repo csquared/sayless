@@ -1,74 +1,90 @@
 # Set Breakdown
 Theme: Autobiography
 Purpose: Promo
-Remix Art Reference: Reggie and the Full Effect
+Reference: Reggie and the Full Effect / Promotional Copy
+
+Hello, world.
+"I refuse to believe in a God that doesn't dance."
+Time for some movement.
 
 # Track List
 
-## Act 1: The Sound
+## 1st movement
+
 ### High Fidelity - Autobiographical Record Collection
-I literally just said it's an autobiogrphy.
+Did u read the meta?
 
 ### Lusid - Funkin
-Looped in - perfect funky into
+Found on gavlak's soundcloud - thanks, buddy!
 
 ### Stroopwafel
-Combines elements that will be expanded later
+Groovy, with synths.
 
 ### Texas Riddin
-Same, but with more guitar swag
+Groovy, with twag.
 
 ### What the F** Is That
-Shout to yamagucci. This one is so much fun.
+Shout to yamagucci!
 
 ### Yellow Trumpet
 "This motherfucker"
 
 ### Citamssab
-We're just having fun
+This one just fits. Pure vibe.
 
-### That Dirty Funk
-Keep it weird
+## 2nd movement
 
-## Act 2: The story
 ### Rising Again
-Lyrics + London shoutout to Katrina
+Like, all the lyrics.
 
 ### Kyoto
 "Get on my level"
 
+### That Dirty Funk
+"In filth it shall be found"
+- Jung
+
 ### Like a prayer
-See previous, and don't overdo it.
+I'll take you there.
+
+## 3rd movement 
 
 ### HIGHLITE - I just can't stop
-self-explanatory, dope new track.
-one of my favorite transitions of the set.
-ie: let's not get too serious :)
+"Can you feel me?"
+"I just can't stop."
+"I won't stop."
 
 ### OMRI - Funky Music
-The old, the new. Together.
+Play that funky music, white boi. :P
 
 ### XXX Funk
 I do, in fact, like my sex x-rated like I like my funk.
+And, my funk x-rated like I like my sex...
 
 ### SAYLESS - MONSTERS BALL
-Introducing myself. Letting out some of that white rage.
+Angsty funk rock SAYLESS has entered the chat.
+"I was a terror since the public school era"
+
+## 4th movement
 
 ### Calvin Harris - Acceptable in the 80s
-Chill, daddy. It was a different time back then.
-Shoutout to Mary Jane. 
+Time flies.
+Shoutout to maryjane.
 
 ### Get down on it.
-Say less.
+Shut up and dance.
+Love your work, adamten!
 
 ### Alright
-Cus we gon' be alright
+"We gon be alright"
+Shout out to dermano!
 
 ### Mita Gami - Million Pieces
-Lyris self-explanatory. Left as an exercise for the reader.
+"a million pieces of my soul. i spread the love and lose control" 
+love your work, mitagami!
 
 ### Monkey Safari
 "I can't do it on my own"
 bookings@justsayless.xyz
 
-Check it out: http://justsayless.xyz
+justsayless.xyz
