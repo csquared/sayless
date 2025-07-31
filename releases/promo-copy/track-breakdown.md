@@ -2,16 +2,16 @@
 Theme: Autobiography
 Purpose: Promo
 Reference: Reggie and the Full Effect / Promotional Copy
-
-Hello, world.
-"I refuse to believe in a God that doesn't dance."
+Quote: "I refuse to believe in a God that doesn't dance."
+Hope: you like it!
+Dream: Soundtrack to the revolution.
 
 # Track List
 
 ## 1st movement
 
 ### High Fidelity - Autobiographical Record Collection
-Did u read the meta?
+"It's... comforting"
 
 ### Lusid - Funkin
 Found on gavlak's soundcloud
@@ -46,7 +46,7 @@ Pure vibe.
 ### Like a prayer
 "I'll take you there."
 
-## 3rd movement 
+## 3rd movement
 
 ### HIGHLITE - I just can't stop
 "Can you feel me?"
@@ -61,8 +61,8 @@ Play that funky music, white boi. :P
 And, my funk x-rated like I like my sex"
 
 ### SAYLESS - MONSTERS BALL
-Angsty funk rock teenager SAYLESS has entered the chat.
-Narrator: it was AOL
+SAYLESS has entered the chat.
+Narrator: He logged on to AOL
 
 "I was a terror since the public school era"
 
