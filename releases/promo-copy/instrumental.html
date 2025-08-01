@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SAYLESS - Instrumental</title>
+        <style>
+            @font-face {
+                font-family: "StencilGothic";
+                src: url("fonts/StencilGothic.ttf") format("truetype");
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #1a1a1a;
+                font-family: "StencilGothic", sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .container {
+                background-color: #000;
+                color: #fff;
+                width: 800px;
+                height: 800px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .sayless {
+                font-size: 120px;
+                letter-spacing: 10px;
+                margin-bottom: 20px;
+                line-height: 1;
+            }
+
+            .promo {
+                font-size: 36px;
+                letter-spacing: 8px;
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    width: 400px;
+                    height: 400px;
+                }
+                .sayless {
+                    font-size: 60px;
+                    letter-spacing: 4px;
+                }
+                .promo {
+                    font-size: 20px;
+                    letter-spacing: 3px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="sayless">SAYLESS</div>
+            <div class="promo">PROMOTIONAL COPY</div>
+            <br />
+            <div class="promo">(INSTRUMENTAL)</div>
+        </div>
+    </body>
+</html>
