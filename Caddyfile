@@ -1,4 +1,16 @@
 :{$PORT}
 
-root * .
-file_server
+# Proxy analytics endpoints to Node server
+handle /hit {
+    reverse_proxy localhost:3000
+}
+
+handle /api/stats {
+    reverse_proxy localhost:3000
+}
+
+# Serve static files for everything else
+handle {
+    root * .
+    file_server
+}

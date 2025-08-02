@@ -855,6 +855,22 @@
         </script>
 
         <script src="assets/js/console-easter-egg.js"></script>
+        
+        <!-- Analytics -->
+        <script>
+        if(!window.__hit){
+            window.__hit=1;
+            fetch('/hit',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({
+                    p:location.pathname,
+                    r:document.referrer,
+                    t:Date.now()
+                })
+            }).catch(()=>{});
+        }
+        </script>
 
     </body>
 </html>

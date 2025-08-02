@@ -120,5 +120,21 @@
         <img src="assets/images/logo.png" class="logo" />
         <div class="text">SAYLESS</div>
         <a href="entrance.html" class="enter-link">ENTER HERE</a>
+        
+        <!-- Analytics -->
+        <script>
+        if(!window.__hit){
+            window.__hit=1;
+            fetch('/hit',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({
+                    p:location.pathname,
+                    r:document.referrer,
+                    t:Date.now()
+                })
+            }).catch(()=>{});
+        }
+        </script>
     </body>
 </html>

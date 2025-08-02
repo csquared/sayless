@@ -1,1 +1,1 @@
-web: caddy run
+web: ./web.sh

@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex, nofollow" />
+        <title>SAYLESS // STATS</title>
+        <style>
+            @font-face {
+                font-family: "Stencil Gothic";
+                src: url("assets/fonts/StencilGothic.ttf") format("truetype");
+            }
+
+            body {
+                margin: 0;
+                padding: 20px;
+                background-color: black;
+                color: white;
+                font-family: "Stencil Gothic", monospace;
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .header {
+                text-align: center;
+                margin-bottom: 60px;
+                position: relative;
+            }
+
+            .title {
+                font-size: 72px;
+                letter-spacing: 12px;
+                animation: flicker 2s infinite;
+                margin: 0;
+            }
+
+            .subtitle {
+                font-size: 18px;
+                letter-spacing: 4px;
+                color: #666;
+                margin-top: 10px;
+            }
+
+            @keyframes flicker {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.8; }
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 40px;
+                margin-bottom: 60px;
+            }
+
+            .stat-box {
+                border: 2px solid white;
+                padding: 30px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s;
+            }
+
+            .stat-box:hover {
+                border-color: #ff0000;
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            }
+
+            .stat-number {
+                font-size: 48px;
+                letter-spacing: 4px;
+                margin: 0;
+                animation: glitch-text 3s infinite;
+            }
+
+            .stat-label {
+                font-size: 14px;
+                letter-spacing: 2px;
+                color: #999;
+                margin-top: 10px;
+            }
+
+            @keyframes glitch-text {
+                0%, 90%, 100% {
+                    text-shadow: none;
+                }
+                92% {
+                    text-shadow: -2px 0 #ff0000, 2px 0 #00ff00;
+                }
+                94% {
+                    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+                }
+                96% {
+                    text-shadow: -1px 0 #ffff00, 1px 0 #ff0000;
+                }
+            }
+
+            .chart-container {
+                margin: 40px 0;
+                padding: 20px;
+                border: 1px solid #333;
+            }
+
+            .chart-title {
+                font-size: 24px;
+                letter-spacing: 4px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .bar-chart {
+                display: flex;
+                align-items: flex-end;
+                height: 200px;
+                gap: 10px;
+                padding: 20px 0;
+            }
+
+            .bar {
+                flex: 1;
+                background: white;
+                position: relative;
+                min-height: 5px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .bar:hover {
+                background: #ff0000;
+                box-shadow: 0 0 10px #ff0000;
+            }
+
+            .bar-label {
+                position: absolute;
+                bottom: -25px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 10px;
+                letter-spacing: 1px;
+                white-space: nowrap;
+            }
+
+            .bar-value {
+                position: absolute;
+                top: -25px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 12px;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+
+            .bar:hover .bar-value {
+                opacity: 1;
+            }
+
+            .list-container {
+                margin: 40px 0;
+            }
+
+            .list-item {
+                display: flex;
+                justify-content: space-between;
+                padding: 15px 0;
+                border-bottom: 1px solid #333;
+                transition: all 0.3s;
+            }
+
+            .list-item:hover {
+                border-color: #666;
+                padding-left: 10px;
+            }
+
+            .list-label {
+                letter-spacing: 2px;
+            }
+
+            .list-value {
+                color: #999;
+                letter-spacing: 1px;
+            }
+
+            .loading {
+                text-align: center;
+                padding: 100px 0;
+                font-size: 24px;
+                letter-spacing: 4px;
+                animation: pulse 1s infinite;
+            }
+
+            @keyframes pulse {
+                0%, 100% { opacity: 0.5; }
+                50% { opacity: 1; }
+            }
+
+            .error {
+                text-align: center;
+                padding: 100px 0;
+                color: #ff0000;
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+
+            .refresh-btn {
+                position: fixed;
+                bottom: 40px;
+                right: 40px;
+                background: black;
+                border: 2px solid white;
+                color: white;
+                padding: 15px 30px;
+                font-family: "Stencil Gothic", monospace;
+                font-size: 14px;
+                letter-spacing: 2px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .refresh-btn:hover {
+                background: white;
+                color: black;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+
+            .time-filter {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .filter-btn {
+                background: transparent;
+                border: 1px solid #666;
+                color: #999;
+                padding: 10px 20px;
+                margin: 0 5px;
+                font-family: "Stencil Gothic", monospace;
+                font-size: 12px;
+                letter-spacing: 2px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .filter-btn.active,
+            .filter-btn:hover {
+                border-color: white;
+                color: white;
+            }
+
+            @media (max-width: 768px) {
+                .title {
+                    font-size: 48px;
+                    letter-spacing: 8px;
+                }
+                
+                .stats-grid {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                }
+                
+                .refresh-btn {
+                    bottom: 20px;
+                    right: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 class="title">STATS</h1>
+                <div class="subtitle">REAL TIME ANALYTICS</div>
+            </div>
+
+            <div class="time-filter">
+                <button class="filter-btn active" data-range="today">TODAY</button>
+                <button class="filter-btn" data-range="week">7 DAYS</button>
+                <button class="filter-btn" data-range="month">30 DAYS</button>
+            </div>
+
+            <div id="content">
+                <div class="loading">LOADING DATA...</div>
+            </div>
+        </div>
+
+        <button class="refresh-btn" onclick="loadStats()">REFRESH</button>
+
+        <script>
+            let currentRange = 'today';
+
+            // Handle filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentRange = btn.dataset.range;
+                    loadStats();
+                });
+            });
+
+            async function loadStats() {
+                const content = document.getElementById('content');
+                content.innerHTML = '<div class="loading">LOADING DATA...</div>';
+
+                try {
+                    const response = await fetch(`/api/stats?range=${currentRange}`);
+                    if (!response.ok) throw new Error('Failed to load stats');
+                    
+                    const data = await response.json();
+                    renderStats(data);
+                } catch (error) {
+                    content.innerHTML = '<div class="error">ERROR: FAILED TO LOAD STATS</div>';
+                }
+            }
+
+            function renderStats(data) {
+                const content = document.getElementById('content');
+                
+                // Calculate derived stats
+                const bounceRate = data.unique > 0 ? Math.round((data.bounces / data.unique) * 100) : 0;
+                
+                content.innerHTML = `
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-number">${formatNumber(data.total)}</div>
+                            <div class="stat-label">PAGE VIEWS</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">${formatNumber(data.unique)}</div>
+                            <div class="stat-label">UNIQUE VISITORS</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">${bounceRate}%</div>
+                            <div class="stat-label">BOUNCE RATE</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="chart-title">TOP PAGES</div>
+                        <div class="bar-chart" id="pagesChart"></div>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="chart-title">REFERRERS</div>
+                        <div class="list-container" id="referrersList"></div>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="chart-title">DEVICES</div>
+                        <div class="list-container" id="devicesList"></div>
+                    </div>
+                `;
+
+                // Render pages bar chart
+                if (data.pages && data.pages.length > 0) {
+                    renderBarChart('pagesChart', data.pages.slice(0, 10));
+                }
+
+                // Render referrers list
+                if (data.referrers && data.referrers.length > 0) {
+                    renderList('referrersList', data.referrers.slice(0, 10));
+                }
+
+                // Render devices list
+                if (data.devices && data.devices.length > 0) {
+                    renderList('devicesList', data.devices);
+                }
+            }
+
+            function renderBarChart(elementId, items) {
+                const chart = document.getElementById(elementId);
+                const maxValue = Math.max(...items.map(item => item.count));
+                
+                chart.innerHTML = items.map(item => {
+                    const height = (item.count / maxValue) * 100;
+                    return `
+                        <div class="bar" style="height: ${height}%">
+                            <div class="bar-label">${truncate(item.name, 15)}</div>
+                            <div class="bar-value">${item.count}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            function renderList(elementId, items) {
+                const list = document.getElementById(elementId);
+                
+                list.innerHTML = items.map(item => `
+                    <div class="list-item">
+                        <div class="list-label">${item.name}</div>
+                        <div class="list-value">${item.count}</div>
+                    </div>
+                `).join('');
+            }
+
+            function formatNumber(num) {
+                if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+                if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+                return num.toString();
+            }
+
+            function truncate(str, length) {
+                return str.length > length ? str.substring(0, length) + '...' : str;
+            }
+
+            // Load stats on page load
+            loadStats();
+
+            // Auto-refresh every 30 seconds
+            setInterval(loadStats, 30000);
+        </script>
+        
+        <!-- Analytics -->
+        <script>
+        if(!window.__hit){
+            window.__hit=1;
+            fetch('/hit',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({
+                    p:location.pathname,
+                    r:document.referrer,
+                    t:Date.now()
+                })
+            }).catch(()=>{});
+        }
+        </script>
+    </body>
+</html>

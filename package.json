@@ -1,0 +1,17 @@
+{
+  "name": "sayless-analytics",
+  "version": "1.0.0",
+  "description": "Lightweight analytics for SAYLESS",
+  "main": "analytics.js",
+  "scripts": {
+    "start": "node analytics.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "better-sqlite3": "^9.2.2",
+    "aws-sdk": "^2.1500.0"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}

@@ -34,7 +34,7 @@ This repository is doing branding, web properties, etc in a true open source way
 
   - soundcloud.com/just-say-less/
   - instagram.com/justsayless
-  - justsayless.xyx
+  - sayless.audio (formerly justsayless.xyz)
 
 
 ## Project Structure
