@@ -1,1 +1,1 @@
-web: caddy --config Caddyfile
+web: caddy 
