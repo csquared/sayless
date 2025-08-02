@@ -33,7 +33,7 @@
             name="twitter:image"
             content="https://justsayless.xyz/assets/images/logo.png"
         />
-        <title>HELLO, WORLD</title>
+        <title>SAYLESS: Hello, world</title>
         <style>
             @font-face {
                 font-family: "Stencil Gothic";
@@ -44,6 +44,7 @@
                 margin: 0;
                 padding: 0;
                 background-color: black;
+                overflow-x: hidden;
             }
 
             .text {
@@ -204,21 +205,6 @@
                 }
             }
 
-            .back-link {
-                position: fixed;
-                bottom: 20px;
-                left: 20px;
-                color: #333;
-                text-decoration: none;
-                font-family: "Stencil Gothic", monospace;
-                font-size: 14px;
-                transition: color 0.3s ease;
-            }
-
-            .back-link:hover {
-                color: #666;
-            }
-
             /* Mobile Responsive */
             @media (max-width: 768px) {
                 .text {
@@ -248,6 +234,21 @@
                     bottom: 15px;
                     left: 15px;
                 }
+            }
+
+            .section-header {
+                font-family: "Stencil Gothic", sans-serif;
+                font-size: 2rem;
+                color: white;
+                text-align: left;
+                margin-bottom: 20px;
+                position: relative;
+                letter-spacing: 4px;
+            }
+
+            /* Hide SoundCloud privacy policy button */
+            iframe[src*="soundcloud.com"] {
+                padding-bottom: 3em;
             }
         </style>
     </head>
@@ -339,7 +340,7 @@
                     letter-spacing: 2px;
                 "
             >
-                COME FIND ME
+                ANTI-SOCIAL MEDIA
             </div>
             <div
                 style="
@@ -349,20 +350,9 @@
                     padding: 0 20px;
                 "
             >
-                <div
-                    style="
-                        font-family: &quot;Stencil Gothic&quot;, sans-serif;
-                        font-size: 2rem;
-                        color: white;
-                        text-align: left;
-                        margin-bottom: 20px;
-                        position: relative;
-                    "
-                    class="noise-header"
-                >
-                    PROMO SET
-                </div>
+                <div class="section-header noise-header">UNRELEASED SETS</div>
 
+                <!-- PROMOTIONAL COPY - vocal mix -->
                 <iframe
                     width="100%"
                     height="300"
@@ -371,42 +361,39 @@
                     allow="autoplay"
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2137566279%3Fsecret_token%3Ds-Hu0Ko1DepY3&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
                 ></iframe>
-                        
-                <br/><br/><br/>
 
-                <div
-                    style="
-                        font-family: &quot;Stencil Gothic&quot;, sans-serif;
-                        font-size: 2rem;
-                        color: white;
-                        text-align: left;
-                        margin-bottom: 20px;
-                        position: relative;
-                    "
-                    class="noise-header"
-                >
-                    PROMO SET - INSTRUMENTAL
-                </div>
+                <!-- PROMOTIONAL COPY - instrumental mix -->
+                <iframe
+                    width="100%"
+                    height="300"
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2140506105%3Fsecret_token%3Ds-4YbpiIPYxUV&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+                ></iframe>
 
-                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2140506105%3Fsecret_token%3Ds-4YbpiIPYxUV&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"></iframe>
+                <!-- LOVE AGAIN -->
+                <iframe
+                    width="100%"
+                    height="300"
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2140885356%3Fsecret_token%3Ds-Zr0bFYoGtDL&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+                ></iframe>
 
-                <br/><br/><br/>
+                <br /><br /><br />
 
-                <div
-                    style="
-                        font-family: &quot;Stencil Gothic&quot;, sans-serif;
-                        font-size: 2rem;
-                        color: white;
-                        text-align: left;
-                        margin-bottom: 20px;
-                        position: relative;
-                    "
-                    class="noise-header"
-                >
-                    UNRELEASED TRACKS
-                </div>
+                <div class="section-header noise-header">UNRELEASED TRACKS</div>
                 <!-- monsters ball -->
-                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2133662661%3Fsecret_token%3Ds-WT1B1bYCzdZ&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"></iframe>
+                <iframe
+                    width="100%"
+                    height="300"
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2133662661%3Fsecret_token%3Ds-WT1B1bYCzdZ&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
+                ></iframe>
                 <!-- say what? -->
                 <iframe
                     width="100%"
@@ -418,9 +405,9 @@
                     style="margin-top: 30px"
                 ></iframe>
             </div>
-            
+
             <!-- GitHub Follow Along Section -->
-            <div style="margin-top: 60px; text-align: center;">
+            <div style="margin-top: 60px; text-align: center">
                 <div
                     style="
                         margin-bottom: 20px;
@@ -453,7 +440,6 @@
                 </a>
             </div>
         </div>
-        <a href="index.html" class="back-link">← back</a>
 
         <!-- Retro Audio Player -->
         <div class="audio-player">
@@ -855,6 +841,5 @@
         </script>
 
         <script src="assets/js/console-easter-egg.js"></script>
-
     </body>
 </html>
