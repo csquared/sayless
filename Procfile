@@ -1,1 +1,1 @@
-web: caddy 
+web: caddy run
