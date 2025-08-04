@@ -39,6 +39,10 @@
                 font-family: "Stencil Gothic";
                 src: url("assets/fonts/StencilGothic.ttf") format("truetype");
             }
+            
+            * {
+                box-sizing: border-box;
+            }
 
             body {
                 margin: 0;
@@ -279,6 +283,7 @@
 
             iframe[src*="soundcloud.com"] {
                 padding-bottom: 3em;
+                max-width: 100%;
             }
 
             #site-footer {
