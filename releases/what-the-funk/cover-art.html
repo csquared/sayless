@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAYLESS - WHAT THE FUNK</title>
+    <style>
+        @font-face {
+            font-family: 'StencilGothic';
+            src: url('../../fonts/StencilGothic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: 'StencilGothic', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #000;
+            color: #fff;
+            width: 800px;
+            height: 800px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .funk-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+            animation: throb 4s ease-in-out infinite;
+        }
+
+        @keyframes throb {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.05;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.05;
+            }
+        }
+
+        .sayless {
+            font-size: 100px;
+            letter-spacing: 12px;
+            margin-bottom: 40px;
+            line-height: 1;
+            z-index: 1;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .track-title {
+            font-size: 48px;
+            letter-spacing: 10px;
+            line-height: 1.2;
+            z-index: 1;
+            margin-top: 20px;
+        }
+
+        .what {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .the {
+            font-size: 36px;
+            opacity: 0.8;
+            margin: 10px 0;
+        }
+
+        .funk {
+            font-size: 72px;
+            letter-spacing: 15px;
+            animation: pulse 2s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 400px;
+                height: 400px;
+            }
+            .sayless {
+                font-size: 50px;
+                letter-spacing: 6px;
+            }
+            .what {
+                font-size: 24px;
+            }
+            .the {
+                font-size: 18px;
+            }
+            .funk {
+                font-size: 36px;
+                letter-spacing: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="funk-bg"></div>
+        <div class="sayless">SAYLESS</div>
+        <div class="track-title">
+            <div class="what">WHAT</div>
+            <div class="the">THE</div>
+            <div class="funk">FUNK</div>
+        </div>
+    </div>
+</body>
+</html>
