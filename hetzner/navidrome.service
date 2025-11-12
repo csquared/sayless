@@ -1,0 +1,14 @@
+[Unit]
+Description=Navidrome Music Server
+After=network.target
+
+[Service]
+Type=simple
+User=navidrome
+Group=navidrome
+ExecStart=/opt/navidrome/navidrome --configfile /var/lib/navidrome/navidrome.toml
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
