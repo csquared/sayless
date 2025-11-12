@@ -92,13 +92,20 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
-        .get-down {
+        .invites {
             font-family: 'StencilGothic', sans-serif;
-            font-size: 42px;
-            letter-spacing: 10px;
-            margin-bottom: 15px;
+            font-size: 24px;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            opacity: 0.9;
+        }
+
+        .the-get-down {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 64px;
+            letter-spacing: 12px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .date {
@@ -157,6 +164,38 @@
         .brand {
             animation: textGlow 3s ease-in-out infinite;
         }
+
+        @keyframes glitch {
+            0%, 50%, 100% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+                transform: translate(0);
+                color: #fff;
+            }
+            52% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -5px 0 #ff0000, 5px 0 #00ffff;
+                transform: translate(-3px, 0);
+                color: #ff0000;
+            }
+            54% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 5px 0 #00ff00, -5px 0 #ff00ff;
+                transform: translate(3px, 1px);
+                color: #00ffff;
+            }
+            56% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -3px 0 #0000ff, 3px 0 #ffff00;
+                transform: translate(-2px, -1px);
+                color: #00ff00;
+            }
+            58% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 4px 0 #ff00ff, -4px 0 #00ff00;
+                transform: translate(2px, 0);
+                color: #fff;
+            }
+        }
+
+        .the-get-down {
+            animation: glitch 3s infinite;
+        }
     </style>
 </head>
 <body>
@@ -167,8 +206,12 @@
                 <span class="ampersand">&</span>
                 <span class="friends">Friends</span>
             </div>
-            <div class="get-down">GET DOWN ON</div>
+            <div class="invites">INVITES YOU TO</div>
+            <div class="the-get-down">The GET DOWN</div>
             <div class="date">12.12.25</div>
+            <div class="rsvp">
+                <a href="https://justsayless.xyz" target="_blank">RSVP</a>
+            </div>
         </div>
     </div>
 </body>
