@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAYLESS & Friends - December 12, 2025</title>
+    <style>
+        @font-face {
+            font-family: 'StencilGothic';
+            src: url('../../fonts/StencilGothic.ttf') format('truetype');
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .flyer-container {
+            position: relative;
+            width: 800px;
+            height: 800px;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Subtle background glow effect */
+        .flyer-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #fff;
+        }
+
+        .brand {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 120px;
+            letter-spacing: 15px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .event-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .ampersand {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 48px;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .friends {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 72px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .get-down {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 42px;
+            letter-spacing: 10px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            opacity: 0.9;
+        }
+
+        .date {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 56px;
+            letter-spacing: 12px;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .rsvp {
+            margin-top: 50px;
+        }
+
+        .rsvp a {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 32px;
+            letter-spacing: 6px;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 50px;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .rsvp a:hover {
+            background: #fff;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        /* Subtle text glow animation */
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        .brand {
+            animation: textGlow 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer-container">
+        <div class="content">
+            <div class="brand">SAYLESS</div>
+            <div class="event-title">
+                <span class="ampersand">&</span>
+                <span class="friends">Friends</span>
+            </div>
+            <div class="get-down">GET DOWN ON</div>
+            <div class="date">12.12.25</div>
+            <div class="rsvp">
+                <a href="https://justsayless.xyz" target="_blank">RSVP</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
