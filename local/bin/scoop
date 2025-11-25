@@ -1,68 +1,92 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bash
 
-require 'fileutils'
-require 'iconv'
+set -e  # Exit on error
 
-@download_dir = File.expand_path('~/Downloads')
-@sourcing_dir = File.expand_path('/Volumes/c2storage/DJ/sourcing')
-@playlist_sourcing_dir = File.expand_path('/Volumes/c2storage/DJ/collection2/sourcing')
-@playlist_dir = File.expand_path('/Volumes/c2storage/DJ/collection2/playlists')
+DOWNLOAD_DIR="$HOME/Downloads"
+SOURCING_DIR="/Volumes/c2storage/DJ/sourcing"
+PLAYLIST_SOURCING_DIR="/Volumes/c2storage/DJ/collection2/sourcing"
+PLAYLIST_DIR="/Volumes/c2storage/DJ/collection2/playlists"
 
+# Check if a file is still downloading (has a .part file)
+is_downloading() {
+    local filename="$1"
+    local ext="$2"
+    local base="${filename%.$ext}"
 
-def is_downloading?(filename, ext)
-  file_prefix = filename.gsub(/\.#{ext}$/,'')
-  part_file_glob = "#{file_prefix}.*.#{ext}.part"
-  Dir[part_file_glob].first
-end
+    # Check for any .part files matching this file
+    if ls "$base".*."$ext".part 2>/dev/null | grep -q .; then
+        return 0  # true, is downloading
+    fi
+    return 1  # false, not downloading
+}
 
-def move_file_to_sourcing_dir(filename)
-  base_filename = File.basename(filename)
-  converter = Iconv.new('US-ASCII//TRANSLIT//IGNORE', 'UTF-8')
-  new_filename = converter.iconv(base_filename) 
+# Move file to sourcing directory with filename transliteration
+move_file_to_sourcing_dir() {
+    local filepath="$1"
+    local base_filename=$(basename "$filepath")
 
-  puts base_filename
-  puts new_filename
+    # Transliterate UTF-8 to ASCII using iconv, then clean up with sed
+    # //TRANSLIT converts accented chars (é→'e, ñ→~n)
+    # //IGNORE skips unconvertible chars
+    # Then sed removes quotes, tildes, and other artifacts
+    local new_filename=$(echo "$base_filename" | \
+        iconv -f UTF-8 -t ASCII//TRANSLIT//IGNORE 2>/dev/null | \
+        sed "s/'//g; s/\`//g; s/~//g; s/\"//g")
 
-  FileUtils.mv(filename, File.expand_path(@sourcing_dir + '/' + new_filename))
-end
+    echo "$base_filename"
+    echo "$new_filename"
 
-def generate_playlist
-  playlist_path = File.join(@playlist_dir, 'sourcing.m3u8')
-  files = Dir.glob(File.join(@playlist_sourcing_dir, '*.{mp3,aiff,wav,aif,flac}')).sort
-  
-  File.open(playlist_path, 'w') do |f|
-    f.puts '#EXTM3U'
-    files.each do |file|
-      f.puts file
-    end
-  end
-  puts "Playlist updated: #{playlist_path}"
-end
+    mv "$filepath" "$SOURCING_DIR/$new_filename"
+}
 
-['mp3', 'aiff', 'aif', 'wav'].each do |ext|
-  Dir[@download_dir + "/*.#{ext}"].each do |filename|
-    puts "#{ext} found: #{File.basename(filename)}"
-    if is_downloading?(filename, ext)
-      puts "still downloading"
-    else
-      move_file_to_sourcing_dir(filename)
-      puts "...moved"
-    end
-  end
-end
+# Generate M3U8 playlist from sourcing directory
+generate_playlist() {
+    local playlist_path="$PLAYLIST_DIR/sourcing.m3u8"
+
+    # Create playlist file with header
+    echo '#EXTM3U' > "$playlist_path"
+
+    # Add all audio files, sorted
+    find "$PLAYLIST_SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) | sort >> "$playlist_path"
+
+    echo "Playlist updated: $playlist_path"
+}
+
+# Process audio files in Downloads
+for ext in mp3 aiff aif wav; do
+    for filepath in "$DOWNLOAD_DIR"/*."$ext"; do
+        # Skip if glob didn't match anything
+        [ -e "$filepath" ] || continue
+
+        filename=$(basename "$filepath")
+        echo "$ext found: $filename"
+
+        if is_downloading "$filepath" "$ext"; then
+            echo "still downloading"
+        else
+            move_file_to_sourcing_dir "$filepath"
+            echo "...moved"
+        fi
+    done
+done
 
 generate_playlist
-puts "generated playlist"
+echo "generated playlist"
 
 # Sync to Hetzner
-def sync_to_hetzner
-  puts "\nSyncing to Hetzner..."
-  system("sync-to-hetzner")
-  if $?.success?
-    puts "Successfully synced to Hetzner!"
-  else
-    puts "Warning: Sync to Hetzner failed. You may need to run sync-to-hetzner manually."
-  end
-end
+echo ""
+echo "Syncing to Hetzner..."
+if sync-to-hetzner; then
+    echo "Successfully synced to Hetzner!"
+else
+    echo "Warning: Sync to Hetzner failed. You may need to run sync-to-hetzner manually."
+fi
 
-sync_to_hetzner
+# Sync to external drive backup
+echo ""
+echo "Syncing to external drive backup..."
+if sync-music; then
+    echo "Successfully synced to external drive!"
+else
+    echo "External drive sync skipped or unavailable."
+fi

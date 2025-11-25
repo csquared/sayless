@@ -5,6 +5,10 @@
 
 set -e  # Exit on error
 
+# Get script directory for includes file
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INCLUDES_FILE="$SCRIPT_DIR/rsync-music-includes.txt"
+
 SOURCE="/Volumes/c2storage/DJ/collection2/"
 SOURCE_SOURCING="/Volumes/c2storage/DJ/sourcing/"
 DEST="root@37.27.252.86:/mnt/music/collection2/"
@@ -30,7 +34,7 @@ echo "Collection Destination: $DEST"
 echo "Sourcing Source: $SOURCE_SOURCING"
 echo "Sourcing Destination: $DEST_SOURCING"
 echo ""
-echo "Excluding system files..."
+echo "Using inclusion-based sync (music files only)..."
 echo ""
 
 # Check for dry-run flag
@@ -47,15 +51,10 @@ echo ""
 
 rsync -av \
     --progress \
-    --exclude='.TemporaryItems/' \
-    --exclude='.Spotlight-V100/' \
-    --exclude='.Trashes/' \
-    --exclude='.fseventsd/' \
-    --exclude='.bzvol/' \
-    --exclude='.DS_Store' \
-    --exclude='._*' \
+    --include-from="$INCLUDES_FILE" \
     --exclude='sourcing' \
     --exclude='playlists/' \
+    --exclude='*' \
     $DRY_RUN \
     "$SOURCE" "$DEST"
 
@@ -66,8 +65,8 @@ echo ""
 # Sync the actual sourcing directory
 rsync -av \
     --progress \
-    --exclude='.DS_Store' \
-    --exclude='._*' \
+    --include-from="$INCLUDES_FILE" \
+    --exclude='*' \
     $DRY_RUN \
     "$SOURCE_SOURCING" "$DEST_SOURCING"
 

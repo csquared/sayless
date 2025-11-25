@@ -1,24 +1,26 @@
 #!/bin/bash
 
 # Script to sync music files from c2storage to SAYLESS-2TB
-# Excludes AI model directories
+# Uses inclusion-based sync (music files only)
 
-set -e  # Exit on error
+# Get script directory for includes file
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INCLUDES_FILE="$SCRIPT_DIR/rsync-music-includes.txt"
 
 SOURCE="/Volumes/c2storage/"
 DEST="/Volumes/SAYLESS-2TB/"
 
 # Check if volumes are mounted
 if [ ! -d "$SOURCE" ]; then
-    echo "Error: Source volume not found at $SOURCE"
-    echo "Please mount c2storage and try again."
-    exit 1
+    echo "Warning: Source volume not found at $SOURCE"
+    echo "Skipping external drive sync."
+    exit 0
 fi
 
 if [ ! -d "$DEST" ]; then
-    echo "Error: Destination volume not found at $DEST"
-    echo "Please mount SAYLESS-2TB and try again."
-    exit 1
+    echo "Warning: Destination volume not found at $DEST"
+    echo "Skipping external drive sync (mount SAYLESS-2TB to enable)."
+    exit 0
 fi
 
 # Display what will be synced
@@ -26,10 +28,8 @@ echo "=== RSYNC Music Sync ==="
 echo "Source: $SOURCE"
 echo "Destination: $DEST"
 echo ""
-echo "Excluding:"
-echo "  - lm-studio-models/"
-echo "  - ollama-models/"
-echo "  - PIONEER/"
+echo "Using inclusion-based sync (music files only)..."
+echo "AI models, PIONEER, and other non-music files automatically excluded"
 echo ""
 
 # Check for dry-run flag
@@ -46,14 +46,8 @@ echo ""
 
 rsync -av \
     --progress \
-    --exclude='lm-studio-models/' \
-    --exclude='ollama-models/' \
-    --exclude='PIONEER/' \
-    --exclude='.TemporaryItems/' \
-    --exclude='.Spotlight-V100/' \
-    --exclude='.Trashes/' \
-    --exclude='.fseventsd/' \
-    --exclude='.bzvol/' \
+    --include-from="$INCLUDES_FILE" \
+    --exclude='*' \
     $DRY_RUN \
     "$SOURCE" "$DEST"
 

@@ -1,0 +1,20 @@
+# Rsync inclusion patterns for music sync
+# Directories (needed for traversal)
+*/
+
+# Audio files
+*.mp3
+*.aiff
+*.aif
+*.wav
+*.flac
+*.m4a
+
+# Playlists
+*.m3u8
+*.m3u
+
+# Album art
+*.jpg
+*.jpeg
+*.png
