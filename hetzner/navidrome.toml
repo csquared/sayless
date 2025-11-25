@@ -1,12 +1,12 @@
 MusicFolder = '/mnt/music/collection2'
 DataFolder = '/var/lib/navidrome'
-CacheFoler = '/var/lib/navidrome/cache'
+CacheFolder = '/var/lib/navidrome/cache'
 Scanner.Enabled = 1
 ScanSchedule = '@every 10m'
+EnableTranscodingConfig = false
 
-[[Transcoding]]
-Name = "AIFF to MP3 (High Quality)"
-TargetFormat = "mp3"
-DefaultBitRate = "320"
-Command = "ffmpeg -i %s -ab %bk -q:a 0 -v 0 -f mp3 -"
-Formats = "aiff,aif"
+[FFmpeg]
+Path = "/usr/bin/ffmpeg"
+
+# Transcoding configured via UI instead of config file
+# Go to http://37.27.252.86/app/#/admin/transcoding to configure

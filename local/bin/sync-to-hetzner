@@ -1,0 +1,143 @@
+#!/bin/bash
+
+# Script to sync music collection to Hetzner Navidrome server
+# One-off sync for initial migration from local Navidrome to Hetzner
+
+set -e  # Exit on error
+
+SOURCE="/Volumes/c2storage/DJ/collection2/"
+SOURCE_SOURCING="/Volumes/c2storage/DJ/sourcing/"
+DEST="root@37.27.252.86:/mnt/music/collection2/"
+DEST_SOURCING="root@37.27.252.86:/mnt/music/sourcing/"
+HETZNER_HOST="root@37.27.252.86"
+
+# Check if source exists
+if [ ! -d "$SOURCE" ]; then
+    echo "Error: Source directory not found at $SOURCE"
+    exit 1
+fi
+
+# Check if sourcing directory exists
+if [ ! -d "$SOURCE_SOURCING" ]; then
+    echo "Error: Sourcing directory not found at $SOURCE_SOURCING"
+    exit 1
+fi
+
+# Display what will be synced
+echo "=== RSYNC Music to Hetzner ==="
+echo "Collection Source: $SOURCE"
+echo "Collection Destination: $DEST"
+echo "Sourcing Source: $SOURCE_SOURCING"
+echo "Sourcing Destination: $DEST_SOURCING"
+echo ""
+echo "Excluding system files..."
+echo ""
+
+# Check for dry-run flag
+DRY_RUN=""
+if [ "$1" == "--dry-run" ] || [ "$1" == "-n" ]; then
+    DRY_RUN="--dry-run"
+    echo "*** DRY RUN MODE - No files will be copied ***"
+    echo ""
+fi
+
+# Run rsync for collection
+echo "Syncing collection..."
+echo ""
+
+rsync -av \
+    --progress \
+    --exclude='.TemporaryItems/' \
+    --exclude='.Spotlight-V100/' \
+    --exclude='.Trashes/' \
+    --exclude='.fseventsd/' \
+    --exclude='.bzvol/' \
+    --exclude='.DS_Store' \
+    --exclude='._*' \
+    --exclude='sourcing' \
+    --exclude='playlists/' \
+    $DRY_RUN \
+    "$SOURCE" "$DEST"
+
+echo ""
+echo "=== Syncing Sourcing Directory ==="
+echo ""
+
+# Sync the actual sourcing directory
+rsync -av \
+    --progress \
+    --exclude='.DS_Store' \
+    --exclude='._*' \
+    $DRY_RUN \
+    "$SOURCE_SOURCING" "$DEST_SOURCING"
+
+echo ""
+echo "=== Creating Symlink on Hetzner ==="
+echo ""
+
+# Create symlink on Hetzner (sourcing -> ../sourcing)
+if [ -z "$DRY_RUN" ]; then
+    ssh "$HETZNER_HOST" "cd /mnt/music/collection2 && rm -f sourcing && ln -s /mnt/music/sourcing sourcing && ls -la sourcing"
+    echo "Symlink created: /mnt/music/collection2/sourcing -> /mnt/music/sourcing"
+else
+    echo "[DRY RUN] Would create symlink: /mnt/music/collection2/sourcing -> /mnt/music/sourcing"
+fi
+
+echo ""
+echo "=== Transforming playlist paths for Hetzner ==="
+echo ""
+
+# Create temporary directory for transformed playlists
+TEMP_DIR=$(mktemp -d)
+PLAYLIST_DIR="$SOURCE/playlists"
+
+if [ -d "$PLAYLIST_DIR" ]; then
+    echo "Processing playlists..."
+
+    # Find all m3u8 files and transform them
+    find "$PLAYLIST_DIR" -name "*.m3u8" | while read -r playlist; do
+        relative_path="${playlist#$PLAYLIST_DIR/}"
+        temp_playlist="$TEMP_DIR/$relative_path"
+
+        # Create subdirectories in temp if needed
+        mkdir -p "$(dirname "$temp_playlist")"
+
+        # Transform paths: /Volumes/c2storage/DJ/collection2 -> /mnt/music/collection2
+        # Use LC_ALL=C to handle special characters in file paths
+        LC_ALL=C sed 's|/Volumes/c2storage/DJ/collection2|/mnt/music/collection2|g' "$playlist" > "$temp_playlist"
+
+        echo "  Transformed: $(basename "$playlist")"
+    done
+
+    echo ""
+    echo "Syncing transformed playlists to Hetzner..."
+    echo ""
+
+    # Sync the transformed playlists to Hetzner
+    rsync -av \
+        --progress \
+        $DRY_RUN \
+        "$TEMP_DIR/" "root@37.27.252.86:/mnt/music/collection2/playlists/"
+
+    # Cleanup
+    rm -rf "$TEMP_DIR"
+    echo ""
+    echo "Playlists transformed and synced!"
+else
+    echo "No playlists directory found at $PLAYLIST_DIR"
+fi
+
+echo ""
+echo "=== Fixing Permissions on Hetzner ==="
+echo ""
+
+# Fix ownership for Navidrome
+if [ -z "$DRY_RUN" ]; then
+    ssh "$HETZNER_HOST" "chown -R navidrome:navidrome /mnt/music/collection2 /mnt/music/sourcing"
+    echo "Ownership updated to navidrome:navidrome"
+else
+    echo "[DRY RUN] Would set ownership to navidrome:navidrome"
+fi
+
+echo ""
+echo "=== Sync Complete ==="

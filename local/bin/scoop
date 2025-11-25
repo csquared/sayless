@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'iconv'
+
+@download_dir = File.expand_path('~/Downloads')
+@sourcing_dir = File.expand_path('/Volumes/c2storage/DJ/sourcing')
+@playlist_sourcing_dir = File.expand_path('/Volumes/c2storage/DJ/collection2/sourcing')
+@playlist_dir = File.expand_path('/Volumes/c2storage/DJ/collection2/playlists')
+
+
+def is_downloading?(filename, ext)
+  file_prefix = filename.gsub(/\.#{ext}$/,'')
+  part_file_glob = "#{file_prefix}.*.#{ext}.part"
+  Dir[part_file_glob].first
+end
+
+def move_file_to_sourcing_dir(filename)
+  base_filename = File.basename(filename)
+  converter = Iconv.new('US-ASCII//TRANSLIT//IGNORE', 'UTF-8')
+  new_filename = converter.iconv(base_filename) 
+
+  puts base_filename
+  puts new_filename
+
+  FileUtils.mv(filename, File.expand_path(@sourcing_dir + '/' + new_filename))
+end
+
+def generate_playlist
+  playlist_path = File.join(@playlist_dir, 'sourcing.m3u8')
+  files = Dir.glob(File.join(@playlist_sourcing_dir, '*.{mp3,aiff,wav,aif,flac}')).sort
+  
+  File.open(playlist_path, 'w') do |f|
+    f.puts '#EXTM3U'
+    files.each do |file|
+      f.puts file
+    end
+  end
+  puts "Playlist updated: #{playlist_path}"
+end
+
+['mp3', 'aiff', 'aif', 'wav'].each do |ext|
+  Dir[@download_dir + "/*.#{ext}"].each do |filename|
+    puts "#{ext} found: #{File.basename(filename)}"
+    if is_downloading?(filename, ext)
+      puts "still downloading"
+    else
+      move_file_to_sourcing_dir(filename)
+      puts "...moved"
+    end
+  end
+end
+
+generate_playlist
+puts "generated playlist"
+
+# Sync to Hetzner
+def sync_to_hetzner
+  puts "\nSyncing to Hetzner..."
+  system("sync-to-hetzner")
+  if $?.success?
+    puts "Successfully synced to Hetzner!"
+  else
+    puts "Warning: Sync to Hetzner failed. You may need to run sync-to-hetzner manually."
+  end
+end
+
+sync_to_hetzner
