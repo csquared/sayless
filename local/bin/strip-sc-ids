@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+def rename_files(directory)
+  Dir.glob(File.join(directory, '*.mp3')).each do |file_path|
+    new_file_path = file_path.gsub(/\s*\[\d+\]\s*(?=\.\w+$)/, '')
+    FileUtils.mv(file_path, new_file_path) unless file_path == new_file_path
+  end
+end
+
+if ARGV.size != 1
+  puts "Usage: ruby rename_files.rb [DIRECTORY_PATH]"
+  exit 1
+end
+
+directory_path = ARGV[0]
+rename_files(directory_path)

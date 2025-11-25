@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+yt-dlp "$1" -x --audio-format mp3 \
+        --audio-quality 320k \
+        --embed-thumbnail \
+        --sleep-interval 2 \
+        --sleep-requests 0.5 \
+        --replace-in-metadata "title" "\s*\[[^\]]*\]" "" \
+        -o "%(title)s.%(ext)s"
