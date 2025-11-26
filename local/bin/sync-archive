@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# Script to sync Archive directory from c2storage to SAYLESS-2TB
+# Uses inclusion-based sync (music files only)
+
+# Get script directory for includes file
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INCLUDES_FILE="$SCRIPT_DIR/rsync-music-includes.txt"
+
+SOURCE="/Volumes/c2storage/Archive/"
+DEST="/Volumes/SAYLESS-2TB/Archive/"
+
+# Check if volumes are mounted
+if [ ! -d "/Volumes/c2storage" ]; then
+    echo "Warning: Source volume not found at /Volumes/c2storage"
+    echo "Skipping archive sync."
+    exit 0
+fi
+
+if [ ! -d "/Volumes/SAYLESS-2TB" ]; then
+    echo "Warning: Destination volume not found at /Volumes/SAYLESS-2TB"
+    echo "Skipping archive sync (mount SAYLESS-2TB to enable)."
+    exit 0
+fi
+
+# Display what will be synced
+echo "=== RSYNC Archive Sync ==="
+echo "Source: /Volumes/c2storage/Archive"
+echo "Destination: /Volumes/SAYLESS-2TB/Archive"
+echo ""
+echo "Using inclusion-based sync (music files only)..."
+echo ""
+
+# Check for dry-run flag
+DRY_RUN=""
+if [ "$1" == "--dry-run" ] || [ "$1" == "-n" ]; then
+    DRY_RUN="--dry-run"
+    echo "*** DRY RUN MODE - No files will be copied ***"
+    echo ""
+fi
+
+# Run rsync
+echo "Starting sync..."
+echo ""
+
+if [ -d "$SOURCE" ]; then
+    rsync -av \
+        --progress \
+        --delete-after \
+        --backup \
+        --backup-dir=/Volumes/SAYLESS-2TB/.rsync-backup \
+        --include-from="$INCLUDES_FILE" \
+        --exclude='._*' \
+        --exclude='.DS_Store' \
+        --exclude='*' \
+        $DRY_RUN \
+        "$SOURCE" "$DEST"
+else
+    echo "Archive directory not found at $SOURCE"
+    exit 1
+fi
+
+echo ""
+echo "=== Sync Complete ==="

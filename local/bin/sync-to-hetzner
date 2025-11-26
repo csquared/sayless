@@ -51,9 +51,14 @@ echo ""
 
 rsync -av \
     --progress \
+    --delete-after \
+    --backup \
+    --backup-dir=/mnt/music/.rsync-backup \
     --include-from="$INCLUDES_FILE" \
     --exclude='sourcing' \
     --exclude='playlists/' \
+    --exclude='._*' \
+    --exclude='.DS_Store' \
     --exclude='*' \
     $DRY_RUN \
     "$SOURCE" "$DEST"
@@ -65,7 +70,12 @@ echo ""
 # Sync the actual sourcing directory
 rsync -av \
     --progress \
+    --delete-after \
+    --backup \
+    --backup-dir=/mnt/music/.rsync-backup \
     --include-from="$INCLUDES_FILE" \
+    --exclude='._*' \
+    --exclude='.DS_Store' \
     --exclude='*' \
     $DRY_RUN \
     "$SOURCE_SOURCING" "$DEST_SOURCING"

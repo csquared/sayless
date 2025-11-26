@@ -7,29 +7,31 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 INCLUDES_FILE="$SCRIPT_DIR/rsync-music-includes.txt"
 
-SOURCE="/Volumes/c2storage/"
-DEST="/Volumes/SAYLESS-2TB/"
+SOURCE_DJ="/Volumes/c2storage/DJ/"
+SOURCE_PRODUCTION="/Volumes/c2storage/Production/"
+DEST_DJ="/Volumes/SAYLESS-2TB/DJ/"
+DEST_PRODUCTION="/Volumes/SAYLESS-2TB/Production/"
 
 # Check if volumes are mounted
-if [ ! -d "$SOURCE" ]; then
-    echo "Warning: Source volume not found at $SOURCE"
+if [ ! -d "/Volumes/c2storage" ]; then
+    echo "Warning: Source volume not found at /Volumes/c2storage"
     echo "Skipping external drive sync."
     exit 0
 fi
 
-if [ ! -d "$DEST" ]; then
-    echo "Warning: Destination volume not found at $DEST"
+if [ ! -d "/Volumes/SAYLESS-2TB" ]; then
+    echo "Warning: Destination volume not found at /Volumes/SAYLESS-2TB"
     echo "Skipping external drive sync (mount SAYLESS-2TB to enable)."
     exit 0
 fi
 
 # Display what will be synced
 echo "=== RSYNC Music Sync ==="
-echo "Source: $SOURCE"
-echo "Destination: $DEST"
+echo "Syncing DJ and Production directories"
+echo "Source: /Volumes/c2storage/{DJ,Production}"
+echo "Destination: /Volumes/SAYLESS-2TB/{DJ,Production}"
 echo ""
 echo "Using inclusion-based sync (music files only)..."
-echo "AI models, PIONEER, and other non-music files automatically excluded"
 echo ""
 
 # Check for dry-run flag
@@ -40,16 +42,45 @@ if [ "$1" == "--dry-run" ] || [ "$1" == "-n" ]; then
     echo ""
 fi
 
-# Run rsync
-echo "Starting sync..."
+# Run rsync for DJ directory
+echo "Syncing DJ directory..."
 echo ""
 
-rsync -av \
-    --progress \
-    --include-from="$INCLUDES_FILE" \
-    --exclude='*' \
-    $DRY_RUN \
-    "$SOURCE" "$DEST"
+if [ -d "$SOURCE_DJ" ]; then
+    rsync -av \
+        --progress \
+        --delete-after \
+        --backup \
+        --backup-dir=/Volumes/SAYLESS-2TB/.rsync-backup \
+        --include-from="$INCLUDES_FILE" \
+        --exclude='._*' \
+        --exclude='.DS_Store' \
+        --exclude='*' \
+        $DRY_RUN \
+        "$SOURCE_DJ" "$DEST_DJ"
+else
+    echo "DJ directory not found, skipping..."
+fi
+
+echo ""
+echo "Syncing Production directory..."
+echo ""
+
+if [ -d "$SOURCE_PRODUCTION" ]; then
+    rsync -av \
+        --progress \
+        --delete-after \
+        --backup \
+        --backup-dir=/Volumes/SAYLESS-2TB/.rsync-backup \
+        --include-from="$INCLUDES_FILE" \
+        --exclude='._*' \
+        --exclude='.DS_Store' \
+        --exclude='*' \
+        $DRY_RUN \
+        "$SOURCE_PRODUCTION" "$DEST_PRODUCTION"
+else
+    echo "Production directory not found, skipping..."
+fi
 
 echo ""
 echo "=== Sync Complete ==="
