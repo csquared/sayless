@@ -1,0 +1,10 @@
+  - listening to songs in sourcing in navidrome (which is why they're symlinked in)
+  - sometimes opening DJ/sourcing and listening there.
+  - i will delete from this dir - so that needs to get pushed up (it would be cool if i could delete a track from navidrome too but i don't know if that is supported)
+  - then, when i've listened and pruned, i copy/paste to dj/collection2
+  - i run everything through mixed in key, which renames the files
+  - i then drag/drop import to rekordbox
+  - then i have to do the mixed-in-key dance:
+  - export collection as xml
+  - write cue points from mixed in key
+  - import new playlist w. cue points in rekordbox
