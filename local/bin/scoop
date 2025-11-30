@@ -2,6 +2,12 @@
 
 set -e  # Exit on error
 
+# Parse flags
+SKIP_EXT_SYNC=false
+if [ "$1" == "--no-ext" ]; then
+    SKIP_EXT_SYNC=true
+fi
+
 DOWNLOAD_DIR="$HOME/Downloads"
 SOURCING_DIR="/Volumes/c2storage/DJ/sourcing"
 PLAYLIST_SOURCING_DIR="/Volumes/c2storage/DJ/collection2/sourcing"
@@ -82,11 +88,16 @@ else
     echo "Warning: Sync to Hetzner failed. You may need to run sync-to-hetzner manually."
 fi
 
-# Sync to external drive backup
-echo ""
-echo "Syncing to external drive backup..."
-if sync-music; then
-    echo "Successfully synced to external drive!"
+# Sync to external drive backup (unless --no-ext flag)
+if [ "$SKIP_EXT_SYNC" = false ]; then
+    echo ""
+    echo "Syncing to external drive backup..."
+    if sync-music; then
+        echo "Successfully synced to external drive!"
+    else
+        echo "External drive sync skipped or unavailable."
+    fi
 else
-    echo "External drive sync skipped or unavailable."
+    echo ""
+    echo "Skipping external drive sync (--no-ext flag)"
 fi

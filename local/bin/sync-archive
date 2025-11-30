@@ -49,9 +49,10 @@ if [ -d "$SOURCE" ]; then
         --delete-after \
         --backup \
         --backup-dir=/Volumes/SAYLESS-2TB/.rsync-backup \
-        --include-from="$INCLUDES_FILE" \
         --exclude='._*' \
         --exclude='.DS_Store' \
+        --exclude='.*' \
+        --include-from="$INCLUDES_FILE" \
         --exclude='*' \
         $DRY_RUN \
         "$SOURCE" "$DEST"
