@@ -46,8 +46,8 @@ generate_playlist() {
     # Create playlist file with header
     echo '#EXTM3U' > "$playlist_path"
 
-    # Add all audio files, sorted
-    find "$PLAYLIST_SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) | sort >> "$playlist_path"
+    # Add all audio files, sorted (-L follows symlinks, exclude ._ files)
+    find -L "$PLAYLIST_SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) ! -name '._*' | sort >> "$playlist_path"
 
     echo "Playlist updated: $playlist_path"
 }

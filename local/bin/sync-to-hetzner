@@ -54,11 +54,12 @@ rsync -av \
     --delete-after \
     --backup \
     --backup-dir=/mnt/music/.rsync-backup \
-    --include-from="$INCLUDES_FILE" \
-    --exclude='sourcing' \
-    --exclude='playlists/' \
     --exclude='._*' \
     --exclude='.DS_Store' \
+    --exclude='.*' \
+    --exclude='sourcing' \
+    --exclude='playlists/' \
+    --include-from="$INCLUDES_FILE" \
     --exclude='*' \
     $DRY_RUN \
     "$SOURCE" "$DEST"
@@ -73,9 +74,10 @@ rsync -av \
     --delete-after \
     --backup \
     --backup-dir=/mnt/music/.rsync-backup \
-    --include-from="$INCLUDES_FILE" \
     --exclude='._*' \
     --exclude='.DS_Store' \
+    --exclude='.*' \
+    --include-from="$INCLUDES_FILE" \
     --exclude='*' \
     $DRY_RUN \
     "$SOURCE_SOURCING" "$DEST_SOURCING"

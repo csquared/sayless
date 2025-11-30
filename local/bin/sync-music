@@ -52,9 +52,10 @@ if [ -d "$SOURCE_DJ" ]; then
         --delete-after \
         --backup \
         --backup-dir=/Volumes/SAYLESS-2TB/.rsync-backup \
-        --include-from="$INCLUDES_FILE" \
         --exclude='._*' \
         --exclude='.DS_Store' \
+        --exclude='.*' \
+        --include-from="$INCLUDES_FILE" \
         --exclude='*' \
         $DRY_RUN \
         "$SOURCE_DJ" "$DEST_DJ"
@@ -72,9 +73,10 @@ if [ -d "$SOURCE_PRODUCTION" ]; then
         --delete-after \
         --backup \
         --backup-dir=/Volumes/SAYLESS-2TB/.rsync-backup \
-        --include-from="$INCLUDES_FILE" \
         --exclude='._*' \
         --exclude='.DS_Store' \
+        --exclude='.*' \
+        --include-from="$INCLUDES_FILE" \
         --exclude='*' \
         $DRY_RUN \
         "$SOURCE_PRODUCTION" "$DEST_PRODUCTION"
