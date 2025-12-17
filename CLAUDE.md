@@ -4,31 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-SAYLESS is the stage name for an electronic musician, Chris.
+SAYLESS is the stage name for an electronic musician. Indie dance. DIY ethos.
 
-The idea is to "say less" and do more. However, that alone is a bland tautology at best.
-In line with the philosophy of "show, don't tell", SAYLESS is the rebel yell that doesn't want to
-take over or disrupt the music industry, he will do his music project in a way that is the north star
-for any independent musician also seeking to escape the matrix.
+The name says it all - show, don't tell.
 
-The thing is, remember the Nietzsche quote: "I refuse to believe in a god that does not dance"
-
-So we're not telling people to escape the matrix - you have to figure that out.
-What we're doing is living what comes next. And showing where it makes sense.
-
-The music genre is indie dance.
-
-The branding is tacti-cool for the guys and tacti-cute for the girls.
-
-The font is a stencil that is easily reproducible in the real world - super tactical.
-The logo is an emoji created by stable diffusion - hush + kiss.
-
-And the web property is going to be weird and wild.
-
-We've hacked the planet.
-Now - we're remixing the world.
-
-This repository is doing branding, web properties, etc in a true open source way.
+- **Genre:** Indie dance
+- **Aesthetic:** Black and white, stencil typography, minimalist
+- **Tagline:** "Definitely not the hero you asked for"
 
 ## Web properites:
 
@@ -59,9 +41,8 @@ This is a static HTML site with no build process or package management. Changes 
 ### Design Philosophy
 - Black and white aesthetic
 - Stencil Gothic typography
-- Minimalist approach ("making your stamp or mark, not advertising")
+- Minimalist approach ("making marks, not advertisements")
 - Independent spirit and DIY ethos
-- "Remix your world" - the brand catchphrase
 
 ### Working with Large Files
 The index.html file exceeds 256KB. Use grep or specific line ranges when reading/editing this file.
