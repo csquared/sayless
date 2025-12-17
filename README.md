@@ -1,6 +1,6 @@
 # SAYLESS
 
-**Remix your world**
+**Definitely not the hero you asked for**
 
 From the terminal to the turntables.
 
@@ -12,36 +12,15 @@ From the terminal to the turntables.
 
 ## What's Here
 
-This repo is the open-source home of SAYLESS - branding, philosophy, arsenal. 
+Branding, web stuff, the occasional experiment.
 
-Follow the rabbit:
-- `entrance.html` - Start here
-- `brand/` - Visual identity and philosophy docs
-- `sound/` - Production notes (some encrypted, some not)
+- `brand/` - Visual identity
 - `logo/` - Official marks
+- `fonts/` - StencilGothic.ttf
 
-## Philosophy
+## Tech
 
-I'll remix anything, but don't take my word for it. Pay attention.
-
-## Tech Stack
-
-- Static HTML for the website
-- Ableton for music production
-- Rekordbox for DJ sets
-
-## Font
-
-`fonts/StencilGothic.ttf`
-
-![SAYLESS Font](etc/SAYLESS-font-sample.png)
-
-## Logo
-
-`logo/` directory contains:
-- `SAYLESS-TRANSPARENT.png` - Transparent background
-- `SAYLESS-BLACK-BG.png` - Black background
-- `SAYLESS.png` - White background
+Static HTML. Ableton. Rekordbox.
 
 ![SAYLESS](logo/SAYLESS-TRANSPARENT.png)
 
