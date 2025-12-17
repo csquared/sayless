@@ -49,7 +49,7 @@ fi
 echo "Syncing collection..."
 echo ""
 
-rsync -av \
+rsync -avO \
     --progress \
     --delete-after \
     --backup \
@@ -69,7 +69,8 @@ echo "=== Syncing Sourcing Directory ==="
 echo ""
 
 # Sync the actual sourcing directory
-rsync -av \
+# -O (--omit-dir-times) ensures directories get current mtime so Navidrome rescans
+rsync -avO \
     --progress \
     --delete-after \
     --backup \

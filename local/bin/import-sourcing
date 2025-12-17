@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+set -e
+
+SOURCING_DIR="/Volumes/c2storage/DJ/sourcing"
+COLLECTION_DIR="/Volumes/c2storage/DJ/collection2"
+PLAYLIST_DIR="/Volumes/c2storage/DJ/collection2/playlists"
+
+# Step 1: Show current sourcing files
+echo "=== Files in sourcing directory ==="
+file_count=$(find "$SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) ! -name '._*' | wc -l | tr -d ' ')
+echo "Found $file_count files in $SOURCING_DIR"
+echo ""
+
+if [ "$file_count" -eq 0 ]; then
+    echo "No files to import. Exiting."
+    exit 0
+fi
+
+# Step 2: Prompt for MIK
+echo "=== Step 1: Run Mixed In Key ==="
+echo "Open Mixed In Key and add: $SOURCING_DIR"
+echo "Wait for analysis and file renaming to complete."
+echo ""
+read -p "Press Enter when Mixed In Key is done..."
+
+# Step 3: Generate import playlist
+echo ""
+echo "=== Step 2: Creating import playlist ==="
+DATE=$(date +%Y-%m-%d)
+PLAYLIST_NAME="import-$DATE.m3u8"
+PLAYLIST_PATH="$PLAYLIST_DIR/$PLAYLIST_NAME"
+
+echo "#EXTM3U" > "$PLAYLIST_PATH"
+find "$SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) ! -name '._*' | sort | while read -r filepath; do
+    filename=$(basename "$filepath")
+    echo "$COLLECTION_DIR/$filename" >> "$PLAYLIST_PATH"
+done
+
+echo "Created: $PLAYLIST_PATH"
+
+# Step 4: Move files to collection
+echo ""
+echo "=== Step 3: Moving files to collection ==="
+find "$SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) ! -name '._*' | while read -r filepath; do
+    mv "$filepath" "$COLLECTION_DIR/"
+    echo "Moved: $(basename "$filepath")"
+done
+
+# Step 5: Clear sourcing playlist
+echo ""
+echo "=== Step 4: Clearing sourcing playlist ==="
+echo "#EXTM3U" > "$PLAYLIST_DIR/sourcing.m3u8"
+echo "Cleared: $PLAYLIST_DIR/sourcing.m3u8"
+
+# Step 6: Sync to Hetzner
+echo ""
+echo "=== Step 5: Syncing to Hetzner ==="
+if sync-to-hetzner; then
+    echo "Successfully synced to Hetzner!"
+else
+    echo "Warning: Sync to Hetzner failed."
+fi
+
+echo ""
+echo "=== Import complete! ==="
+echo "Playlist: $PLAYLIST_NAME"
+echo "Next steps:"
+echo "  1. Drag $COLLECTION_DIR into Rekordbox"
+echo "  2. Export collection as XML"
+echo "  3. Write cue points from Mixed In Key"
+echo "  4. Import playlist with cue points in Rekordbox"
