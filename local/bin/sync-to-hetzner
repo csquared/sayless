@@ -54,6 +54,7 @@ rsync -avO \
     --delete-after \
     --backup \
     --backup-dir=/mnt/music/.rsync-backup \
+    --chown=navidrome:navidrome \
     --exclude='._*' \
     --exclude='.DS_Store' \
     --exclude='.*' \
@@ -75,6 +76,7 @@ rsync -avO \
     --delete-after \
     --backup \
     --backup-dir=/mnt/music/.rsync-backup \
+    --chown=navidrome:navidrome \
     --exclude='._*' \
     --exclude='.DS_Store' \
     --exclude='.*' \
@@ -128,6 +130,7 @@ if [ -d "$PLAYLIST_DIR" ]; then
     # Sync the transformed playlists to Hetzner
     rsync -av \
         --progress \
+        --chown=navidrome:navidrome \
         $DRY_RUN \
         "$TEMP_DIR/" "root@37.27.252.86:/mnt/music/collection2/playlists/"
 
@@ -149,6 +152,18 @@ if [ -z "$DRY_RUN" ]; then
     echo "Ownership updated to navidrome:navidrome"
 else
     echo "[DRY RUN] Would set ownership to navidrome:navidrome"
+fi
+
+echo ""
+echo "=== Restarting Navidrome ==="
+echo ""
+
+# Restart Navidrome to ensure clean scanner state
+if [ -z "$DRY_RUN" ]; then
+    ssh "$HETZNER_HOST" "systemctl restart navidrome"
+    echo "Navidrome restarted - library scan will begin automatically"
+else
+    echo "[DRY RUN] Would restart navidrome service"
 fi
 
 echo ""

@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Script to sync media folders from c2storage to SAYLESS-2TB
+# Syncs: archive, media, movies
+
+set -e  # Exit on error
+
+SOURCE_BASE="/Volumes/c2storage"
+DEST_BASE="/Volumes/SAYLESS-2TB"
+
+# Folders to sync
+FOLDERS=("archive" "media" "movies")
+
+# Check if source base exists
+if [ ! -d "$SOURCE_BASE" ]; then
+    echo "Error: Source volume not found at $SOURCE_BASE"
+    exit 1
+fi
+
+# Check if destination base exists
+if [ ! -d "$DEST_BASE" ]; then
+    echo "Error: Destination volume not found at $DEST_BASE"
+    exit 1
+fi
+
+# Check for dry-run flag
+DRY_RUN=""
+if [ "$1" == "--dry-run" ] || [ "$1" == "-n" ]; then
+    DRY_RUN="--dry-run"
+    echo "*** DRY RUN MODE - No files will be copied ***"
+    echo ""
+fi
+
+echo "=== RSYNC Media to SAYLESS-2TB ==="
+echo ""
+
+for folder in "${FOLDERS[@]}"; do
+    SOURCE="$SOURCE_BASE/$folder/"
+    DEST="$DEST_BASE/$folder/"
+
+    if [ ! -d "$SOURCE_BASE/$folder" ]; then
+        echo "Warning: $folder not found at $SOURCE_BASE/$folder, skipping..."
+        echo ""
+        continue
+    fi
+
+    echo "--- Syncing $folder ---"
+    echo "Source: $SOURCE"
+    echo "Destination: $DEST"
+    echo ""
+
+    rsync -av \
+        --progress \
+        --exclude='.*' \
+        $DRY_RUN \
+        "$SOURCE" "$DEST"
+
+    echo ""
+done
+
+echo "=== Sync Complete ==="

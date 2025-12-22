@@ -88,14 +88,19 @@ else
     echo "Warning: Sync to Hetzner failed. You may need to run sync-to-hetzner manually."
 fi
 
-# Sync to external drive backup (unless --no-ext flag)
+# Sync sourcing to external drive backup (unless --no-ext flag)
 if [ "$SKIP_EXT_SYNC" = false ]; then
     echo ""
-    echo "Syncing to external drive backup..."
-    if sync-music; then
-        echo "Successfully synced to external drive!"
+    echo "Syncing sourcing to SAYLESS-2TB..."
+    if [ -d "/Volumes/SAYLESS-2TB" ]; then
+        rsync -av \
+            --progress \
+            --exclude='._*' \
+            --exclude='.DS_Store' \
+            "$SOURCING_DIR/" "/Volumes/SAYLESS-2TB/DJ/sourcing/"
+        echo "Successfully synced sourcing to external drive!"
     else
-        echo "External drive sync skipped or unavailable."
+        echo "SAYLESS-2TB not mounted, skipping external sync."
     fi
 else
     echo ""
