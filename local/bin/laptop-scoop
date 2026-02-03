@@ -1,0 +1,272 @@
+#!/bin/bash
+
+# laptop-scoop: Laptop-specific workflow for downloading and syncing new music
+#
+# This script:
+# 1. Finds audio files in ~/Downloads
+# 2. Sanitizes filenames (removes special characters, accents)
+# 3. Copies files to external drives (c2storage and/or SAYLESS-2TB)
+# 4. Syncs new files to Hetzner sourcing directory
+# 5. Rebuilds sourcing playlist on Hetzner from directory contents
+# 6. Triggers Navidrome rescan
+
+set -e
+
+# Configuration
+DOWNLOADS_DIR="$HOME/Downloads"
+C2STORAGE_PATH="/Volumes/c2storage/DJ/sourcing"
+SAYLESS2TB_PATH="/Volumes/SAYLESS-2TB/DJ/sourcing"
+HETZNER_HOST="root@37.27.252.86"
+HETZNER_SOURCING="/mnt/music/sourcing"
+HETZNER_PLAYLIST="/mnt/music/collection2/playlists/sourcing.m3u8"
+
+# Parse arguments
+DRY_RUN=""
+if [[ "$1" == "--dry-run" || "$1" == "-n" ]]; then
+    DRY_RUN="--dry-run"
+    echo "🔍 DRY RUN MODE - No changes will be made"
+    echo ""
+fi
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Helper function for colored output
+log_info() {
+    echo -e "${BLUE}ℹ${NC} $1"
+}
+
+log_success() {
+    echo -e "${GREEN}✓${NC} $1"
+}
+
+log_warning() {
+    echo -e "${YELLOW}⚠${NC} $1"
+}
+
+log_error() {
+    echo -e "${RED}✗${NC} $1"
+}
+
+# Step 1: Find audio files in Downloads
+log_info "Scanning $DOWNLOADS_DIR for audio files..."
+
+# Find audio files (excluding .part files which are still downloading)
+AUDIO_FILES=()
+while IFS= read -r -d '' file; do
+    AUDIO_FILES+=("$file")
+done < <(find "$DOWNLOADS_DIR" -maxdepth 1 \
+    \( -iname "*.mp3" -o -iname "*.aiff" -o -iname "*.aif" -o -iname "*.wav" -o -iname "*.flac" -o -iname "*.m4a" \) \
+    -type f -print0)
+
+# Check for .part files
+PART_FILES=$(find "$DOWNLOADS_DIR" -maxdepth 1 -name "*.part" -type f | wc -l)
+if [ "$PART_FILES" -gt 0 ]; then
+    log_warning "Found $PART_FILES files still downloading (.part files). Waiting for downloads to complete..."
+    exit 1
+fi
+
+if [ ${#AUDIO_FILES[@]} -eq 0 ]; then
+    log_warning "No audio files found in Downloads"
+    exit 0
+fi
+
+log_success "Found ${#AUDIO_FILES[@]} audio file(s)"
+echo ""
+
+# Step 2: Sanitize filenames and prepare for copying
+log_info "Sanitizing filenames..."
+
+declare -a SANITIZED_FILES
+declare -a ORIGINAL_FILES
+
+for file in "${AUDIO_FILES[@]}"; do
+    filename=$(basename "$file")
+
+    # Transliterate to ASCII (remove accents) - suppress warnings
+    sanitized=$(echo "$filename" | iconv -f utf-8 -t ascii//TRANSLIT 2>/dev/null || echo "$filename")
+
+    # Remove problematic characters
+    sanitized=$(echo "$sanitized" | tr -d "'\"\`~")
+
+    # Store both original and sanitized paths
+    ORIGINAL_FILES+=("$file")
+    SANITIZED_FILES+=("$sanitized")
+
+    if [ "$filename" != "$sanitized" ]; then
+        log_info "  $filename → $sanitized"
+    else
+        log_info "  $filename (no changes needed)"
+    fi
+done
+
+echo ""
+
+# Step 3: Check which external drives are available
+log_info "Checking for external drives..."
+
+declare -a AVAILABLE_DRIVES
+declare -a DRIVE_PATHS
+
+if [ -d "/Volumes/c2storage" ]; then
+    log_success "c2storage is mounted"
+    AVAILABLE_DRIVES+=("c2storage")
+    DRIVE_PATHS+=("$C2STORAGE_PATH")
+fi
+
+if [ -d "/Volumes/SAYLESS-2TB" ]; then
+    log_success "SAYLESS-2TB is mounted"
+    AVAILABLE_DRIVES+=("SAYLESS-2TB")
+    DRIVE_PATHS+=("$SAYLESS2TB_PATH")
+fi
+
+if [ ${#AVAILABLE_DRIVES[@]} -eq 0 ]; then
+    log_error "No external drives are mounted"
+    log_error "Please mount c2storage or SAYLESS-2TB and try again"
+    exit 1
+fi
+
+echo ""
+
+# Step 4: Copy files to external drives
+log_info "Copying files to external drive(s)..."
+
+declare -a COPIED_FILES_BASENAMES
+
+for i in "${!ORIGINAL_FILES[@]}"; do
+    original="${ORIGINAL_FILES[$i]}"
+    sanitized="${SANITIZED_FILES[$i]}"
+
+    for drive_path in "${DRIVE_PATHS[@]}"; do
+        dest="$drive_path/$sanitized"
+
+        if [ -n "$DRY_RUN" ]; then
+            log_info "  [DRY RUN] Would copy: $sanitized → $drive_path/"
+        else
+            cp "$original" "$dest"
+            log_success "  Copied: $sanitized → $drive_path/"
+        fi
+    done
+
+    COPIED_FILES_BASENAMES+=("$sanitized")
+done
+
+echo ""
+
+# Step 5: Sync new files to Hetzner
+log_info "Syncing new files to Hetzner sourcing directory..."
+
+# Create a temporary file list for rsync
+TMP_FILE_LIST=$(mktemp)
+printf "%s\n" "${COPIED_FILES_BASENAMES[@]}" > "$TMP_FILE_LIST"
+
+# Choose source drive (prefer c2storage, fall back to SAYLESS-2TB)
+SOURCE_DRIVE=""
+if [ -d "/Volumes/c2storage" ]; then
+    SOURCE_DRIVE="$C2STORAGE_PATH"
+elif [ -d "/Volumes/SAYLESS-2TB" ]; then
+    SOURCE_DRIVE="$SAYLESS2TB_PATH"
+fi
+
+if [ -n "$DRY_RUN" ]; then
+    log_info "  [DRY RUN] Would sync ${#COPIED_FILES_BASENAMES[@]} files to $HETZNER_HOST:$HETZNER_SOURCING"
+    rsync -avh --dry-run \
+        --files-from="$TMP_FILE_LIST" \
+        "$SOURCE_DRIVE/" \
+        "$HETZNER_HOST:$HETZNER_SOURCING/"
+else
+    # Sync files (without chown to avoid rsync error code 23)
+    rsync -avh --progress \
+        --files-from="$TMP_FILE_LIST" \
+        "$SOURCE_DRIVE/" \
+        "$HETZNER_HOST:$HETZNER_SOURCING/" || {
+        RSYNC_EXIT=$?
+        if [ $RSYNC_EXIT -eq 23 ]; then
+            log_warning "rsync completed with warnings (exit code 23) - continuing..."
+        else
+            log_error "rsync failed with exit code $RSYNC_EXIT"
+            exit $RSYNC_EXIT
+        fi
+    }
+
+    log_success "Synced ${#COPIED_FILES_BASENAMES[@]} files to Hetzner"
+
+    # Fix permissions via SSH
+    log_info "Fixing file permissions on Hetzner..."
+    ssh "$HETZNER_HOST" "chown -R navidrome:navidrome $HETZNER_SOURCING"
+    log_success "Permissions updated"
+fi
+
+# Clean up temp file
+rm "$TMP_FILE_LIST"
+
+echo ""
+
+# Step 6: Rebuild sourcing playlist on Hetzner
+log_info "Rebuilding sourcing.m3u8 playlist on Hetzner..."
+
+if [ -n "$DRY_RUN" ]; then
+    log_info "  [DRY RUN] Would rebuild playlist from $HETZNER_SOURCING"
+else
+    # SSH to Hetzner and generate playlist from all files in sourcing
+    ssh "$HETZNER_HOST" bash <<'ENDSSH'
+        cd /mnt/music/sourcing
+
+        # Generate M3U8 playlist with all audio files (excluding 0-byte files)
+        # Use /mnt/music/collection2/sourcing/ path since Navidrome scans collection2
+        {
+            echo "#EXTM3U"
+            find . -type f \( -iname "*.mp3" -o -iname "*.aiff" -o -iname "*.aif" -o -iname "*.wav" -o -iname "*.flac" -o -iname "*.m4a" \) -size +0 \
+                -printf "%f\n" | sort | while read filename; do
+                    echo "/mnt/music/collection2/sourcing/$filename"
+                done
+        } > /tmp/sourcing.m3u8
+
+        # Move playlist to collection playlists directory
+        mv /tmp/sourcing.m3u8 /mnt/music/collection2/playlists/sourcing.m3u8
+
+        # Fix permissions
+        chown navidrome:navidrome /mnt/music/collection2/playlists/sourcing.m3u8
+        chmod 644 /mnt/music/collection2/playlists/sourcing.m3u8
+
+        # Count files in playlist
+        wc -l < /mnt/music/collection2/playlists/sourcing.m3u8
+ENDSSH
+
+    PLAYLIST_LINES=$(ssh "$HETZNER_HOST" "wc -l < /mnt/music/collection2/playlists/sourcing.m3u8")
+    TRACK_COUNT=$((PLAYLIST_LINES - 1))  # Subtract 1 for #EXTM3U header
+
+    log_success "Rebuilt sourcing.m3u8 with $TRACK_COUNT track(s)"
+fi
+
+echo ""
+
+# Step 7: Trigger Navidrome rescan
+log_info "Triggering Navidrome rescan..."
+
+if [ -n "$DRY_RUN" ]; then
+    log_info "  [DRY RUN] Would restart navidrome.service"
+else
+    ssh "$HETZNER_HOST" "systemctl restart navidrome"
+    log_success "Navidrome service restarted"
+fi
+
+echo ""
+log_success "laptop-scoop completed successfully!"
+log_info "Files are now available in the sourcing directory and playlist"
+
+# Step 8: Clean up Downloads after successful sync
+if [ -z "$DRY_RUN" ]; then
+    echo ""
+    log_info "Cleaning up Downloads folder..."
+    for file in "${ORIGINAL_FILES[@]}"; do
+        rm "$file"
+        log_success "Deleted: $(basename "$file")"
+    done
+    echo ""
+    log_success "Removed ${#ORIGINAL_FILES[@]} file(s) from Downloads"
+fi
