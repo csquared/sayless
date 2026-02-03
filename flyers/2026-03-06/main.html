@@ -32,14 +32,13 @@
 
         .flyer-container {
             position: relative;
-            width: 800px;
-            min-height: 1000px;
             background: #000;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             overflow: hidden;
+            padding: 60px 20px;
         }
 
         /* Subtle background glow effect */
@@ -234,11 +233,6 @@
         }
 
         @media (max-width: 768px) {
-            .flyer-container {
-                width: 400px;
-                height: 400px;
-            }
-
             .brand {
                 font-size: 60px;
                 letter-spacing: 8px;
