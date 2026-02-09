@@ -1,0 +1,118 @@
+#!/bin/bash
+
+# Script to sync sourcing folder when returning from a trip
+# Bidirectional sync: Hetzner <-> SAYLESS-2TB, then -> c2storage
+
+set -e
+
+# Get script directory for includes file
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INCLUDES_FILE="$SCRIPT_DIR/rsync-music-includes.txt"
+
+HETZNER_HOST="root@37.27.252.86"
+HETZNER_SOURCING="/mnt/music/sourcing/"
+LOCAL_2TB="/Volumes/SAYLESS-2TB/DJ/sourcing/"
+LOCAL_C2="/Volumes/c2storage/DJ/sourcing/"
+
+# Check for dry-run flag
+DRY_RUN=""
+if [ "$1" == "--dry-run" ] || [ "$1" == "-n" ]; then
+    DRY_RUN="--dry-run"
+    echo "*** DRY RUN MODE - No files will be copied ***"
+    echo ""
+fi
+
+echo "=== Return From Trip Sync ==="
+echo ""
+echo "This will sync sourcing between:"
+echo "  - Hetzner: $HETZNER_HOST:$HETZNER_SOURCING"
+echo "  - SAYLESS-2TB: $LOCAL_2TB"
+echo "  - c2storage: $LOCAL_C2"
+echo ""
+
+# Step 1: Pre-flight checks
+echo "=== Pre-flight Checks ==="
+
+if [ ! -d "/Volumes/SAYLESS-2TB" ]; then
+    echo "Error: SAYLESS-2TB not mounted at /Volumes/SAYLESS-2TB"
+    exit 1
+fi
+echo "✓ SAYLESS-2TB mounted"
+
+if [ ! -d "/Volumes/c2storage" ]; then
+    echo "Error: c2storage not mounted at /Volumes/c2storage"
+    exit 1
+fi
+echo "✓ c2storage mounted"
+
+if ! ssh -o ConnectTimeout=5 "$HETZNER_HOST" "echo ok" > /dev/null 2>&1; then
+    echo "Error: Cannot connect to Hetzner at $HETZNER_HOST"
+    exit 1
+fi
+echo "✓ Hetzner reachable"
+
+# Create destination directories if needed
+mkdir -p "$LOCAL_2TB"
+mkdir -p "$LOCAL_C2"
+
+echo ""
+echo "=== Step 1: Hetzner -> SAYLESS-2TB ==="
+echo "Pulling new files from cloud..."
+echo ""
+
+rsync -av \
+    --progress \
+    --ignore-existing \
+    --exclude='._*' \
+    --exclude='.DS_Store' \
+    --exclude='.*' \
+    --include-from="$INCLUDES_FILE" \
+    --exclude='*' \
+    $DRY_RUN \
+    "$HETZNER_HOST:$HETZNER_SOURCING" "$LOCAL_2TB"
+
+echo ""
+echo "=== Step 2: SAYLESS-2TB -> Hetzner ==="
+echo "Pushing local additions to cloud..."
+echo ""
+
+rsync -avO \
+    --progress \
+    --ignore-existing \
+    --chown=navidrome:navidrome \
+    --exclude='._*' \
+    --exclude='.DS_Store' \
+    --exclude='.*' \
+    --include-from="$INCLUDES_FILE" \
+    --exclude='*' \
+    $DRY_RUN \
+    "$LOCAL_2TB" "$HETZNER_HOST:$HETZNER_SOURCING"
+
+echo ""
+echo "=== Step 3: SAYLESS-2TB -> c2storage ==="
+echo "Consolidating to home storage..."
+echo ""
+
+rsync -av \
+    --progress \
+    --ignore-existing \
+    --exclude='._*' \
+    --exclude='.DS_Store' \
+    --exclude='.*' \
+    --include-from="$INCLUDES_FILE" \
+    --exclude='*' \
+    $DRY_RUN \
+    "$LOCAL_2TB" "$LOCAL_C2"
+
+echo ""
+echo "=== Step 4: Restarting Navidrome ==="
+
+if [ -z "$DRY_RUN" ]; then
+    ssh "$HETZNER_HOST" "systemctl restart navidrome"
+    echo "Navidrome restarted - library scan will begin automatically"
+else
+    echo "[DRY RUN] Would restart navidrome service"
+fi
+
+echo ""
+echo "=== Sync Complete ==="

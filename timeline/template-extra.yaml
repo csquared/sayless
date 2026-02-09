@@ -1,0 +1,5 @@
+tasks:
+  - title: Update SAYLESS socials
+    offset: -5 days
+  - title: Notify Discord community
+    offset: -3 days
