@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+set -e
+
+COLLECTION_DIR="/Volumes/c2storage/DJ/collection2"
+PLAYLIST_DIR="/Volumes/c2storage/DJ/collection2/playlists"
+AUDIO_EXTENSIONS=( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" )
+
+usage() {
+    echo "Usage: $(basename "$0") [OPTIONS]"
+    echo ""
+    echo "Create an import playlist from recently modified files in collection2."
+    echo ""
+    echo "Options:"
+    echo "  -d, --days N        Files modified in the last N days (default: 1)"
+    echo "  -s, --since DATE    Files modified since DATE (e.g. 2025-03-06)"
+    echo "  -n, --name NAME     Playlist name (default: import-YYYY-MM-DD.m3u8)"
+    echo "  --dry-run            Show what would be added without creating playlist"
+    echo "  -h, --help          Show this help"
+    echo ""
+    echo "Examples:"
+    echo "  $(basename "$0")                  # files modified in last 24 hours"
+    echo "  $(basename "$0") -d 3             # files modified in last 3 days"
+    echo "  $(basename "$0") -s 2025-03-06    # files modified since March 6"
+    exit 0
+}
+
+DAYS=""
+SINCE=""
+PLAYLIST_NAME=""
+DRY_RUN=false
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -d|--days)   DAYS="$2"; shift 2 ;;
+        -s|--since)  SINCE="$2"; shift 2 ;;
+        -n|--name)   PLAYLIST_NAME="$2"; shift 2 ;;
+        --dry-run)   DRY_RUN=true; shift ;;
+        -h|--help)   usage ;;
+        *) echo "Unknown option: $1"; usage ;;
+    esac
+done
+
+# Default to 1 day if neither --days nor --since given
+if [ -z "$DAYS" ] && [ -z "$SINCE" ]; then
+    DAYS=1
+fi
+
+# Build the find command for time filtering
+if [ -n "$SINCE" ]; then
+    # Create a temp reference file with the given date's timestamp
+    REF_FILE=$(mktemp)
+    touch -t "$(date -j -f '%Y-%m-%d' "$SINCE" '+%Y%m%d0000')" "$REF_FILE"
+    TIME_FILTER=( -newer "$REF_FILE" )
+    LABEL="since $SINCE"
+else
+    TIME_FILTER=( -mtime "-${DAYS}" )
+    LABEL="last ${DAYS} day(s)"
+fi
+
+echo "=== Scanning collection2 for files modified in $LABEL ==="
+
+# Find matching audio files, excluding playlists dir and dotfiles
+FOUND_FILES=$(find "$COLLECTION_DIR" -maxdepth 1 -type f \( "${AUDIO_EXTENSIONS[@]}" \) ! -name '._*' "${TIME_FILTER[@]}" | sort)
+
+# Clean up temp file if we made one
+if [ -n "$SINCE" ]; then
+    rm -f "$REF_FILE"
+fi
+
+FILE_COUNT=$(echo "$FOUND_FILES" | grep -c . || true)
+
+if [ "$FILE_COUNT" -eq 0 ]; then
+    echo "No recently modified audio files found."
+    exit 0
+fi
+
+echo "Found $FILE_COUNT files:"
+echo ""
+echo "$FOUND_FILES" | while read -r f; do
+    echo "  $(basename "$f")"
+done
+echo ""
+
+if $DRY_RUN; then
+    echo "(dry run - no playlist created)"
+    exit 0
+fi
+
+# Generate playlist
+DATE=$(date +%Y-%m-%d)
+PLAYLIST_NAME="${PLAYLIST_NAME:-import-$DATE.m3u8}"
+PLAYLIST_PATH="$PLAYLIST_DIR/$PLAYLIST_NAME"
+
+if [ -f "$PLAYLIST_PATH" ]; then
+    echo "Playlist already exists: $PLAYLIST_PATH"
+    read -p "Overwrite? [y/N] " confirm
+    if [[ ! "$confirm" =~ ^[yY] ]]; then
+        echo "Aborted."
+        exit 1
+    fi
+fi
+
+echo "#EXTM3U" > "$PLAYLIST_PATH"
+echo "$FOUND_FILES" | while read -r filepath; do
+    echo "$filepath" >> "$PLAYLIST_PATH"
+done
+
+echo "Created: $PLAYLIST_PATH"
+echo ""
+echo "=== Done ==="
+echo "Playlist: $PLAYLIST_NAME ($FILE_COUNT tracks)"

@@ -1,0 +1,30 @@
+template: show
+date: 2026-02-14
+title: SAYLESS Valentine's Day
+venue: HAVAN
+team:
+  leads:
+    - Keyvon
+    - Ivy
+  sound: Tony
+  lights: Mike
+  social: Alexis
+  decor: Sav
+  help:
+    - Tony
+    - Corey
+skip:
+  - First promo post
+  - 2nd promo post
+  - Promo assets created
+  - Create ticket purchasing page
+  - Confirm guest list
+  - Create event flyer
+  - Send parking/access info to team
+  - Day-of group text
+  - Promo Blitz
+  - Update SAYLESS socials
+  - Post-show recap post
+details:
+  load_in: Thursday Feb 12
+  set_time: 9pm - 3am
