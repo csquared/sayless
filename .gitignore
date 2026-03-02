@@ -1,3 +1,5 @@
 .DS_*
 *.swp
-.playwright_mcp*
+.playwright-mcp*
+node_modules/
+
