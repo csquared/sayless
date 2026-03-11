@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <style>
+        @font-face {
+            font-family: 'StencilGothic';
+            src: url('../../fonts/StencilGothic.ttf') format('truetype');
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 1200px;
+            height: 1200px;
+            background: #000;
+            background-image:
+                radial-gradient(ellipse at 50% 40%, rgba(247, 141, 167, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 60%, rgba(167, 220, 180, 0.10) 0%, transparent 50%),
+                radial-gradient(ellipse at 55% 50%, rgba(186, 135, 240, 0.08) 0%, transparent 45%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .content {
+            text-align: center;
+            color: #fff;
+        }
+
+        .lbf-logo {
+            margin-bottom: 30px;
+        }
+
+        .lbf-logo img {
+            height: 100px;
+            opacity: 0.85;
+        }
+
+        .brand {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 120px;
+            letter-spacing: 15px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(247, 141, 167, 0.25), 0 0 60px rgba(247, 141, 167, 0.1);
+        }
+
+        .event-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .ampersand {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 48px;
+            letter-spacing: 8px;
+            color: rgba(247, 180, 200, 0.8);
+        }
+
+        .friends {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 72px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: rgba(240, 220, 250, 0.95);
+        }
+
+        .daybreaker-mark {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 36px;
+            letter-spacing: 14px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: rgba(230, 200, 240, 0.9);
+            text-shadow: 0 0 20px rgba(186, 135, 240, 0.3);
+        }
+
+        .daybreaker-mark .diamond {
+            display: block;
+            font-size: 36px;
+            letter-spacing: 0;
+            margin-bottom: 8px;
+            color: rgba(247, 180, 200, 0.9);
+        }
+
+        .date {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 56px;
+            letter-spacing: 12px;
+            margin-bottom: 25px;
+            color: rgba(247, 200, 215, 0.95);
+        }
+
+        .venue-name {
+            font-family: 'Bitcount Single', monospace;
+            font-size: 32px;
+            letter-spacing: 6px;
+            margin-top: 20px;
+            color: rgba(200, 230, 220, 0.95);
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="content">
+        <div class="lbf-logo">
+            <img src="assets/lbf-logo.png" alt="Let's Be Friends">
+        </div>
+        <div class="brand">SAYLESS</div>
+        <div class="event-title">
+            <span class="ampersand">&amp;</span>
+            <span class="friends">Kody Sun</span>
+        </div>
+        <div class="daybreaker-mark">
+            <span class="diamond">&#9671;</span>
+            DAYBREAKER
+        </div>
+        <div class="date">03.14.26</div>
+        <div class="venue-name">TWINS ROOM ROOFTOP</div>
+    </div>
+</body>
+</html>
