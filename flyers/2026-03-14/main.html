@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAYLESS & Kody Sun — Daybreaker ATX</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://justsayless.xyz/flyers/2026-03-14/main.html" />
+    <meta property="og:title" content="SAYLESS & Kody Sun — Daybreaker ATX" />
+    <meta property="og:description" content="Morning dance party during SXSW. Twins Room Rooftop. March 14." />
+    <meta property="og:image" content="https://justsayless.xyz/flyers/2026-03-14/flyer-og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <meta property="og:site_name" content="SAYLESS" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SAYLESS & Kody Sun — Daybreaker ATX" />
+    <meta name="twitter:description" content="Morning dance party during SXSW. Twins Room Rooftop. March 14." />
+    <meta name="twitter:image" content="https://justsayless.xyz/flyers/2026-03-14/flyer-og.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'StencilGothic';
+            src: url('../../fonts/StencilGothic.ttf') format('truetype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
+            background-image:
+                radial-gradient(ellipse at 50% 40%, rgba(247, 141, 167, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 60%, rgba(167, 220, 180, 0.10) 0%, transparent 50%),
+                radial-gradient(ellipse at 55% 50%, rgba(186, 135, 240, 0.08) 0%, transparent 45%);
+            padding: 0 0 20px 0;
+        }
+
+        .flyer-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #fff;
+        }
+
+        .daybreaker-logo {
+            margin-bottom: 30px;
+        }
+
+        .daybreaker-logo img {
+            height: 50px;
+            opacity: 0.7;
+            filter: brightness(10);
+        }
+
+        .brand {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 120px;
+            letter-spacing: 15px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .event-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .ampersand {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 48px;
+            letter-spacing: 8px;
+            color: rgba(247, 180, 200, 0.8);
+            text-shadow: 0 0 10px rgba(247, 141, 167, 0.2);
+        }
+
+        .friends {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 72px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: rgba(240, 220, 250, 0.95);
+            text-shadow: 0 0 15px rgba(186, 135, 240, 0.2);
+        }
+
+        .event-badge {
+            font-family: 'Bitcount Single', monospace;
+            font-size: 20px;
+            letter-spacing: 6px;
+            margin-bottom: 15px;
+            color: rgba(247, 141, 167, 0.9);
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-family: 'Bitcount Single', monospace;
+            font-size: 36px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            line-height: 1.5;
+            animation: pastelGlitch 4s infinite;
+        }
+
+        .date {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 56px;
+            letter-spacing: 12px;
+            margin-bottom: 25px;
+            color: rgba(247, 200, 215, 0.95);
+            text-shadow: 0 0 20px rgba(247, 141, 167, 0.2);
+        }
+
+        .venue-name {
+            font-family: 'Bitcount Single', monospace;
+            font-size: 32px;
+            letter-spacing: 6px;
+            margin-top: 20px;
+            color: rgba(200, 230, 220, 0.95);
+            text-shadow: 0 0 15px rgba(135, 240, 200, 0.15);
+            animation: venueGlitch 4s ease-in-out infinite 2s;
+        }
+
+        @keyframes venueGlitch {
+            0%, 48%, 58%, 100% {
+                text-shadow: 0 0 15px rgba(135, 240, 200, 0.15);
+                transform: translate(0);
+                color: rgba(200, 230, 220, 0.95);
+            }
+            50% {
+                text-shadow: -3px 0 rgba(247, 141, 167, 0.7), 3px 0 rgba(135, 200, 240, 0.7);
+                transform: translate(-2px, 0);
+                color: rgba(220, 200, 240, 1);
+            }
+            52% {
+                text-shadow: 2px 0 rgba(167, 240, 200, 0.7), -2px 0 rgba(240, 200, 167, 0.7);
+                transform: translate(2px, 1px);
+                color: rgba(247, 200, 210, 1);
+            }
+            54% {
+                text-shadow: -2px 0 rgba(186, 135, 240, 0.7), 2px 0 rgba(135, 240, 180, 0.7);
+                transform: translate(-1px, -1px);
+                color: rgba(180, 230, 220, 1);
+            }
+            56% {
+                text-shadow: 0 0 15px rgba(135, 240, 200, 0.15);
+                transform: translate(0);
+                color: rgba(200, 230, 220, 0.95);
+            }
+        }
+
+        .time {
+            font-family: 'Bitcount Single', monospace;
+            font-size: 22px;
+            letter-spacing: 4px;
+            margin-top: 15px;
+            color: rgba(210, 200, 240, 0.9);
+            text-shadow: 0 0 12px rgba(186, 135, 240, 0.15);
+        }
+
+        .sxsw-badge {
+            font-family: 'Bitcount Single', monospace;
+            font-size: 18px;
+            letter-spacing: 4px;
+            margin-top: 20px;
+            color: rgba(167, 240, 210, 0.85);
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(135, 240, 200, 0.2);
+        }
+
+        .rsvp {
+            margin-top: 50px;
+        }
+        .rsvp a {
+            font-family: 'StencilGothic', sans-serif;
+            font-size: 32px;
+            letter-spacing: 6px;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 50px;
+            border: 2px solid rgba(247, 141, 167, 0.7);
+            box-shadow: 0 0 15px rgba(247, 141, 167, 0.1), inset 0 0 15px rgba(247, 141, 167, 0.05);
+            border-radius: 12px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        .rsvp a:hover {
+            background: rgba(247, 141, 167, 0.15);
+            border-color: rgba(247, 141, 167, 0.9);
+            transform: scale(1.05);
+        }
+
+        /* Pastel glitch + glow on SAYLESS */
+        @keyframes brandGlitch {
+            0%, 45% {
+                text-shadow: 0 0 30px rgba(247, 141, 167, 0.25), 0 0 60px rgba(247, 141, 167, 0.1);
+                transform: translate(0);
+                color: #fff;
+            }
+            20% {
+                text-shadow: 0 0 35px rgba(186, 135, 240, 0.3), 0 0 70px rgba(186, 135, 240, 0.12);
+            }
+            40% {
+                text-shadow: 0 0 30px rgba(135, 240, 200, 0.25), 0 0 60px rgba(135, 240, 200, 0.1);
+            }
+            46% {
+                text-shadow: -4px 0 rgba(247, 141, 167, 0.8), 4px 0 rgba(135, 240, 200, 0.8), 0 0 30px rgba(247, 141, 167, 0.2);
+                transform: translate(-3px, 0);
+                color: rgba(247, 200, 215, 1);
+            }
+            48% {
+                text-shadow: 3px 0 rgba(186, 135, 240, 0.8), -3px 0 rgba(240, 220, 135, 0.8), 0 0 30px rgba(186, 135, 240, 0.2);
+                transform: translate(3px, 1px);
+                color: rgba(200, 220, 240, 1);
+            }
+            50% {
+                text-shadow: -2px 0 rgba(135, 200, 240, 0.8), 2px 0 rgba(240, 167, 167, 0.8), 0 0 30px rgba(135, 240, 200, 0.2);
+                transform: translate(-2px, -1px);
+                color: rgba(180, 240, 210, 1);
+            }
+            52%, 100% {
+                text-shadow: 0 0 30px rgba(247, 141, 167, 0.25), 0 0 60px rgba(247, 141, 167, 0.1);
+                transform: translate(0);
+                color: #fff;
+            }
+        }
+
+        .brand {
+            animation: brandGlitch 5s ease-in-out infinite;
+        }
+
+        .lbf-logo {
+            margin-bottom: 25px;
+        }
+
+        .lbf-logo img {
+            height: 120px;
+            opacity: 0.85;
+        }
+
+        .daybreaker-mark {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 300;
+            font-size: 36px;
+            letter-spacing: 14px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: rgba(230, 200, 240, 0.9);
+            text-shadow: 0 0 20px rgba(186, 135, 240, 0.3), 0 0 40px rgba(186, 135, 240, 0.15);
+        }
+
+        .daybreaker-mark .diamond {
+            display: block;
+            font-size: 36px;
+            letter-spacing: 0;
+            margin-bottom: 8px;
+            color: rgba(247, 180, 200, 0.9);
+            text-shadow: 0 0 15px rgba(247, 141, 167, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .brand {
+                font-size: 60px;
+                letter-spacing: 8px;
+                margin-bottom: 10px;
+            }
+
+            .ampersand {
+                font-size: 24px;
+                letter-spacing: 4px;
+            }
+
+            .friends {
+                font-size: 36px;
+            }
+
+            .event-title {
+                margin-bottom: 15px;
+                gap: 8px;
+            }
+
+            .event-badge {
+                font-size: 14px;
+                letter-spacing: 3px;
+                margin-bottom: 10px;
+            }
+
+
+            .lbf-logo {
+                margin-bottom: 15px;
+            }
+
+            .lbf-logo img {
+                height: 70px;
+            }
+
+            .daybreaker-mark {
+                font-size: 24px;
+                letter-spacing: 6px;
+                margin-bottom: 25px;
+            }
+
+            .daybreaker-mark .diamond {
+                font-size: 30px;
+            }
+
+            .date {
+                font-size: 28px;
+                letter-spacing: 6px;
+                margin-bottom: 15px;
+            }
+
+            .venue-name {
+                font-size: 22px;
+                letter-spacing: 4px;
+                margin-top: 10px;
+            }
+
+            .time {
+                font-size: 16px;
+                letter-spacing: 2px;
+                margin-top: 10px;
+            }
+
+            .sxsw-badge {
+                font-size: 14px;
+                letter-spacing: 3px;
+                margin-top: 15px;
+            }
+
+            .rsvp {
+                margin-top: 25px;
+            }
+            .rsvp a {
+                font-size: 18px;
+                letter-spacing: 3px;
+                padding: 10px 30px;
+            }
+
+            .daybreaker-logo img {
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer-container">
+        <div class="content">
+            <div class="daybreaker-logo">
+                <img src="assets/lbf-logo.png" alt="Daybreaker - Let's Be Friends 2026 Tour">
+            </div>
+            <div class="brand">SAYLESS</div>
+            <div class="event-title">
+                <span class="ampersand">&amp;</span>
+                <span class="friends">Kody Sun</span>
+            </div>
+            <div class="daybreaker-mark">
+                <span class="diamond">&#9671;</span>
+                DAYBREAKER
+            </div>
+            <div class="date">03.14.26</div>
+            <div class="venue-name">TWINS ROOM ROOFTOP</div>
+            <div class="time">10am - 1:30pm</div>
+            <div class="sxsw-badge">SXSW 2026 / Austin, TX</div>
+            <div class="rsvp">
+                <a href="https://www.daybreaker.com/event/austin-03-14/" target="_blank">GET TICKETS</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
