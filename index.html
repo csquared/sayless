@@ -114,7 +114,7 @@
                 font-size: 2rem;
                 letter-spacing: 4px;
                 margin-bottom: 40px;
-                animation: subtle-glitch 3s infinite;
+                text-align: center;
             }
 
             .section-divider {
@@ -130,6 +130,15 @@
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 24px;
+            }
+
+            .shows-grid.upcoming {
+                display: flex;
+                justify-content: center;
+            }
+
+            .shows-grid.upcoming .show-card {
+                max-width: 350px;
             }
 
             .show-card {
@@ -618,8 +627,8 @@
                     </a>
                 </li>
                 <li><a href="#shows">SHOWS</a></li>
-                <li><a href="#photos">PHOTOS</a></li>
-                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#vibe">VIBE</a></li>
+                <!--<li><a href="#about">ABOUT</a></li>-->
                 <li><a href="press.html">PRESS</a></li>
             </ul>
         </nav>
@@ -628,8 +637,8 @@
 
         <!-- Shows -->
         <section id="shows" class="section">
-            <h2 class="section-header">UPCOMING SHOWS</h2>
-            <div class="shows-grid">
+            <h2 class="section-header">UPCOMING</h2>
+            <div class="shows-grid upcoming">
                 <a href="flyers/2026-03-14/main.html" class="show-card">
                     <img
                         src="flyers/2026-03-14/flyer-og.png"
@@ -712,8 +721,12 @@
         <hr class="section-divider" />
 
         <!-- Photos -->
-        <section id="photos" class="section">
-            <h2 class="section-header">PHOTOS</h2>
+        <section id="vibe" class="section">
+            <h2 class="section-header">
+                SHOW UP <br />
+                READ THE ROOM <br />
+                LET THE MUSIC SPEAK
+            </h2>
             <div class="photo-grid">
                 <img
                     src="assets/photos/stardust-portrait-main.jpg"
