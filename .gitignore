@@ -3,3 +3,10 @@
 .playwright-mcp*
 node_modules/
 
+# Raw content (originals before optimization)
+content/
+
+# Large original media files
+*.AVI
+*.mov
+
