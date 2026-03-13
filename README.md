@@ -12,18 +12,12 @@ From the terminal to the turntables.
 
 ## What's Here
 
-Branding, web stuff, the occasional experiment.
-
-- `brand/` - Visual identity
-- `logo/` - Official marks
-- `fonts/` - StencilGothic.ttf
+Tech stack for hosting HTML website + navidrome music server on a linux box.
 
 ## Tech
 
-Static HTML. Ableton. Rekordbox.
+Static HTML. 
 
 ![SAYLESS](logo/SAYLESS-TRANSPARENT.png)
 
 ---
-
-*Making marks, not advertisements*
