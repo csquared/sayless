@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAYLESS - Logo Lockup</title>
+    <style>
+        @font-face {
+            font-family: 'StencilGothic';
+            src: url('../fonts/StencilGothic.ttf') format('truetype');
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
+        }
+
+        .lockup {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .lockup.bg-black { background: #000; }
+        .lockup.bg-white { background: #fff; }
+        .lockup.bg-transparent { background: transparent; }
+
+        .brand-text {
+            font-family: 'StencilGothic', sans-serif;
+            letter-spacing: 0.12em;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .lockup.bg-white .brand-text { color: #000; }
+        .lockup.bg-black .brand-text,
+        .lockup.bg-transparent .brand-text { color: #fff; }
+
+        .logo-img {
+            display: block;
+        }
+
+        /* Layout mode: stacked (text above logo) */
+        .lockup.layout-stacked .brand-text {
+            font-size: 12vw;
+            margin-bottom: 2vh;
+        }
+        .lockup.layout-stacked .logo-img {
+            width: 50vw;
+            height: auto;
+        }
+
+        /* Layout mode: wide (text left, logo right) */
+        .lockup.layout-wide {
+            flex-direction: row;
+            gap: 3vw;
+        }
+        .lockup.layout-wide .brand-text {
+            font-size: 8vw;
+        }
+        .lockup.layout-wide .logo-img {
+            width: 20vw;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="lockup" class="lockup bg-black layout-stacked">
+        <div class="brand-text">SAYLESS</div>
+        <img class="logo-img" src="../logo/SAYLESS-TRANSPARENT.png" alt="SAYLESS logo">
+    </div>
+
+    <script>
+        // Read config from URL params
+        const params = new URLSearchParams(window.location.search);
+        const lockup = document.getElementById('lockup');
+
+        const bg = params.get('bg') || 'black';
+        lockup.classList.remove('bg-black', 'bg-white', 'bg-transparent');
+        lockup.classList.add(`bg-${bg}`);
+
+        const layout = params.get('layout') || 'stacked';
+        lockup.classList.remove('layout-stacked', 'layout-wide');
+        lockup.classList.add(`layout-${layout}`);
+    </script>
+</body>
+</html>
