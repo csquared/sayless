@@ -21,7 +21,7 @@ ENDSSH
 echo "Downloading Navidrome..."
 ssh $SERVER << 'ENDSSH'
 cd /tmp
-wget https://github.com/navidrome/navidrome/releases/download/v0.53.3/navidrome_0.53.3_linux_amd64.tar.gz -O Navidrome.tar.gz
+wget https://github.com/navidrome/navidrome/releases/download/v0.60.3/navidrome_0.60.3_linux_amd64.tar.gz -O Navidrome.tar.gz
 tar -xvzf Navidrome.tar.gz -C /opt/navidrome/
 rm Navidrome.tar.gz
 ENDSSH
