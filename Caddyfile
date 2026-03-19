@@ -1,4 +1,10 @@
 :{$PORT}
 
-root * .
-file_server
+handle /api/* {
+	reverse_proxy localhost:8090
+}
+
+handle {
+	root * .
+	file_server
+}

@@ -10,3 +10,6 @@ content/
 *.AVI
 *.mov
 
+# Local database
+*.db
+

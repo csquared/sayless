@@ -35,8 +35,14 @@ mkdir -p /var/www/sayless
 # Write multi-site Caddyfile
 cat > /etc/caddy/Caddyfile << 'EOF'
 justsayless.xyz {
-    root * /var/www/sayless
-    file_server
+    handle /api/* {
+        reverse_proxy localhost:8090
+    }
+
+    handle {
+        root * /var/www/sayless
+        file_server
+    }
 }
 
 music.justsayless.xyz {

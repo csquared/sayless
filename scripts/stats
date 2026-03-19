@@ -1,0 +1,16 @@
+#!/bin/bash
+# SAYLESS Stats Dashboard
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+DB="${1:-$PROJECT_DIR/sayless.db}"
+
+echo "=== SAYLESS Stats ==="
+echo "db: $DB"
+echo ""
+echo "Mailing list: $(sqlite3 "$DB" 'SELECT COUNT(*) FROM subscribers;') subscribers"
+echo ""
+echo "Recent signups:"
+sqlite3 -header -column "$DB" \
+  "SELECT email, created_at FROM subscribers ORDER BY created_at DESC LIMIT 10;"
