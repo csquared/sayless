@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="SAYLESS - Join the mailing list." />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="SAYLESS" />
+        <meta property="og:description" content="Join the mailing list." />
+        <meta
+            property="og:image"
+            content="https://justsayless.xyz/social/sayless-square-black.png"
+        />
+        <meta property="og:url" content="https://justsayless.xyz/join" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="SAYLESS" />
+        <meta name="twitter:description" content="Join the mailing list." />
+        <meta
+            name="twitter:image"
+            content="https://justsayless.xyz/social/sayless-square-black.png"
+        />
+
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <title>SAYLESS</title>
+        <style>
+            @font-face {
+                font-family: "Stencil Gothic";
+                src: url("assets/fonts/StencilGothic.ttf") format("truetype");
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background: black;
+                color: white;
+                font-family: "Stencil Gothic", monospace;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            .bg {
+                position: fixed;
+                inset: 0;
+                background: url("assets/photos/daybreaker-iso-crowd.jpeg")
+                    center / cover no-repeat;
+                filter: grayscale(1) contrast(1.2);
+                opacity: 0.3;
+            }
+
+            .content {
+                position: relative;
+                z-index: 1;
+                text-align: center;
+                padding: 24px;
+                max-width: 460px;
+                width: 100%;
+            }
+
+            .logo {
+                width: 140px;
+                margin-bottom: 48px;
+                opacity: 0;
+                animation: fade-in 1s 0.2s forwards;
+            }
+
+            .subheader {
+                font-size: 2rem;
+                letter-spacing: 6px;
+                color: white;
+                margin-bottom: 32px;
+                opacity: 0;
+                animation: fade-in 1s 0.6s forwards;
+            }
+
+            form {
+                display: flex;
+                gap: 0;
+                opacity: 0;
+                animation: fade-in 1s 0.8s forwards;
+            }
+
+            input[type="email"] {
+                flex: 1;
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid #333;
+                border-right: none;
+                color: white;
+                font-family: "Stencil Gothic", monospace;
+                font-size: 14px;
+                letter-spacing: 1px;
+                padding: 14px 16px;
+                outline: none;
+                backdrop-filter: blur(8px);
+            }
+
+            input[type="email"]::placeholder {
+                color: #555;
+            }
+
+            input[type="email"]:focus {
+                border-color: #666;
+            }
+
+            button {
+                background: white;
+                color: black;
+                border: 1px solid white;
+                font-family: "Stencil Gothic", monospace;
+                font-size: 14px;
+                letter-spacing: 2px;
+                padding: 14px 24px;
+                cursor: pointer;
+                transition: opacity 0.2s;
+            }
+
+            button:hover {
+                opacity: 0.8;
+            }
+
+            #msg {
+                display: none;
+                margin-top: 16px;
+                font-size: 14px;
+                letter-spacing: 2px;
+            }
+
+            .back {
+                position: fixed;
+                bottom: 24px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                z-index: 1;
+                opacity: 0;
+                animation: fade-in 1s 1.2s forwards;
+            }
+
+            .back a {
+                color: #444;
+                text-decoration: none;
+                font-size: 11px;
+                letter-spacing: 3px;
+                transition: color 0.2s;
+            }
+
+            .back a:hover {
+                color: white;
+            }
+
+            @keyframes fade-in {
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @media (max-width: 480px) {
+                form {
+                    flex-direction: column;
+                }
+
+                input[type="email"] {
+                    border-right: 1px solid #333;
+                }
+
+                button {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bg"></div>
+
+        <div class="content">
+            <img
+                src="logo/SAYLESS-TRANSPARENT.png"
+                alt="SAYLESS"
+                class="logo"
+            />
+            <div class="subheader">STAY IN THE LOOP</div>
+            <form id="join-form">
+                <input
+                    type="email"
+                    placeholder="YOUR EMAIL"
+                    aria-label="Email address"
+                    required
+                />
+                <button type="submit">JOIN</button>
+            </form>
+            <div id="msg"></div>
+        </div>
+
+        <div class="back"><a href="/">JUSTSAYLESS.XYZ</a></div>
+
+        <script>
+            document
+                .getElementById("join-form")
+                .addEventListener("submit", async function (e) {
+                    e.preventDefault();
+                    var email =
+                        this.querySelector('input[type="email"]').value;
+                    var msg = document.getElementById("msg");
+                    var btn = this.querySelector("button");
+                    btn.disabled = true;
+                    btn.textContent = "...";
+                    try {
+                        var res = await fetch("/api/subscribe", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type":
+                                    "application/x-www-form-urlencoded",
+                            },
+                            body: "email=" + encodeURIComponent(email),
+                        });
+                        var data = await res.json();
+                        if (data.ok) {
+                            msg.textContent = "YOU'RE IN.";
+                            msg.style.display = "block";
+                            e.target.style.display = "none";
+                        } else {
+                            msg.textContent =
+                                data.error || "SOMETHING WENT WRONG.";
+                            msg.style.display = "block";
+                            btn.disabled = false;
+                            btn.textContent = "JOIN";
+                        }
+                    } catch (_) {
+                        msg.textContent = "SOMETHING WENT WRONG.";
+                        msg.style.display = "block";
+                        btn.disabled = false;
+                        btn.textContent = "JOIN";
+                    }
+                });
+        </script>
+    </body>
+</html>
