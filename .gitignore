@@ -13,3 +13,5 @@ content/
 # Local database
 *.db
 
+# api 
+api/sayless-api
