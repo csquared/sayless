@@ -27,13 +27,13 @@ echo ""
 echo "Building API..."
 cd "$PROJECT_DIR/api" && GOOS=linux GOARCH=amd64 go build -o sayless-api .
 echo "Deploying API binary..."
-scp sayless-api "$SERVER:/usr/local/bin/"
+scp sayless-api "$SERVER:/tmp/sayless-api"
 rm sayless-api
 cd "$PROJECT_DIR"
 
 echo ""
 echo "Reloading Caddy and restarting API..."
-ssh $SERVER 'systemctl reload caddy && systemctl restart sayless-api'
+ssh $SERVER 'mv /tmp/sayless-api /usr/local/bin/sayless-api && systemctl restart sayless-api && systemctl reload caddy'
 
 echo ""
 echo "=== Deploy complete ==="
