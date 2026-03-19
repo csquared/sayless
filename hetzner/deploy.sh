@@ -15,8 +15,7 @@ echo ""
 echo "Syncing files to $SERVER:$REMOTE_PATH ..."
 rsync -avz --delete --delete-excluded \
   --exclude='*.mov' \
-  --include='index.html' \
-  --include='press.html' \
+  --include='*.html' \
   --include='favicon.ico' \
   --include='assets/***' \
   --include='logo/***' \
