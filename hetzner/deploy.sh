@@ -13,14 +13,15 @@ echo ""
 
 # Rsync site files, excluding dev/large/irrelevant files
 echo "Syncing files to $SERVER:$REMOTE_PATH ..."
-rsync -avz --delete \
-  --exclude='.git' \
-  --exclude='content/' \
-  --exclude='node_modules/' \
-  --exclude='hetzner/' \
-  --exclude='.playwright-mcp*' \
-  --exclude='*.AVI' \
+rsync -avz --delete --delete-excluded \
   --exclude='*.mov' \
+  --include='index.html' \
+  --include='press.html' \
+  --include='favicon.ico' \
+  --include='assets/***' \
+  --include='logo/***' \
+  --include='shows/***' \
+  --exclude='*' \
   "$PROJECT_DIR/" "$SERVER:$REMOTE_PATH"
 
 echo ""
