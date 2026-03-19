@@ -807,19 +807,19 @@
             </p>
             -->
 
-            <!-- --
             <div class="mailing-list">
                 <div class="section-subheader">STAY IN THE LOOP</div>
-                <form onsubmit="return false;">
+                <form id="mailing-list-form">
                     <input
                         type="email"
                         placeholder="YOUR EMAIL"
                         aria-label="Email address"
+                        required
                     />
                     <button type="submit">JOIN</button>
                 </form>
+                <div id="mailing-list-msg" style="display:none; margin-top:12px; font-size:12px; letter-spacing:1px;"></div>
             </div>
-            -->
 
             <div class="booking-info">
                 BOOKING:
@@ -853,5 +853,38 @@
         </footer>
 
         <script src="assets/js/console-easter-egg.js"></script>
+        <script>
+            document.getElementById('mailing-list-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                var email = this.querySelector('input[type="email"]').value;
+                var msg = document.getElementById('mailing-list-msg');
+                var btn = this.querySelector('button');
+                btn.disabled = true;
+                btn.textContent = '...';
+                try {
+                    var res = await fetch('/api/subscribe', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                        body: 'email=' + encodeURIComponent(email)
+                    });
+                    var data = await res.json();
+                    if (data.ok) {
+                        msg.textContent = "YOU'RE IN.";
+                        msg.style.display = 'block';
+                        e.target.style.display = 'none';
+                    } else {
+                        msg.textContent = data.error || 'SOMETHING WENT WRONG.';
+                        msg.style.display = 'block';
+                        btn.disabled = false;
+                        btn.textContent = 'JOIN';
+                    }
+                } catch(_) {
+                    msg.textContent = 'SOMETHING WENT WRONG.';
+                    msg.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = 'JOIN';
+                }
+            });
+        </script>
     </body>
 </html>
