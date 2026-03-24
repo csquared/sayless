@@ -11,12 +11,17 @@
     <meta property="og:url" content="https://justsayless.xyz/flyers/2026-04-04/main.html" />
     <meta property="og:title" content="SAYLESS - Mayan Warrior Pregame" />
     <meta property="og:description" content="The pregame. April 4th. Stardust Garage." />
+    <meta property="og:image" content="https://justsayless.xyz/flyers/2026-04-04/flyer-og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
     <meta property="og:site_name" content="SAYLESS" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="SAYLESS - Mayan Warrior Pregame" />
     <meta name="twitter:description" content="The pregame. April 4th. Stardust Garage." />
+    <meta name="twitter:image" content="https://justsayless.xyz/flyers/2026-04-04/flyer-og.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +31,12 @@
         @font-face {
             font-family: 'StencilGothic';
             src: url('../../fonts/StencilGothic.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'MoshraAesthetic';
+            src: url('../../fonts/MoshraAesthetic-Regular.otf') format('opentype'),
+                 url('../../fonts/MoshraAesthetic-Regular.ttf') format('truetype');
         }
 
         * {
@@ -104,29 +115,36 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: white;
+            background: rgba(255, 255, 255, 0.6);
             border-radius: 50%;
+            box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
         }
 
         .star::after {
             content: '';
             position: absolute;
-            top: -4px;
-            left: -4px;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, rgba(240, 192, 64, 0.6) 0%, transparent 70%);
+            top: -6px;
+            left: -6px;
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle, rgba(200, 190, 255, 0.35) 0%, rgba(240, 220, 180, 0.15) 40%, transparent 70%);
             border-radius: 50%;
             opacity: 0;
             animation: twinkle var(--duration) ease-in-out infinite var(--delay);
         }
 
         .star:nth-child(4n)::after {
-            background: radial-gradient(circle, rgba(196, 74, 45, 0.5) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(180, 170, 240, 0.3) 0%, rgba(140, 160, 220, 0.1) 40%, transparent 70%);
         }
 
         .star:nth-child(3n)::after {
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(220, 230, 255, 0.1) 40%, transparent 70%);
+        }
+
+        .star:nth-child(5n) {
+            width: 1px;
+            height: 1px;
+            background: rgba(200, 200, 255, 0.4);
         }
 
         /* Cross-shaped sparkle */
@@ -139,21 +157,22 @@
         .sparkle::after {
             content: '';
             position: absolute;
-            background: rgba(240, 192, 64, 0.7);
+            background: linear-gradient(to bottom, transparent, rgba(220, 210, 255, 0.5), transparent);
         }
 
         .sparkle::before {
             width: 1px;
-            height: 16px;
-            top: -8px;
+            height: 20px;
+            top: -10px;
             left: 0;
         }
 
         .sparkle::after {
-            width: 16px;
+            width: 20px;
             height: 1px;
             top: 0;
-            left: -8px;
+            left: -10px;
+            background: linear-gradient(to right, transparent, rgba(220, 210, 255, 0.5), transparent);
         }
 
         .content {
@@ -204,7 +223,7 @@
         }
 
         .event-name {
-            font-family: 'StencilGothic', sans-serif;
+            font-family: 'Bitcount Single', monospace;
             font-size: 48px;
             letter-spacing: 10px;
             margin-bottom: 10px;
@@ -215,7 +234,7 @@
         }
 
         .event-subtitle {
-            font-family: 'StencilGothic', sans-serif;
+            font-family: 'Bitcount Single', monospace;
             font-size: 32px;
             letter-spacing: 8px;
             margin-bottom: 50px;
@@ -231,7 +250,7 @@
         }
 
         .venue-name {
-            font-family: 'Bitcount Single', monospace;
+            font-family: 'MoshraAesthetic', sans-serif;
             font-size: 36px;
             letter-spacing: 8px;
             margin-top: 20px;
@@ -418,7 +437,7 @@
             <div class="divider"></div>
             <div class="date">04.04.26</div>
             <div class="venue-name">STARDUST GARAGE</div>
-            <div class="time">1pm - 7pm</div>
+            <div class="time">4pm - 8pm</div>
         </div>
     </div>
 </body>
