@@ -63,6 +63,9 @@ echo ""
 echo "Caddy:"
 systemctl status caddy --no-pager -l | head -15
 echo ""
+echo "Radicale:"
+systemctl status radicale --no-pager -l | head -15
+echo ""
 
 echo "--- 7. RECENT NAVIDROME LOGS (Last 20 lines) ---"
 journalctl -u navidrome -n 20 --no-pager

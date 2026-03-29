@@ -48,6 +48,10 @@ justsayless.xyz {
 music.justsayless.xyz {
     reverse_proxy localhost:4533
 }
+
+cal.justsayless.xyz {
+    reverse_proxy localhost:5232
+}
 EOF
 
 # Validate config before restarting
@@ -64,7 +68,9 @@ echo ""
 echo "=== Caddy setup complete ==="
 echo "justsayless.xyz        -> static site (auto-HTTPS)"
 echo "music.justsayless.xyz  -> Navidrome (auto-HTTPS)"
+echo "cal.justsayless.xyz    -> Radicale (auto-HTTPS)"
 echo ""
 echo "DNS records needed (A records -> 37.27.252.86):"
 echo "  justsayless.xyz"
 echo "  music.justsayless.xyz"
+echo "  cal.justsayless.xyz"

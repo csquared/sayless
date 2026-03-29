@@ -33,6 +33,20 @@ The name says it all - show, don't tell.
 - `docs/` - Documentation assets
 - `etc/` - Miscellaneous assets
 
+## Server Infrastructure
+
+- **Hetzner server:** `37.27.252.86` (SSH: `root@37.27.252.86`)
+- **DNS:** Wildcard A record `*.justsayless.xyz` → `37.27.252.86` (no manual DNS setup needed for new subdomains)
+- **Reverse proxy:** Caddy with auto-HTTPS (Let's Encrypt)
+- **Container runtime:** Podman (not Docker)
+- **Setup scripts:** `hetzner/` directory
+  - `setup-caddy.sh` — Caddy install + Caddyfile
+  - `setup-api.sh` — Go subscribe API
+  - `setup-navidrome.sh` — Navidrome music server
+  - `setup-radicale.sh` — Radicale CalDAV/CardDAV
+  - `deploy.sh` — deploy static site + API
+  - `check-server-health.sh` — server health monitoring
+
 ## Development Notes
 
 ### Static Site
