@@ -22,6 +22,7 @@ rsync -avz --delete --delete-excluded \
   --include='shows/***' \
   --include='flyers/***' \
   --include='fonts/***' \
+  --include='presskit/***' \
   --exclude='*' \
   "$PROJECT_DIR/" "$SERVER:$REMOTE_PATH"
 

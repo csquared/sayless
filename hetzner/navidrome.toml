@@ -4,6 +4,7 @@ CacheFolder = '/var/lib/navidrome/cache'
 Scanner.Enabled = 1
 ScanSchedule = '@every 10m'
 EnableTranscodingConfig = false
+EnableSharing = true
 
 [FFmpeg]
 Path = "/usr/bin/ffmpeg"
