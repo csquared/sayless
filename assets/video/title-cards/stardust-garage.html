@@ -35,6 +35,9 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                background-image: url('../../images/purple-bg-square.png');
+                background-size: cover;
+                background-position: center;
             }
 
             .content {
@@ -71,10 +74,28 @@
                 letter-spacing: 2px;
             }
 
+            .venue-logo {
+                width: 60px;
+                height: 60px;
+                border-radius: 8px;
+                margin-top: 40px;
+                margin-bottom: 12px;
+            }
+
             .venue-name {
                 font-family: "MoshraAesthetic", sans-serif;
                 font-size: 72px;
                 letter-spacing: 8px;
+                margin-top: 0;
+            }
+
+            .venue-sub {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 20px;
+                font-weight: 300;
+                letter-spacing: 12px;
+                margin-top: 4px;
+                color: rgba(255, 255, 255, 0.7);
             }
         </style>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -91,7 +112,9 @@
                 <span class="ampersand">&amp;</span>
                 <span class="friends">Kody Sun</span>
             </div>
-            <div class="venue-name">STARDUST GARAGE</div>
+            <img class="venue-logo" src="../../images/sdg-logo.jpg" alt="Stardust Garage" />
+            <div class="venue-name">STARDUST</div>
+            <div class="venue-sub">GARAGE</div>
         </div>
     </body>
 </html>
