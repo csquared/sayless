@@ -72,7 +72,6 @@
                 align-items: center;
                 min-height: 100vh;
                 background: #000;
-                overflow: hidden;
             }
 
             .flyer-container {
@@ -208,45 +207,61 @@
             }
 
             @media (max-width: 768px) {
+                .flyer-container {
+                    background-position: center -100px;
+                }
+
+                .content {
+                    padding-top: 40px;
+                }
+
                 .brand {
-                    font-size: 60px;
-                    letter-spacing: 8px;
-                    margin-bottom: 20px;
+                    font-size: 48px;
+                    letter-spacing: 6px;
+                    margin-bottom: 10px;
                 }
 
                 .event-title {
-                    gap: 8px;
-                    margin-bottom: 12px;
+                    gap: 6px;
+                    margin-bottom: 8px;
                 }
 
                 .ampersand {
-                    font-size: 24px;
-                    letter-spacing: 4px;
+                    font-size: 20px;
+                    letter-spacing: 3px;
                 }
 
                 .friends {
-                    font-size: 36px;
+                    font-size: 28px;
                 }
 
                 .date {
-                    font-size: 24px;
-                    letter-spacing: 5px;
-                    margin-bottom: 15px;
+                    font-size: 20px;
+                    letter-spacing: 4px;
+                    margin-bottom: 10px;
+                }
+
+                .venue-logo {
+                    width: 80px;
                 }
 
                 .venue-name {
-                    font-size: 44px;
-                    letter-spacing: 4px;
-                    margin-top: 10px;
+                    font-size: 28px;
+                    letter-spacing: 3px;
+                    margin-top: 8px;
                 }
 
                 .venue-sub {
-                    font-size: 14px;
-                    letter-spacing: 8px;
+                    font-size: 10px;
+                    letter-spacing: 4px;
+                }
+
+                .divider {
+                    margin: 16px auto;
                 }
 
                 .time {
-                    font-size: 16px;
+                    font-size: 14px;
                     letter-spacing: 2px;
                     margin-top: 10px;
                 }
