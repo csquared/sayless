@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <title>SAYLESS & Friends @ Stardust Garage - May 8, 2026</title>
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:url"
+            content="https://justsayless.xyz/flyers/2026-05-08/main.html"
+        />
+        <meta property="og:title" content="SAYLESS & Friends @ Stardust Garage" />
+        <meta
+            property="og:description"
+            content="May 8th. Stardust Garage. 9pm - 2am."
+        />
+        <meta
+            property="og:image"
+            content="https://justsayless.xyz/flyers/2026-05-08/flyer-og.png"
+        />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="1200" />
+        <meta property="og:site_name" content="SAYLESS" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="SAYLESS & Friends @ Stardust Garage" />
+        <meta
+            name="twitter:description"
+            content="May 8th. Stardust Garage. 9pm - 2am."
+        />
+        <meta
+            name="twitter:image"
+            content="https://justsayless.xyz/flyers/2026-05-08/flyer-og.png"
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&family=Playfair+Display:ital,wght@1,500&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            @font-face {
+                font-family: "StencilGothic";
+                src: url("../../fonts/StencilGothic.ttf") format("truetype");
+            }
+
+            @font-face {
+                font-family: "MoshraAesthetic";
+                src:
+                    url("../../fonts/MoshraAesthetic-Regular.otf")
+                        format("opentype"),
+                    url("../../fonts/MoshraAesthetic-Regular.ttf")
+                        format("truetype");
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background: #000;
+                overflow: hidden;
+            }
+
+            .flyer-container {
+                position: relative;
+                width: 100%;
+                min-height: 100vh;
+                display: flex;
+                background: #000 url('../../assets/images/hypercube.jpg') center/cover no-repeat;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                padding: 60px 20px;
+            }
+
+            .flyer-container::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.78);
+                z-index: 0;
+            }
+
+            .content {
+                position: relative;
+                z-index: 1;
+                text-align: center;
+                color: #fff;
+                padding-top: 160px;
+            }
+
+            .content > *:not(.venue-name) {
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(0, 0, 0, 0.5);
+            }
+
+            .brand {
+                font-family: "StencilGothic", sans-serif;
+                font-size: 100px;
+                letter-spacing: 15px;
+                margin-bottom: 10px;
+                animation: warmGlow 4s ease-in-out infinite;
+            }
+
+            .event-title {
+                display: flex;
+                align-items: baseline;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+
+            .ampersand {
+                font-family: "StencilGothic", sans-serif;
+                font-size: 48px;
+                letter-spacing: 8px;
+            }
+
+            .friends {
+                font-family: "Playfair Display", serif;
+                font-style: italic;
+                font-size: 72px;
+                font-weight: 500;
+                letter-spacing: 2px;
+            }
+
+            .date {
+                font-family: "StencilGothic", sans-serif;
+                font-size: 40px;
+                letter-spacing: 10px;
+                margin-bottom: 25px;
+            }
+
+            .venue-name {
+                font-family: "MoshraAesthetic", sans-serif;
+                font-size: 48px;
+                letter-spacing: 8px;
+                margin-top: 20px;
+                background: linear-gradient(180deg, #b8c4b0, #8a6a9a);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .venue-sub {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                font-weight: 300;
+                letter-spacing: 6px;
+                margin-top: 4px;
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            .time {
+                font-family: "Bitcount Single", monospace;
+                font-size: 24px;
+                letter-spacing: 4px;
+                margin-top: 15px;
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            .venue-logo {
+                width: 140px;
+                height: auto;
+                margin-top: 10px;
+                margin-bottom: -4px;
+                filter: saturate(0.3) brightness(0.8) hue-rotate(260deg);
+            }
+
+            .divider {
+                width: 60px;
+                height: 1px;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    #8a9a82,
+                    transparent
+                );
+                margin: 30px auto;
+            }
+
+            @keyframes warmGlow {
+                0%,
+                100% {
+                    text-shadow:
+                        2px 2px 4px rgba(0, 0, 0, 0.8),
+                        0 0 40px rgba(140, 170, 130, 0.1);
+                }
+                50% {
+                    text-shadow:
+                        2px 2px 4px rgba(0, 0, 0, 0.8),
+                        0 0 60px rgba(130, 100, 150, 0.2);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .brand {
+                    font-size: 60px;
+                    letter-spacing: 8px;
+                    margin-bottom: 20px;
+                }
+
+                .event-title {
+                    gap: 8px;
+                    margin-bottom: 12px;
+                }
+
+                .ampersand {
+                    font-size: 24px;
+                    letter-spacing: 4px;
+                }
+
+                .friends {
+                    font-size: 36px;
+                }
+
+                .date {
+                    font-size: 24px;
+                    letter-spacing: 5px;
+                    margin-bottom: 15px;
+                }
+
+                .venue-name {
+                    font-size: 44px;
+                    letter-spacing: 4px;
+                    margin-top: 10px;
+                }
+
+                .venue-sub {
+                    font-size: 14px;
+                    letter-spacing: 8px;
+                }
+
+                .time {
+                    font-size: 16px;
+                    letter-spacing: 2px;
+                    margin-top: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flyer-container">
+            <div class="content">
+                <div class="brand">SAYLESS</div>
+                <div class="event-title">
+                    <span class="friends">Kody Sun</span>
+                </div>
+                <div class="event-title">
+                    <span class="friends">Jess James</span>
+                </div>
+                <div class="divider"></div>
+                <div class="date">05.08.26</div>
+                <img class="venue-logo" src="../../assets/images/sdg-logo.png" alt="Stardust Garage" />
+                <div class="venue-name">STARDUST</div>
+                <div class="venue-sub">GARAGE</div>
+                <div class="time">9pm - 2am</div>
+            </div>
+        </div>
+    </body>
+</html>
