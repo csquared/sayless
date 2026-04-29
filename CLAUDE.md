@@ -10,13 +10,13 @@ The name says it all - show, don't tell.
 
 - **Genre:** Indie dance
 - **Aesthetic:** Black and white, stencil typography, minimalist
-- **Tagline:** "Definitely not the hero you asked for"
+- **Tagline:** "Show up, read the room, let the music speak. Oh, and don't forget to have fun 💃🕺"
 
 ## Web properites:
 
   - soundcloud.com/just-say-less/
   - instagram.com/justsayless
-  - justsayless.xyx
+  - justsayless.xyz
 
 
 ## Project Structure
