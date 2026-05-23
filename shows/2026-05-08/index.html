@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <title>SAYLESS & Friends @ Stardust Garage - May 8, 2026</title>
+        <meta
+            name="description"
+            content="SAYLESS & Friends at Stardust Garage, Austin TX. May 8, 2026."
+        />
+        <meta property="og:title" content="SAYLESS & Friends @ Stardust Garage" />
+        <meta
+            property="og:description"
+            content="SAYLESS & Friends at Stardust Garage, Austin TX. May 8, 2026."
+        />
+        <meta
+            property="og:image"
+            content="https://justsayless.xyz/flyers/2026-05-08/flyer-og.jpg"
+        />
+        <meta
+            property="og:url"
+            content="https://justsayless.xyz/shows/2026-05-08/"
+        />
+        <style>
+            @font-face {
+                font-family: "Stencil Gothic";
+                src: url("../../assets/fonts/StencilGothic.ttf")
+                    format("truetype");
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: black;
+                color: white;
+                font-family: "Stencil Gothic", monospace;
+                min-height: 100vh;
+                padding: 60px 24px;
+            }
+
+            .show-page {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .back-link {
+                display: inline-block;
+                color: #666;
+                text-decoration: none;
+                font-size: 12px;
+                letter-spacing: 3px;
+                margin-bottom: 60px;
+                transition: color 0.2s;
+            }
+
+            .back-link:hover {
+                color: white;
+            }
+
+            .show-header {
+                margin-bottom: 48px;
+            }
+
+            .show-header h1 {
+                font-size: 2.5rem;
+                letter-spacing: 6px;
+                margin-bottom: 8px;
+            }
+
+            .show-meta {
+                font-size: 14px;
+                letter-spacing: 3px;
+                color: #666;
+            }
+
+            .show-flyer {
+                width: 100%;
+                margin-bottom: 48px;
+            }
+
+            .show-flyer img {
+                width: 100%;
+                display: block;
+            }
+
+            .show-details {
+                margin-bottom: 48px;
+            }
+
+            .show-details h2 {
+                font-size: 1rem;
+                letter-spacing: 4px;
+                color: #999;
+                margin-bottom: 16px;
+            }
+
+            .show-details p {
+                font-size: 16px;
+                line-height: 1.8;
+                letter-spacing: 1px;
+                color: #ccc;
+            }
+
+            .reticulating::after {
+                content: "............";
+                display: inline-block;
+                width: 6em;
+                text-align: left;
+                animation: reticulate 7s steps(12, jump-none) infinite;
+                clip-path: inset(0 100% 0 0);
+            }
+
+            @keyframes reticulate {
+                0%   { clip-path: inset(0 100% 0 0); }
+                85%  { clip-path: inset(0 0 0 0); }
+                100% { clip-path: inset(0 0 0 0); }
+            }
+
+            @media (max-width: 480px) {
+                .show-header h1 {
+                    font-size: 1.8rem;
+                    letter-spacing: 4px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="show-page">
+            <a href="/" class="back-link">&larr; BACK</a>
+
+            <div class="show-header">
+                <h1>SAYLESS & <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500;">Friends</span></h1>
+                <div class="show-meta">MAY 8, 2026 &mdash; STARDUST GARAGE, AUSTIN, TX</div>
+            </div>
+
+            <div class="show-flyer">
+                <img
+                    src="../../flyers/2026-05-08/flyer-og.png"
+                    alt="SAYLESS & Friends @ Stardust Garage flyer"
+                />
+            </div>
+
+            <div class="show-details">
+                <h2>DETAILS</h2>
+                <p>
+                    <span class="reticulating">Reticulating splines</span>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
