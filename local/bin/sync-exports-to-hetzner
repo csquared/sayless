@@ -48,6 +48,24 @@ rsync -avO \
     "$SOURCE" "$DEST"
 
 echo ""
+echo "=== Rebuilding exports playlist ==="
+if [ -z "$DRY_RUN" ]; then
+    ssh "$HETZNER_HOST" bash <<'ENDSSH'
+        cd /mnt/music/exports
+        {
+            echo "#EXTM3U"
+            find . -type f \( -iname "*.mp3" -o -iname "*.aiff" -o -iname "*.aif" -o -iname "*.wav" -o -iname "*.flac" -o -iname "*.m4a" \) -size +0 \
+                -printf "%f\n" | sort | while read filename; do
+                    echo "/mnt/music/exports/$filename"
+                done
+        } > /mnt/music/collection2/playlists/exports.m3u8
+        chown navidrome:navidrome /mnt/music/collection2/playlists/exports.m3u8
+        COUNT=$(grep -c -v '^#' /mnt/music/collection2/playlists/exports.m3u8 || true)
+        echo "exports.m3u8: $COUNT track(s)"
+ENDSSH
+fi
+
+echo ""
 echo "=== Fixing Permissions ==="
 if [ -z "$DRY_RUN" ]; then
     ssh "$HETZNER_HOST" "chown -R navidrome:navidrome /mnt/music/exports"
