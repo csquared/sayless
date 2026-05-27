@@ -12,6 +12,14 @@
 
 set -e
 
+LOCKFILE="/tmp/sayless-sourcing.lock"
+if [ -f "$LOCKFILE" ]; then
+    echo "Error: Another sourcing operation is running (lockfile: $LOCKFILE)"
+    exit 1
+fi
+trap 'rm -f "$LOCKFILE"' EXIT
+touch "$LOCKFILE"
+
 # Configuration
 DOWNLOADS_DIR="$HOME/Downloads"
 C2STORAGE_PATH="/Volumes/c2storage/DJ/sourcing"
@@ -142,13 +150,20 @@ for i in "${!ORIGINAL_FILES[@]}"; do
     sanitized="${SANITIZED_FILES[$i]}"
 
     for drive_path in "${DRIVE_PATHS[@]}"; do
-        dest="$drive_path/$sanitized"
+        target_name="$sanitized"
+        if [ -e "$drive_path/$target_name" ]; then
+            base="${target_name%.*}"
+            ext="${target_name##*.}"
+            target_name="${base}_$(date +%s).${ext}"
+            log_warning "  Collision avoided, renamed to: $target_name"
+        fi
+        dest="$drive_path/$target_name"
 
         if [ -n "$DRY_RUN" ]; then
-            log_info "  [DRY RUN] Would copy: $sanitized → $drive_path/"
+            log_info "  [DRY RUN] Would copy: $target_name → $drive_path/"
         else
             cp "$original" "$dest"
-            log_success "  Copied: $sanitized → $drive_path/"
+            log_success "  Copied: $target_name → $drive_path/"
         fi
     done
 

@@ -2,6 +2,14 @@
 
 set -e  # Exit on error
 
+LOCKFILE="/tmp/sayless-sourcing.lock"
+if [ -f "$LOCKFILE" ]; then
+    echo "Error: Another sourcing operation is running (lockfile: $LOCKFILE)"
+    exit 1
+fi
+trap 'rm -f "$LOCKFILE"' EXIT
+touch "$LOCKFILE"
+
 # Parse flags
 SKIP_EXT_SYNC=false
 if [ "$1" == "--no-ext" ]; then
@@ -10,6 +18,11 @@ fi
 
 DOWNLOAD_DIR="$HOME/Downloads"
 SOURCING_DIR="/Volumes/c2storage/DJ/sourcing"
+
+if [ ! -d "/Volumes/c2storage" ]; then
+    echo "Error: c2storage not mounted"
+    exit 1
+fi
 PLAYLIST_SOURCING_DIR="/Volumes/c2storage/DJ/collection2/sourcing"
 PLAYLIST_DIR="/Volumes/c2storage/DJ/collection2/playlists"
 
@@ -42,6 +55,12 @@ move_file_to_sourcing_dir() {
     echo "$base_filename"
     echo "$new_filename"
 
+    if [ -e "$SOURCING_DIR/$new_filename" ]; then
+        base="${new_filename%.*}"
+        ext="${new_filename##*.}"
+        new_filename="${base}_$(date +%s).${ext}"
+        echo "  (renamed to avoid collision: $new_filename)"
+    fi
     mv "$filepath" "$SOURCING_DIR/$new_filename"
 }
 
@@ -53,13 +72,13 @@ generate_playlist() {
     echo '#EXTM3U' > "$playlist_path"
 
     # Add all audio files, sorted (-L follows symlinks, exclude ._ files)
-    find -L "$PLAYLIST_SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) ! -name '._*' | sort >> "$playlist_path"
+    find -L "$PLAYLIST_SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" -o -name "*.m4a" \) ! -name '._*' | sort >> "$playlist_path"
 
     echo "Playlist updated: $playlist_path"
 }
 
 # Process audio files in Downloads
-for ext in mp3 aiff aif wav; do
+for ext in mp3 aiff aif wav flac m4a; do
     for filepath in "$DOWNLOAD_DIR"/*."$ext"; do
         # Skip if glob didn't match anything
         [ -e "$filepath" ] || continue

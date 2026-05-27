@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
 set -e
 
+LOCKFILE="/tmp/sayless-sourcing.lock"
+if [ -f "$LOCKFILE" ]; then
+    echo "Error: Another sourcing operation is running (lockfile: $LOCKFILE)"
+    exit 1
+fi
+trap 'rm -f "$LOCKFILE"' EXIT
+touch "$LOCKFILE"
+
 SOURCING_DIR="/Volumes/c2storage/DJ/sourcing"
 COLLECTION_DIR="/Volumes/c2storage/DJ/collection2"
 PLAYLIST_DIR="/Volumes/c2storage/DJ/collection2/playlists"
 
 # Step 1: Show current sourcing files
 echo "=== Files in sourcing directory ==="
-file_count=$(find "$SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) ! -name '._*' | wc -l | tr -d ' ')
+file_count=$(find "$SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" -o -name "*.m4a" \) ! -name '._*' | wc -l | tr -d ' ')
 echo "Found $file_count files in $SOURCING_DIR"
 echo ""
 
@@ -31,7 +39,7 @@ PLAYLIST_NAME="import-$DATE.m3u8"
 PLAYLIST_PATH="$PLAYLIST_DIR/$PLAYLIST_NAME"
 
 echo "#EXTM3U" > "$PLAYLIST_PATH"
-find "$SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) ! -name '._*' | sort | while read -r filepath; do
+find "$SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" -o -name "*.m4a" \) ! -name '._*' | sort | while read -r filepath; do
     filename=$(basename "$filepath")
     echo "$COLLECTION_DIR/$filename" >> "$PLAYLIST_PATH"
 done
@@ -41,9 +49,18 @@ echo "Created: $PLAYLIST_PATH"
 # Step 4: Move files to collection
 echo ""
 echo "=== Step 3: Moving files to collection ==="
-find "$SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" \) ! -name '._*' | while read -r filepath; do
-    mv "$filepath" "$COLLECTION_DIR/"
-    echo "Moved: $(basename "$filepath")"
+find "$SOURCING_DIR" -type f \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" -o -name "*.m4a" \) ! -name '._*' | while read -r filepath; do
+    filename=$(basename "$filepath")
+    dest="$COLLECTION_DIR/$filename"
+    if [ -e "$dest" ]; then
+        base="${filename%.*}"
+        ext="${filename##*.}"
+        filename="${base}_$(date +%s).${ext}"
+        dest="$COLLECTION_DIR/$filename"
+        echo "  (renamed to avoid collision: $filename)"
+    fi
+    mv "$filepath" "$dest"
+    echo "Moved: $filename"
 done
 
 # Step 5: Clear sourcing playlist
@@ -55,10 +72,22 @@ echo "Cleared: $PLAYLIST_DIR/sourcing.m3u8"
 # Step 6: Sync to Hetzner
 echo ""
 echo "=== Step 5: Syncing to Hetzner ==="
-if sync-to-hetzner; then
+if sync-to-hetzner --full-scan; then
     echo "Successfully synced to Hetzner!"
 else
     echo "Warning: Sync to Hetzner failed."
+fi
+
+# Step 7: Clean up SAYLESS-2TB sourcing
+echo ""
+echo "=== Step 6: Cleaning up SAYLESS-2TB sourcing ==="
+if [ -d "/Volumes/SAYLESS-2TB/DJ/sourcing" ]; then
+    find "/Volumes/SAYLESS-2TB/DJ/sourcing" -type f \
+        \( -name "*.mp3" -o -name "*.aiff" -o -name "*.wav" -o -name "*.aif" -o -name "*.flac" -o -name "*.m4a" \) \
+        ! -name '._*' -delete
+    echo "Cleaned sourcing files from SAYLESS-2TB"
+else
+    echo "SAYLESS-2TB not mounted, skipping cleanup."
 fi
 
 echo ""

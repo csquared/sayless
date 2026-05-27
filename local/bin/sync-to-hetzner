@@ -37,10 +37,17 @@ echo ""
 echo "Using inclusion-based sync (music files only)..."
 echo ""
 
-# Check for dry-run flag
+# Parse flags
 DRY_RUN=""
-if [ "$1" == "--dry-run" ] || [ "$1" == "-n" ]; then
-    DRY_RUN="--dry-run"
+FULL_SCAN=false
+for arg in "$@"; do
+    case "$arg" in
+        --dry-run|-n) DRY_RUN="--dry-run" ;;
+        --full-scan) FULL_SCAN=true ;;
+    esac
+done
+
+if [ -n "$DRY_RUN" ]; then
     echo "*** DRY RUN MODE - No files will be copied ***"
     echo ""
 fi
@@ -116,9 +123,12 @@ if [ -d "$PLAYLIST_DIR" ]; then
         # Create subdirectories in temp if needed
         mkdir -p "$(dirname "$temp_playlist")"
 
-        # Transform paths: /Volumes/c2storage/DJ/collection2 -> /mnt/music/collection2
+        # Transform local paths to Hetzner paths
         # Use LC_ALL=C to handle special characters in file paths
-        LC_ALL=C sed 's|/Volumes/c2storage/DJ/collection2|/mnt/music/collection2|g' "$playlist" > "$temp_playlist"
+        LC_ALL=C sed \
+            -e 's|/Volumes/c2storage/DJ/collection2|/mnt/music/collection2|g' \
+            -e 's|/Volumes/c2storage/Production/Exports|/mnt/music/exports|g' \
+            "$playlist" > "$temp_playlist"
 
         echo "  Transformed: $(basename "$playlist")"
     done
@@ -148,22 +158,56 @@ echo ""
 
 # Fix ownership for Navidrome
 if [ -z "$DRY_RUN" ]; then
-    ssh "$HETZNER_HOST" "chown -R navidrome:navidrome /mnt/music/collection2 /mnt/music/sourcing"
+    ssh "$HETZNER_HOST" "chown -R navidrome:navidrome /mnt/music/collection2 /mnt/music/sourcing /mnt/music/exports"
     echo "Ownership updated to navidrome:navidrome"
 else
     echo "[DRY RUN] Would set ownership to navidrome:navidrome"
 fi
 
 echo ""
-echo "=== Restarting Navidrome ==="
+echo "=== Deploying Navidrome Config ==="
 echo ""
 
-# Restart Navidrome to ensure clean scanner state
 if [ -z "$DRY_RUN" ]; then
-    ssh "$HETZNER_HOST" "systemctl restart navidrome"
-    echo "Navidrome restarted - library scan will begin automatically"
+    scp "$SCRIPT_DIR/../../hetzner/navidrome.toml" "$HETZNER_HOST:/var/lib/navidrome/navidrome.toml"
+    ssh "$HETZNER_HOST" "chown navidrome:navidrome /var/lib/navidrome/navidrome.toml"
+    echo "Config deployed"
 else
-    echo "[DRY RUN] Would restart navidrome service"
+    echo "[DRY RUN] Would deploy navidrome.toml"
+fi
+
+echo ""
+if [ "$FULL_SCAN" = true ]; then
+    echo "=== Running Full Scan ==="
+    echo ""
+    if [ -z "$DRY_RUN" ]; then
+        ssh "$HETZNER_HOST" bash <<'ENDSSH'
+            systemctl stop navidrome
+            sudo -u navidrome /opt/navidrome/navidrome scan --full --configfile /var/lib/navidrome/navidrome.toml 2>&1 || echo "Warning: scan returned non-zero exit code"
+            systemctl start navidrome
+ENDSSH
+        echo "Full scan completed - Navidrome restarted"
+    else
+        echo "[DRY RUN] Would stop navidrome, run full scan, and restart"
+    fi
+else
+    echo "=== Restarting Navidrome ==="
+    echo ""
+    if [ -z "$DRY_RUN" ]; then
+        ssh "$HETZNER_HOST" "systemctl restart navidrome"
+        echo "Navidrome restarted - incremental scan will run on schedule"
+    else
+        echo "[DRY RUN] Would restart navidrome"
+    fi
+fi
+
+echo ""
+echo "=== Cleaning Up Old Backups ==="
+echo ""
+
+if [ -z "$DRY_RUN" ]; then
+    ssh "$HETZNER_HOST" "find /mnt/music/.rsync-backup -mtime +30 -delete 2>/dev/null; find /var/lib/navidrome -name 'navidrome.db.backup-*' -mtime +30 -delete 2>/dev/null" || true
+    echo "Removed backups older than 30 days"
 fi
 
 echo ""

@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# Sync exports (productions/mixes) to Hetzner for Navidrome hosting
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INCLUDES_FILE="$SCRIPT_DIR/rsync-music-includes.txt"
+
+SOURCE="/Volumes/c2storage/Production/Exports/"
+DEST="root@37.27.252.86:/mnt/music/exports/"
+HETZNER_HOST="root@37.27.252.86"
+
+if [ ! -d "$SOURCE" ]; then
+    echo "Error: Source directory not found at $SOURCE"
+    echo "Create it and add your exports/mixes there."
+    exit 1
+fi
+
+DRY_RUN=""
+FULL_SCAN=false
+for arg in "$@"; do
+    case "$arg" in
+        --dry-run|-n) DRY_RUN="--dry-run" ;;
+        --full-scan) FULL_SCAN=true ;;
+    esac
+done
+
+if [ -n "$DRY_RUN" ]; then
+    echo "*** DRY RUN MODE ***"
+    echo ""
+fi
+
+echo "=== Syncing Exports to Hetzner ==="
+echo "Source: $SOURCE"
+echo "Destination: $DEST"
+echo ""
+
+rsync -avO \
+    --progress \
+    --delete-after \
+    --chown=navidrome:navidrome \
+    --exclude='._*' \
+    --exclude='.DS_Store' \
+    --exclude='.*' \
+    --include-from="$INCLUDES_FILE" \
+    --exclude='*' \
+    $DRY_RUN \
+    "$SOURCE" "$DEST"
+
+echo ""
+echo "=== Fixing Permissions ==="
+if [ -z "$DRY_RUN" ]; then
+    ssh "$HETZNER_HOST" "chown -R navidrome:navidrome /mnt/music/exports"
+    echo "Permissions fixed"
+
+    if [ "$FULL_SCAN" = true ]; then
+        echo ""
+        echo "=== Running Full Scan ==="
+        ssh "$HETZNER_HOST" bash <<'ENDSSH'
+            systemctl stop navidrome
+            sudo -u navidrome /opt/navidrome/navidrome scan --full --configfile /var/lib/navidrome/navidrome.toml 2>&1 || echo "Warning: scan returned non-zero exit code"
+            systemctl start navidrome
+ENDSSH
+        echo "Full scan completed - stale entries purged"
+    else
+        echo ""
+        echo "=== Restarting Navidrome ==="
+        ssh "$HETZNER_HOST" "systemctl restart navidrome"
+        echo "Navidrome restarted - incremental scan will run on schedule"
+    fi
+else
+    echo "[DRY RUN] Would fix permissions and restart navidrome"
+fi
+
+echo ""
+echo "=== Sync Complete ==="
