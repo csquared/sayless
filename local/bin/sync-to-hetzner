@@ -65,7 +65,6 @@ rsync -avO \
     --exclude='._*' \
     --exclude='.DS_Store' \
     --exclude='.*' \
-    --exclude='sourcing' \
     --exclude='playlists/' \
     --include-from="$INCLUDES_FILE" \
     --exclude='*' \
@@ -93,18 +92,6 @@ rsync -avO \
     "$SOURCE_SOURCING" "$DEST_SOURCING"
 
 echo ""
-echo "=== Creating Symlink on Hetzner ==="
-echo ""
-
-# Create symlink on Hetzner (sourcing -> ../sourcing)
-if [ -z "$DRY_RUN" ]; then
-    ssh "$HETZNER_HOST" "cd /mnt/music/collection2 && rm -f sourcing && ln -s /mnt/music/sourcing sourcing && ls -la sourcing"
-    echo "Symlink created: /mnt/music/collection2/sourcing -> /mnt/music/sourcing"
-else
-    echo "[DRY RUN] Would create symlink: /mnt/music/collection2/sourcing -> /mnt/music/sourcing"
-fi
-
-echo ""
 echo "=== Transforming playlist paths for Hetzner ==="
 echo ""
 
@@ -126,7 +113,9 @@ if [ -d "$PLAYLIST_DIR" ]; then
         # Transform local paths to Hetzner paths
         # Use LC_ALL=C to handle special characters in file paths
         LC_ALL=C sed \
+            -e 's|/Volumes/c2storage/DJ/collection2/sourcing|/mnt/music/sourcing|g' \
             -e 's|/Volumes/c2storage/DJ/collection2|/mnt/music/collection2|g' \
+            -e 's|/Volumes/c2storage/DJ/sourcing|/mnt/music/sourcing|g' \
             -e 's|/Volumes/c2storage/Production/Exports|/mnt/music/exports|g' \
             "$playlist" > "$temp_playlist"
 

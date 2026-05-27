@@ -232,12 +232,11 @@ else
         cd /mnt/music/sourcing
 
         # Generate M3U8 playlist with all audio files (excluding 0-byte files)
-        # Use /mnt/music/collection2/sourcing/ path since Navidrome scans collection2
         {
             echo "#EXTM3U"
             find . -type f \( -iname "*.mp3" -o -iname "*.aiff" -o -iname "*.aif" -o -iname "*.wav" -o -iname "*.flac" -o -iname "*.m4a" \) -size +0 \
                 -printf "%f\n" | sort | while read filename; do
-                    echo "/mnt/music/collection2/sourcing/$filename"
+                    echo "/mnt/music/sourcing/$filename"
                 done
         } > /tmp/sourcing.m3u8
 
