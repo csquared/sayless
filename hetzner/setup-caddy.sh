@@ -48,6 +48,13 @@ justsayless.xyz {
 music.justsayless.xyz {
     reverse_proxy localhost:4533
 }
+
+deadca7.justsayless.xyz {
+    basic_auth {
+        grax $2a$14$t9kskRCVviapBG/O2KkLqujU5E94U.lYXsBCSzWP2AscNKw.qCUuC
+    }
+    reverse_proxy localhost:8091
+}
 EOF
 
 # Validate config before restarting
@@ -62,8 +69,9 @@ ENDSSH
 
 echo ""
 echo "=== Caddy setup complete ==="
-echo "justsayless.xyz        -> static site (auto-HTTPS)"
-echo "music.justsayless.xyz  -> Navidrome (auto-HTTPS)"
+echo "justsayless.xyz         -> static site (auto-HTTPS)"
+echo "music.justsayless.xyz   -> Navidrome (auto-HTTPS)"
+echo "deadca7.justsayless.xyz -> deadca7 mirror :8091 (basic auth, auto-HTTPS)"
 echo ""
 echo "DNS records needed (A records -> 37.27.252.86):"
 echo "  justsayless.xyz"
