@@ -50,15 +50,10 @@ music.justsayless.xyz {
 }
 
 deadca7.justsayless.xyz {
-    # Exempt self-authenticating / public paths from basic_auth: the Subsonic
-    # API (/rest/*) authenticates per-request, and /assets, /manifest.json and
-    # /healthz are public static files iOS fetches without credentials (the
-    # homescreen apple-touch-icon + PWA manifest). The web UI + catalog stay
-    # behind basic_auth.
-    @protected not path /rest/* /assets/* /manifest.json /healthz
-    basic_auth @protected {
-        grax $2a$14$t9kskRCVviapBG/O2KkLqujU5E94U.lYXsBCSzWP2AscNKw.qCUuC
-    }
+    # Auth is handled by the deadca7 app itself (a cookie session; the password
+    # is set per-mirror and pushed via the systemd unit env on deploy). A PWA
+    # persists that cookie, unlike HTTP basic-auth, so the home-screen app
+    # doesn't re-prompt every launch.
     reverse_proxy localhost:8091
 }
 EOF
@@ -77,7 +72,7 @@ echo ""
 echo "=== Caddy setup complete ==="
 echo "justsayless.xyz         -> static site (auto-HTTPS)"
 echo "music.justsayless.xyz   -> Navidrome (auto-HTTPS)"
-echo "deadca7.justsayless.xyz -> deadca7 mirror :8091 (basic auth, auto-HTTPS)"
+echo "deadca7.justsayless.xyz -> deadca7 mirror :8091 (app cookie auth, auto-HTTPS)"
 echo ""
 echo "DNS records needed (A records -> 37.27.252.86):"
 echo "  justsayless.xyz"
