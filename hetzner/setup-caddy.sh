@@ -50,7 +50,12 @@ music.justsayless.xyz {
 }
 
 deadca7.justsayless.xyz {
-    basic_auth {
+    # The Subsonic API (/rest/*) authenticates itself (token/password per
+    # request), so exempt it from basic_auth — otherwise Subsonic clients like
+    # play:Sub, which don't send HTTP basic-auth, get 401'd at the edge. The web
+    # UI stays behind basic_auth.
+    @protected not path /rest/*
+    basic_auth @protected {
         grax $2a$14$t9kskRCVviapBG/O2KkLqujU5E94U.lYXsBCSzWP2AscNKw.qCUuC
     }
     reverse_proxy localhost:8091
