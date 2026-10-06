@@ -60,12 +60,6 @@
                 padding: 60px 24px 0;
             }
 
-            #site-header .logo-emoji {
-                width: 120px;
-                height: auto;
-                margin-bottom: 16px;
-            }
-
             #site-header h1 {
                 font-family: "Stencil Gothic", monospace;
                 font-size: 64px;
@@ -492,10 +486,6 @@
                     letter-spacing: 4px;
                 }
 
-                #site-header .logo-emoji {
-                    width: 80px;
-                }
-
                 nav#site-nav ul {
                     gap: 20px;
                 }
@@ -563,7 +553,6 @@
     <body>
         <!-- Header -->
         <header id="site-header">
-            <img src="logo/SAYLESS-TRANSPARENT.png" alt="" class="logo-emoji" />
             <h1>SAYLESS</h1>
         </header>
 
@@ -650,24 +639,19 @@
 
         <!-- Shows -->
         <section id="shows" class="section">
-            <h2 class="section-header">UPCOMING</h2>
-            <div class="shows-grid upcoming">
+            <h2 class="section-header">PAST SHOWS</h2>
+            <div id="past-shows" class="shows-grid">
                 <div class="show-card">
                     <img
                         src="assets/photos/zohara.jpeg"
                         alt="ZOHARA @ Stardust Garage - June 13, 2026"
                         loading="lazy"
-                        style="aspect-ratio: auto; height: auto; object-fit: contain;"
                     />
                     <div class="show-info">
                         <div class="show-date">JUN 13, 2026</div>
                         <div class="show-venue">ZOHARA @ STARDUST GARAGE</div>
                     </div>
                 </div>
-            </div>
-
-            <h2 class="section-header past-header">PAST SHOWS</h2>
-            <div id="past-shows" class="shows-grid">
                 <a href="shows/2026-05-08/" class="show-card">
                     <img
                         src="flyers/2026-05-08/flyer-og.png"
