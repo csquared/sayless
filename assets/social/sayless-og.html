@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <!-- Social preview card. Screenshot at 1200x630 to sayless-og.png -->
+        <style>
+            @font-face {
+                font-family: "Stencil Gothic";
+                src: url("../../fonts/StencilGothic.ttf") format("truetype");
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                min-height: 100vh;
+                background: #1a1a1a;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* 1200x630 artboard; screenshot with a 1200x630 viewport */
+            .card {
+                width: 1200px;
+                height: 630px;
+                flex-shrink: 0;
+                overflow: hidden;
+                background: black;
+                font-family: "Stencil Gothic", monospace;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+
+            /* safe zone: centered 1080x600 (platform crops stay outside it).
+               content: 900px wide, 90px air each side inside the safe zone */
+            .safe-zone {
+                position: absolute;
+                left: 60px;
+                top: 15px;
+                width: 1080px;
+                height: 600px;
+                outline: 1px dashed #c00;
+                pointer-events: none;
+            }
+
+            .shot .safe-zone {
+                display: none;
+            }
+
+            h1 {
+                font-size: 170px;
+                letter-spacing: 22px;
+                /* offset trailing letter-spacing so the word centers optically */
+                padding-left: 22px;
+                font-weight: normal;
+                line-height: 1;
+            }
+
+            .circuit {
+                width: 900px;
+                margin-top: 0;
+            }
+
+            .circuit svg {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="safe-zone"></div>
+            <h1>SAYLESS</h1>
+            <div class="circuit">
+            <svg viewBox="0 0 900 64" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="cd-fade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="900" y2="0">
+                        <stop offset="0" stop-color="#fff" />
+                        <stop offset="0.45" stop-color="#999" />
+                        <stop offset="1" stop-color="#3a3a3a" />
+                    </linearGradient>
+                    <mask id="cd-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="900" height="64">
+                        <rect width="900" height="64" fill="url(#cd-fade)" />
+                    </mask>
+                    <pattern id="cd-stipple" width="4" height="4" patternUnits="userSpaceOnUse">
+                        <circle cx="1" cy="1" r="0.6" fill="#fff" />
+                        <circle cx="3" cy="3" r="0.5" fill="#fff" />
+                    </pattern>
+                    <g id="cd-circuit">
+                        <g fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- main bus -->
+                            <path d="M0 12 H900" />
+                            <!-- traces dropping off the bus -->
+                            <path d="M62 12 L88 38 H170" />
+                            <path d="M228 12 L248 32 H300 L318 50 H380" />
+                            <path d="M420 12 L440 32 H480" />
+                            <path d="M640 12 L656 28 H690" />
+                            <!-- floaters: sit beside a trace, ~3/4 its length -->
+                            <path d="M97 50 H158" />
+                            <path d="M322 58 H368" />
+                            <path d="M662 36 H686" />
+                            <!-- open terminals -->
+                            <circle cx="174.5" cy="38" r="4" />
+                            <circle cx="484.5" cy="32" r="4" />
+                        </g>
+                        <g fill="#fff">
+                            <!-- filled terminals -->
+                            <circle cx="383" cy="50" r="3" />
+                            <circle cx="693" cy="28" r="2.5" />
+                            <circle cx="95" cy="50" r="2" />
+                            <circle cx="659" cy="36" r="2" />
+                            <!-- dot pairs -->
+                            <circle cx="120" cy="30" r="1.6" />
+                            <circle cx="130" cy="30" r="1.6" />
+                            <circle cx="262" cy="50" r="1.6" />
+                            <circle cx="272" cy="50" r="1.6" />
+                            <circle cx="282" cy="50" r="1.6" />
+                            <circle cx="600" cy="40" r="1.4" />
+                            <circle cx="610" cy="40" r="1.4" />
+                        </g>
+                    </g>
+                </defs>
+                <g mask="url(#cd-mask)" opacity="0.8">
+                    <!-- stippled shading in the bend corners -->
+                    <g opacity="0.7">
+                        <polygon points="62,12 88,12 88,38" fill="url(#cd-stipple)" />
+                        <polygon points="300,32 318,50 340,50 322,32" fill="url(#cd-stipple)" />
+                        <polygon points="14,30 40,30 40,44 28,44" fill="url(#cd-stipple)" opacity="0.6" />
+                    </g>
+                    <use href="#cd-circuit" />
+                </g>
+            </svg>
+            </div>
+        </div>
+        <script>
+            // screenshot with ?shot to hide the safe-zone guide
+            if (location.search.includes("shot")) document.body.classList.add("shot");
+        </script>
+    </body>
+</html>
