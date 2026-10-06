@@ -22,8 +22,8 @@ The name says it all - show, don't tell.
 ## Project Structure
 
 - `index.html` - Main landing page (2MB+ file)
-- `logo/` - Contains brand logos (PNG formats)
-  - SAYLESS-TRANSPARENT.png (official logo)
+- `logo/` - The **emoji** (shush-face with heart) PNGs. The folder is named `logo/` for historical reasons; call it "the emoji", not "the logo".
+  - SAYLESS-TRANSPARENT.png
   - SAYLESS-BLACK-BG.png
   - SAYLESS.png
 - `fonts/` - Typography assets
@@ -60,9 +60,8 @@ When creating new HTML pages, maintain consistency with the existing design:
 - Include the StencilGothic font
 - Follow the minimalist aesthetic
 
-### Logo Usage
-Official logo path: `logo/SAYLESS-TRANSPARENT.png`
-Use this for any new pages or features requiring the logo.
+### The Emoji
+The shush-face image (`logo/SAYLESS-TRANSPARENT.png`, also `assets/images/logo.png`) is "the emoji". Never call it the logo. It was removed from the homepage header and social preview cards in Oct 2026; don't add it to new pages unless asked. The current look is the SAYLESS text in Stencil Gothic with the circuit underline (see `assets/social/sayless-og.html`).
 
 ### Font Implementation
 The official font is located at `fonts/StencilGothic.ttf` and should be used for all text elements to maintain brand consistency.
