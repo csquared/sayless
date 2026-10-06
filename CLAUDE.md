@@ -10,6 +10,8 @@ The name says it all - show, don't tell.
 
 - **Genre:** Indie dance
 - **Aesthetic:** Black and white, stencil typography, minimalist
+- **Current brand elements:** Stencil Gothic typography, the circuit-trace motif (from the artist's tattoo; see the homepage divider and `assets/social/sayless-og.html`)
+- **Former brand elements:** the emoji (🤫💋 shush-face with heart)
 - **Tagline:** "Show up, read the room, let the music speak. Oh, and don't forget to have fun 💃🕺"
 
 ## Web properites:
@@ -60,7 +62,7 @@ When creating new HTML pages, maintain consistency with the existing design:
 - Include the StencilGothic font
 - Follow the minimalist aesthetic
 
-### The Emoji
+### The Emoji (former brand element)
 The shush-face image (`emoji/SAYLESS-TRANSPARENT.png`; copies at `assets/images/emoji.png` and `presskit/sayless-emoji.png`) is "the emoji". Never call it the logo. It was removed from the homepage header and social preview cards in Oct 2026; don't add it to new pages unless asked. The current look is the SAYLESS text in Stencil Gothic with the circuit underline (see `assets/social/sayless-og.html`).
 
 ### Font Implementation
