@@ -18,6 +18,6 @@ Tech stack for hosting HTML website + navidrome music server on a linux box.
 
 Static HTML. 
 
-![SAYLESS](logo/SAYLESS-TRANSPARENT.png)
+![SAYLESS](emoji/SAYLESS-TRANSPARENT.png)
 
 ---

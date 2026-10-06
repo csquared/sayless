@@ -22,7 +22,7 @@ The name says it all - show, don't tell.
 ## Project Structure
 
 - `index.html` - Main landing page (2MB+ file)
-- `logo/` - The **emoji** (shush-face with heart) PNGs. The folder is named `logo/` for historical reasons; call it "the emoji", not "the logo".
+- `emoji/` - The **emoji** (shush-face with heart) PNGs. Call it "the emoji", never "the logo".
   - SAYLESS-TRANSPARENT.png
   - SAYLESS-BLACK-BG.png
   - SAYLESS.png
@@ -41,7 +41,7 @@ The name says it all - show, don't tell.
 This is a static HTML site with no build process or package management. Changes are made directly to HTML files.
 
 ### Deploy
-`./go-live` pushes and runs `hetzner/deploy.sh`, which rsyncs only root-level `*.html`, `favicon.ico`, and `assets/`, `logo/`, `shows/`, `flyers/`, `fonts/`, `presskit/`. New pages should fit that setup (a root `.html` file or one of those folders) rather than changing `deploy.sh`. Production Caddy config lives in `hetzner/setup-caddy.sh`; the root `Caddyfile` is for local dev only. The GitHub Pages workflow (`.github/workflows/static.yml`) is not used; Hetzner is the only real deploy.
+`./go-live` pushes and runs `hetzner/deploy.sh`, which rsyncs only root-level `*.html`, `favicon.ico`, and `assets/`, `emoji/`, `shows/`, `flyers/`, `fonts/`, `presskit/`. New pages should fit that setup (a root `.html` file or one of those folders) rather than changing `deploy.sh`. Production Caddy config lives in `hetzner/setup-caddy.sh`; the root `Caddyfile` is for local dev only. The GitHub Pages workflow (`.github/workflows/static.yml`) is not used; Hetzner is the only real deploy.
 
 ### Design Philosophy
 - Black and white aesthetic
@@ -61,7 +61,7 @@ When creating new HTML pages, maintain consistency with the existing design:
 - Follow the minimalist aesthetic
 
 ### The Emoji
-The shush-face image (`logo/SAYLESS-TRANSPARENT.png`, also `assets/images/logo.png`) is "the emoji". Never call it the logo. It was removed from the homepage header and social preview cards in Oct 2026; don't add it to new pages unless asked. The current look is the SAYLESS text in Stencil Gothic with the circuit underline (see `assets/social/sayless-og.html`).
+The shush-face image (`emoji/SAYLESS-TRANSPARENT.png`; copies at `assets/images/emoji.png` and `presskit/sayless-emoji.png`) is "the emoji". Never call it the logo. It was removed from the homepage header and social preview cards in Oct 2026; don't add it to new pages unless asked. The current look is the SAYLESS text in Stencil Gothic with the circuit underline (see `assets/social/sayless-og.html`).
 
 ### Font Implementation
 The official font is located at `fonts/StencilGothic.ttf` and should be used for all text elements to maintain brand consistency.

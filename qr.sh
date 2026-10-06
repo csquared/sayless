@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # SAYLESS QR Code Generator
-# Generates branded QR codes with logo overlay
+# Generates branded QR codes with the emoji overlay
 # Usage: ./qr.sh <url> [output_name]
 
 if [ $# -lt 1 ]; then

@@ -13,10 +13,10 @@ if (!url) {
   process.exit(1);
 }
 
-const logoPath = path.resolve(__dirname, '..', 'logo', 'SAYLESS-BLACK-BG.png');
+const emojiPath = path.resolve(__dirname, '..', 'emoji', 'SAYLESS-BLACK-BG.png');
 
-if (!fs.existsSync(logoPath)) {
-  console.error(`Error: Logo not found at ${logoPath}`);
+if (!fs.existsSync(emojiPath)) {
+  console.error(`Error: Emoji not found at ${emojiPath}`);
   process.exit(1);
 }
 
@@ -24,12 +24,12 @@ async function generate() {
   // 1. Terminal text output
   console.log(await QRCode.toString(url, { type: 'utf8' }));
 
-  // 2. Styled PNG and SVG with logo
+  // 2. Styled PNG and SVG with the emoji
   const qrConfig = {
     width: 1024,
     height: 1024,
     data: url,
-    image: logoPath,
+    image: emojiPath,
     dotsOptions: {
       color: '#000000',
       type: 'square',
