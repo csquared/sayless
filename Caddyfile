@@ -4,6 +4,8 @@ handle /api/* {
 	reverse_proxy localhost:8090
 }
 
+redir /press.html /presskit.html permanent
+
 handle {
 	root * .
 	file_server

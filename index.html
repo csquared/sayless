@@ -67,10 +67,32 @@
                 animation: flicker 2s infinite;
             }
 
+            #site-header .social-icons {
+                display: flex;
+                justify-content: center;
+                gap: 32px;
+                margin-top: 16px;
+            }
+
+            #site-header .social-icons a {
+                color: #666;
+                transition: color 0.2s;
+            }
+
+            #site-header .social-icons a:hover {
+                color: white;
+            }
+
+            #site-header .social-icons .nav-icon {
+                width: 28px;
+                height: 28px;
+                display: block;
+            }
+
             /* ---- NAV ---- */
             nav#site-nav {
                 text-align: center;
-                padding: 32px 24px 48px;
+                padding: 24px 24px 24px;
             }
 
             nav#site-nav ul {
@@ -79,14 +101,14 @@
                 justify-content: center;
                 align-items: center;
                 flex-wrap: wrap;
-                gap: 32px;
+                gap: 40px;
             }
 
             nav#site-nav a {
                 color: #666;
                 text-decoration: none;
-                font-size: 14px;
-                letter-spacing: 3px;
+                font-size: 20px;
+                letter-spacing: 4px;
                 transition: color 0.2s;
                 display: flex;
                 align-items: center;
@@ -97,16 +119,11 @@
                 color: white;
             }
 
-            nav#site-nav .nav-icon {
-                width: 24px;
-                height: 24px;
-            }
-
             /* ---- SECTION COMMON ---- */
             .section {
                 max-width: 900px;
                 margin: 0 auto;
-                padding: 60px 24px;
+                padding: 36px 24px;
             }
 
             .section-header {
@@ -115,6 +132,28 @@
                 letter-spacing: 4px;
                 margin-bottom: 40px;
                 text-align: center;
+            }
+
+            .circuit-divider {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .circuit-divider svg {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            .circuit-divider path,
+            .circuit-divider circle {
+                vector-effect: non-scaling-stroke;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .circuit-divider .cd-pulse {
+                    display: none;
+                }
             }
 
             .section-divider {
@@ -219,60 +258,6 @@
                 letter-spacing: 1px;
                 max-width: 600px;
                 color: #ccc;
-            }
-
-            .mailing-list {
-                margin-top: 0;
-            }
-
-            .mailing-list .section-subheader {
-                font-size: 14px;
-                letter-spacing: 3px;
-                margin-bottom: 16px;
-                color: #999;
-            }
-
-            .mailing-list form {
-                display: flex;
-                gap: 0;
-                max-width: 400px;
-            }
-
-            .mailing-list input[type="email"] {
-                flex: 1;
-                background: #111;
-                border: 1px solid #333;
-                border-right: none;
-                color: white;
-                font-family: "Stencil Gothic", monospace;
-                font-size: 14px;
-                letter-spacing: 1px;
-                padding: 12px 16px;
-                outline: none;
-            }
-
-            .mailing-list input[type="email"]::placeholder {
-                color: #555;
-            }
-
-            .mailing-list input[type="email"]:focus {
-                border-color: #555;
-            }
-
-            .mailing-list button {
-                background: white;
-                color: black;
-                border: 1px solid white;
-                font-family: "Stencil Gothic", monospace;
-                font-size: 14px;
-                letter-spacing: 2px;
-                padding: 12px 20px;
-                cursor: pointer;
-                transition: opacity 0.2s;
-            }
-
-            .mailing-list button:hover {
-                opacity: 0.8;
             }
 
             .booking-info {
@@ -487,12 +472,12 @@
                 }
 
                 nav#site-nav ul {
-                    gap: 20px;
+                    gap: 28px;
                 }
 
                 nav#site-nav a {
-                    font-size: 12px;
-                    letter-spacing: 2px;
+                    font-size: 16px;
+                    letter-spacing: 3px;
                 }
 
                 .section-header {
@@ -503,9 +488,9 @@
                     grid-template-columns: repeat(2, 1fr);
                 }
 
-                nav#site-nav .nav-icon {
-                    width: 20px;
-                    height: 20px;
+                #site-header .social-icons .nav-icon {
+                    width: 24px;
+                    height: 24px;
                 }
             }
 
@@ -516,12 +501,12 @@
                 }
 
                 nav#site-nav ul {
-                    gap: 16px;
+                    gap: 20px;
                 }
 
                 nav#site-nav a {
-                    font-size: 11px;
-                    letter-spacing: 1px;
+                    font-size: 14px;
+                    letter-spacing: 2px;
                 }
 
                 .shows-grid {
@@ -535,18 +520,6 @@
                 .about-text {
                     font-size: 16px;
                 }
-
-                .mailing-list form {
-                    flex-direction: column;
-                }
-
-                .mailing-list input[type="email"] {
-                    border-right: 1px solid #333;
-                }
-
-                .mailing-list button {
-                    width: 100%;
-                }
             }
         </style>
     </head>
@@ -554,86 +527,202 @@
         <!-- Header -->
         <header id="site-header">
             <h1>SAYLESS</h1>
+            <div class="social-icons">
+                <a
+                    href="https://instagram.com/just.sayless"
+                    target="_blank"
+                    aria-label="Instagram"
+                >
+                    <svg
+                        class="nav-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="2"
+                            y="2"
+                            width="20"
+                            height="20"
+                            rx="5"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                            style="
+                                animation: glitch-stroke-instagram 3s
+                                    infinite;
+                            "
+                        />
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="3"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                            style="
+                                animation: glitch-stroke-instagram 3s
+                                    infinite reverse;
+                            "
+                        />
+                        <circle
+                            cx="17.5"
+                            cy="6.5"
+                            r="1.5"
+                            fill="currentColor"
+                            style="
+                                animation: glitch-fill-instagram 3s infinite;
+                            "
+                        />
+                    </svg>
+                </a>
+                <a
+                    href="https://soundcloud.com/just-say-less"
+                    target="_blank"
+                    aria-label="SoundCloud"
+                >
+                    <svg
+                        class="nav-icon"
+                        viewBox="166 1125 145 65"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M308.984235,1169.99251 C308.382505,1180.70295 299.444837,1189.03525 288.718543,1188.88554 L240.008437,1188.88554 C237.777524,1188.86472 235.977065,1187.05577 235.966737,1184.82478 L235.966737,1132.37801 C235.894282,1130.53582 236.962478,1128.83883 238.654849,1128.10753 C238.654849,1128.10753 243.135035,1124.99996 252.572022,1124.99996 C258.337036,1124.99309 263.996267,1126.54789 268.948531,1129.49925 C276.76341,1134.09703 282.29495,1141.75821 284.200228,1150.62285 C285.880958,1150.14737 287.620063,1149.90993 289.36674,1149.91746 C294.659738,1149.88414 299.738952,1152.0036 303.438351,1155.78928 C307.13775,1159.57496 309.139562,1164.70168 308.984235,1169.99251 Z M229.885123,1135.69525 C231.353099,1153.48254 232.420718,1169.70654 229.885123,1187.43663 C229.796699,1188.23857 229.119091,1188.84557 228.312292,1188.84557 C227.505494,1188.84557 226.827885,1188.23857 226.739461,1187.43663 C224.375448,1169.85905 225.404938,1153.33003 226.739461,1135.69525 C226.672943,1135.09199 226.957336,1134.50383 227.471487,1134.18133 C227.985639,1133.85884 228.638946,1133.85884 229.153097,1134.18133 C229.667248,1134.50383 229.951641,1135.09199 229.885123,1135.69525 Z M220.028715,1187.4557 C219.904865,1188.26549 219.208361,1188.86356 218.389157,1188.86356 C217.569953,1188.86356 216.87345,1188.26549 216.7496,1187.4557 C214.986145,1172.28686 214.986145,1156.96477 216.7496,1141.79593 C216.840309,1140.9535 217.551388,1140.31488 218.398689,1140.31488 C219.245991,1140.31488 219.95707,1140.9535 220.047779,1141.79593 C222.005153,1156.95333 221.998746,1172.29994 220.028715,1187.4557 Z M210.153241,1140.2517 C211.754669,1156.55195 212.479125,1171.15545 210.134176,1187.41757 C210.134176,1188.29148 209.425728,1188.99993 208.551813,1188.99993 C207.677898,1188.99993 206.969449,1188.29148 206.969449,1187.41757 C204.70076,1171.36516 205.463344,1156.34224 206.969449,1140.2517 C207.05845,1139.43964 207.744425,1138.82474 208.561345,1138.82474 C209.378266,1138.82474 210.06424,1139.43964 210.153241,1140.2517 Z M200.258703,1187.47476 C200.169129,1188.29694 199.474788,1188.91975 198.647742,1188.91975 C197.820697,1188.91975 197.126356,1188.29694 197.036782,1187.47476 C195.216051,1173.32359 195.216051,1158.99744 197.036782,1144.84627 C197.036782,1143.94077 197.770837,1143.20671 198.676339,1143.20671 C199.581842,1143.20671 200.315897,1143.94077 200.315897,1144.84627 C202.251054,1158.99121 202.231809,1173.33507 200.258703,1187.47476 Z M190.383229,1155.50339 C192.880695,1166.56087 191.755882,1176.32196 190.287906,1187.58915 C190.168936,1188.33924 189.522207,1188.89148 188.762737,1188.89148 C188.003266,1188.89148 187.356537,1188.33924 187.237567,1187.58915 C185.903044,1176.47448 184.797296,1166.48462 187.142244,1155.50339 C187.142244,1154.60842 187.867763,1153.8829 188.762737,1153.8829 C189.65771,1153.8829 190.383229,1154.60842 190.383229,1155.50339 Z M180.526821,1153.82571 C182.814575,1165.15009 182.071055,1174.7396 180.469627,1186.10211 C180.27898,1187.7798 177.400223,1187.79886 177.247706,1186.10211 C175.798795,1174.91118 175.112468,1165.0357 177.190512,1153.82571 C177.281785,1152.97315 178.001234,1152.32661 178.858666,1152.32661 C179.716099,1152.32661 180.435548,1152.97315 180.526821,1153.82571 Z M170.575089,1159.31632 C172.977231,1166.82778 172.157452,1172.92846 170.479765,1180.63056 C170.391921,1181.42239 169.722678,1182.02149 168.925999,1182.02149 C168.12932,1182.02149 167.460077,1181.42239 167.372232,1180.63056 C165.923321,1173.08097 165.332318,1166.84684 167.23878,1159.31632 C167.330053,1158.46376 168.049502,1157.81722 168.906934,1157.81722 C169.764367,1157.81722 170.483816,1158.46376 170.575089,1159.31632 Z"
+                            style="animation: glitch-fill 3s infinite"
+                        />
+                    </svg>
+                </a>
+                <a
+                    href="https://open.spotify.com/artist/3F5EwIATU7qOdzw7B1BFOC"
+                    target="_blank"
+                    aria-label="Spotify"
+                >
+                    <svg
+                        class="nav-icon"
+                        viewBox="-2 -2 28 28"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+                            style="animation: glitch-fill 3s infinite 1.5s"
+                        />
+                    </svg>
+                </a>
+            </div>
         </header>
 
         <!-- Nav -->
         <nav id="site-nav">
             <ul>
-                <li>
-                    <a
-                        href="https://instagram.com/just.sayless"
-                        target="_blank"
-                    >
-                        <svg
-                            class="nav-icon"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <rect
-                                x="2"
-                                y="2"
-                                width="20"
-                                height="20"
-                                rx="5"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                fill="none"
-                                style="
-                                    animation: glitch-stroke-instagram 3s
-                                        infinite;
-                                "
-                            />
-                            <circle
-                                cx="12"
-                                cy="12"
-                                r="3"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                fill="none"
-                                style="
-                                    animation: glitch-stroke-instagram 3s
-                                        infinite reverse;
-                                "
-                            />
-                            <circle
-                                cx="17.5"
-                                cy="6.5"
-                                r="1.5"
-                                fill="currentColor"
-                                style="
-                                    animation: glitch-fill-instagram 3s infinite;
-                                "
-                            />
-                        </svg>
-                        CONNECT
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="https://soundcloud.com/just-say-less"
-                        target="_blank"
-                    >
-                        <svg
-                            class="nav-icon"
-                            viewBox="166 1125 145 65"
-                            fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M308.984235,1169.99251 C308.382505,1180.70295 299.444837,1189.03525 288.718543,1188.88554 L240.008437,1188.88554 C237.777524,1188.86472 235.977065,1187.05577 235.966737,1184.82478 L235.966737,1132.37801 C235.894282,1130.53582 236.962478,1128.83883 238.654849,1128.10753 C238.654849,1128.10753 243.135035,1124.99996 252.572022,1124.99996 C258.337036,1124.99309 263.996267,1126.54789 268.948531,1129.49925 C276.76341,1134.09703 282.29495,1141.75821 284.200228,1150.62285 C285.880958,1150.14737 287.620063,1149.90993 289.36674,1149.91746 C294.659738,1149.88414 299.738952,1152.0036 303.438351,1155.78928 C307.13775,1159.57496 309.139562,1164.70168 308.984235,1169.99251 Z M229.885123,1135.69525 C231.353099,1153.48254 232.420718,1169.70654 229.885123,1187.43663 C229.796699,1188.23857 229.119091,1188.84557 228.312292,1188.84557 C227.505494,1188.84557 226.827885,1188.23857 226.739461,1187.43663 C224.375448,1169.85905 225.404938,1153.33003 226.739461,1135.69525 C226.672943,1135.09199 226.957336,1134.50383 227.471487,1134.18133 C227.985639,1133.85884 228.638946,1133.85884 229.153097,1134.18133 C229.667248,1134.50383 229.951641,1135.09199 229.885123,1135.69525 Z M220.028715,1187.4557 C219.904865,1188.26549 219.208361,1188.86356 218.389157,1188.86356 C217.569953,1188.86356 216.87345,1188.26549 216.7496,1187.4557 C214.986145,1172.28686 214.986145,1156.96477 216.7496,1141.79593 C216.840309,1140.9535 217.551388,1140.31488 218.398689,1140.31488 C219.245991,1140.31488 219.95707,1140.9535 220.047779,1141.79593 C222.005153,1156.95333 221.998746,1172.29994 220.028715,1187.4557 Z M210.153241,1140.2517 C211.754669,1156.55195 212.479125,1171.15545 210.134176,1187.41757 C210.134176,1188.29148 209.425728,1188.99993 208.551813,1188.99993 C207.677898,1188.99993 206.969449,1188.29148 206.969449,1187.41757 C204.70076,1171.36516 205.463344,1156.34224 206.969449,1140.2517 C207.05845,1139.43964 207.744425,1138.82474 208.561345,1138.82474 C209.378266,1138.82474 210.06424,1139.43964 210.153241,1140.2517 Z M200.258703,1187.47476 C200.169129,1188.29694 199.474788,1188.91975 198.647742,1188.91975 C197.820697,1188.91975 197.126356,1188.29694 197.036782,1187.47476 C195.216051,1173.32359 195.216051,1158.99744 197.036782,1144.84627 C197.036782,1143.94077 197.770837,1143.20671 198.676339,1143.20671 C199.581842,1143.20671 200.315897,1143.94077 200.315897,1144.84627 C202.251054,1158.99121 202.231809,1173.33507 200.258703,1187.47476 Z M190.383229,1155.50339 C192.880695,1166.56087 191.755882,1176.32196 190.287906,1187.58915 C190.168936,1188.33924 189.522207,1188.89148 188.762737,1188.89148 C188.003266,1188.89148 187.356537,1188.33924 187.237567,1187.58915 C185.903044,1176.47448 184.797296,1166.48462 187.142244,1155.50339 C187.142244,1154.60842 187.867763,1153.8829 188.762737,1153.8829 C189.65771,1153.8829 190.383229,1154.60842 190.383229,1155.50339 Z M180.526821,1153.82571 C182.814575,1165.15009 182.071055,1174.7396 180.469627,1186.10211 C180.27898,1187.7798 177.400223,1187.79886 177.247706,1186.10211 C175.798795,1174.91118 175.112468,1165.0357 177.190512,1153.82571 C177.281785,1152.97315 178.001234,1152.32661 178.858666,1152.32661 C179.716099,1152.32661 180.435548,1152.97315 180.526821,1153.82571 Z M170.575089,1159.31632 C172.977231,1166.82778 172.157452,1172.92846 170.479765,1180.63056 C170.391921,1181.42239 169.722678,1182.02149 168.925999,1182.02149 C168.12932,1182.02149 167.460077,1181.42239 167.372232,1180.63056 C165.923321,1173.08097 165.332318,1166.84684 167.23878,1159.31632 C167.330053,1158.46376 168.049502,1157.81722 168.906934,1157.81722 C169.764367,1157.81722 170.483816,1158.46376 170.575089,1159.31632 Z"
-                                style="animation: glitch-fill 3s infinite"
-                            />
-                        </svg>
-                        MUSIC
-                    </a>
-                </li>
+                <li><a href="#releases">RELEASES</a></li>
                 <li><a href="#shows">SHOWS</a></li>
-                <li><a href="#vibe">VIBE</a></li>
+                <!--<li><a href="#vibe">VIBE</a></li>-->
                 <!--<li><a href="#about">ABOUT</a></li>-->
-                <li><a href="press.html">PRESS</a></li>
+                <li><a href="presskit.html">PRESSKIT</a></li>
             </ul>
         </nav>
+
+        <div class="circuit-divider" aria-hidden="true">
+            <svg viewBox="0 0 900 64" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="cd-fade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="900" y2="0">
+                        <stop offset="0" stop-color="#fff" />
+                        <stop offset="0.45" stop-color="#999" />
+                        <stop offset="1" stop-color="#3a3a3a" />
+                    </linearGradient>
+                    <mask id="cd-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="900" height="64">
+                        <rect width="900" height="64" fill="url(#cd-fade)" />
+                    </mask>
+                    <pattern id="cd-stipple" width="4" height="4" patternUnits="userSpaceOnUse">
+                        <circle cx="1" cy="1" r="0.6" fill="#fff" />
+                        <circle cx="3" cy="3" r="0.5" fill="#fff" />
+                    </pattern>
+                    <!-- pulse: a bright band sweeps the circuit in 1s, rests 1s (one bar @ 120 BPM) -->
+                    <linearGradient id="cd-band">
+                        <stop offset="0" stop-color="#000" />
+                        <stop offset="0.7" stop-color="#fff" />
+                        <stop offset="1" stop-color="#000" />
+                    </linearGradient>
+                    <mask id="cd-pulse-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="900" height="64">
+                        <rect x="-180" width="180" height="64" fill="url(#cd-band)">
+                            <animateTransform
+                                attributeName="transform"
+                                type="translate"
+                                values="0 0; 1080 0; 1080 0"
+                                keyTimes="0; 0.5; 1"
+                                dur="2s"
+                                repeatCount="indefinite"
+                            />
+                        </rect>
+                    </mask>
+                    <g id="cd-circuit">
+                        <g fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- main bus -->
+                            <path d="M0 12 H900" />
+                            <!-- traces dropping off the bus -->
+                            <path d="M62 12 L88 38 H170" />
+                            <path d="M228 12 L248 32 H300 L318 50 H380" />
+                            <path d="M420 12 L440 32 H480" />
+                            <path d="M640 12 L656 28 H690" />
+                            <!-- floaters: sit beside a trace, ~3/4 its length -->
+                            <path d="M97 50 H158" />
+                            <path d="M322 58 H368" />
+                            <path d="M662 36 H686" />
+                            <!-- open terminals -->
+                            <circle cx="174.5" cy="38" r="4" />
+                            <circle cx="484.5" cy="32" r="4" />
+                        </g>
+                        <g fill="#fff">
+                            <!-- filled terminals -->
+                            <circle cx="383" cy="50" r="3" />
+                            <circle cx="693" cy="28" r="2.5" />
+                            <circle cx="95" cy="50" r="2" />
+                            <circle cx="659" cy="36" r="2" />
+                            <!-- dot pairs -->
+                            <circle cx="120" cy="30" r="1.6" />
+                            <circle cx="130" cy="30" r="1.6" />
+                            <circle cx="262" cy="50" r="1.6" />
+                            <circle cx="272" cy="50" r="1.6" />
+                            <circle cx="282" cy="50" r="1.6" />
+                            <circle cx="600" cy="40" r="1.4" />
+                            <circle cx="610" cy="40" r="1.4" />
+                        </g>
+                    </g>
+                </defs>
+                <g mask="url(#cd-mask)" opacity="0.35">
+                    <!-- stippled shading in the bend corners -->
+                    <g opacity="0.7">
+                        <polygon points="62,12 88,12 88,38" fill="url(#cd-stipple)" />
+                        <polygon points="300,32 318,50 340,50 322,32" fill="url(#cd-stipple)" />
+                        <polygon points="14,30 40,30 40,44 28,44" fill="url(#cd-stipple)" opacity="0.6" />
+                    </g>
+                    <use href="#cd-circuit" />
+                </g>
+                <g class="cd-pulse" mask="url(#cd-pulse-mask)" opacity="0.5">
+                    <use href="#cd-circuit" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Releases -->
+        <section id="releases" class="section">
+            <h2 class="section-header">RELEASES</h2>
+            <div class="shows-grid">
+                <a href="releases/bad/" class="show-card">
+                    <img
+                        src="assets/photos/bad-gigante-variations-vol1.jpg"
+                        alt="BAD - GIGANTE VARIATIONS VOL. I"
+                        loading="lazy"
+                    />
+                    <div class="show-info">
+                        <div class="show-date">SEP 4, 2026</div>
+                        <div class="show-venue">BAD &mdash; GIGANTE</div>
+                    </div>
+                </a>
+            </div>
+        </section>
 
         <hr class="section-divider" />
 
@@ -641,6 +730,17 @@
         <section id="shows" class="section">
             <h2 class="section-header">PAST SHOWS</h2>
             <div id="past-shows" class="shows-grid">
+                <a href="shows/2026-09-26/" class="show-card">
+                    <img
+                        src="assets/photos/indiego-child.jpg"
+                        alt="SAYLESS Indiego-Child @ Snake Island"
+                        loading="lazy"
+                    />
+                    <div class="show-info">
+                        <div class="show-date">SEP 26, 2026</div>
+                        <div class="show-venue">INDIEGO-CHILD @ SNAKE ISLAND</div>
+                    </div>
+                </a>
                 <div class="show-card">
                     <img
                         src="assets/photos/zohara.jpeg"
@@ -751,10 +851,10 @@
             </div>
         </section>
 
-        <hr class="section-divider" />
+        <hr class="section-divider" hidden />
 
-        <!-- Photos -->
-        <section id="vibe" class="section">
+        <!-- Photos (cut for now) -->
+        <section id="vibe" class="section" hidden>
             <h2 class="section-header">
                 SHOW UP <br />
                 READ THE ROOM <br />
@@ -821,20 +921,6 @@
             </p>
             -->
 
-            <div class="mailing-list">
-                <div class="section-subheader">STAY IN THE LOOP</div>
-                <form id="mailing-list-form">
-                    <input
-                        type="email"
-                        placeholder="YOUR EMAIL"
-                        aria-label="Email address"
-                        required
-                    />
-                    <button type="submit">JOIN</button>
-                </form>
-                <div id="mailing-list-msg" style="display:none; margin-top:12px; font-size:12px; letter-spacing:1px;"></div>
-            </div>
-
             <div class="booking-info">
                 BOOKING:
                 <a href="mailto:booking@justsayless.xyz"
@@ -867,38 +953,5 @@
         </footer>
 
         <script src="assets/js/console-easter-egg.js"></script>
-        <script>
-            document.getElementById('mailing-list-form').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                var email = this.querySelector('input[type="email"]').value;
-                var msg = document.getElementById('mailing-list-msg');
-                var btn = this.querySelector('button');
-                btn.disabled = true;
-                btn.textContent = '...';
-                try {
-                    var res = await fetch('/api/subscribe', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                        body: 'email=' + encodeURIComponent(email)
-                    });
-                    var data = await res.json();
-                    if (data.ok) {
-                        msg.textContent = "YOU'RE IN.";
-                        msg.style.display = 'block';
-                        e.target.style.display = 'none';
-                    } else {
-                        msg.textContent = data.error || 'SOMETHING WENT WRONG.';
-                        msg.style.display = 'block';
-                        btn.disabled = false;
-                        btn.textContent = 'JOIN';
-                    }
-                } catch(_) {
-                    msg.textContent = 'SOMETHING WENT WRONG.';
-                    msg.style.display = 'block';
-                    btn.disabled = false;
-                    btn.textContent = 'JOIN';
-                }
-            });
-        </script>
     </body>
 </html>
