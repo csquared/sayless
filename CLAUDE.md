@@ -32,12 +32,16 @@ The name says it all - show, don't tell.
 - `brand/` - Branding materials and merchandise designs
 - `docs/` - Documentation assets
 - `etc/` - Miscellaneous assets
+- `releases/` - **Album-art workspace, not part of the site.** Cover-art HTML/PNG design files live here and are never deployed. Don't put site pages in it; release pages go in root-level `releases.html`.
 - `content/` - **Dropzone for raw/originals. Gitignored.** Anything dropped here that needs to go live must be moved (or copied) into a tracked `assets/` subdirectory (e.g., `assets/photos/` for show imagery) before referencing it from HTML.
 
 ## Development Notes
 
 ### Static Site
 This is a static HTML site with no build process or package management. Changes are made directly to HTML files.
+
+### Deploy
+`./go-live` pushes and runs `hetzner/deploy.sh`, which rsyncs only root-level `*.html`, `favicon.ico`, and `assets/`, `logo/`, `shows/`, `flyers/`, `fonts/`, `presskit/`. New pages should fit that setup (a root `.html` file or one of those folders) rather than changing `deploy.sh`. Production Caddy config lives in `hetzner/setup-caddy.sh`; the root `Caddyfile` is for local dev only. The GitHub Pages workflow (`.github/workflows/static.yml`) is not used; Hetzner is the only real deploy.
 
 ### Design Philosophy
 - Black and white aesthetic
