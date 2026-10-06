@@ -32,6 +32,7 @@ The name says it all - show, don't tell.
 - `brand/` - Branding materials and merchandise designs
 - `docs/` - Documentation assets
 - `etc/` - Miscellaneous assets
+- `content/` - **Dropzone for raw/originals. Gitignored.** Anything dropped here that needs to go live must be moved (or copied) into a tracked `assets/` subdirectory (e.g., `assets/photos/` for show imagery) before referencing it from HTML.
 
 ## Development Notes
 
