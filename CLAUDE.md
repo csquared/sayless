@@ -32,7 +32,7 @@ The name says it all - show, don't tell.
 - `brand/` - Branding materials and merchandise designs
 - `docs/` - Documentation assets
 - `etc/` - Miscellaneous assets
-- `releases/` - **Album-art workspace, not part of the site.** Cover-art HTML/PNG design files live here and are never deployed. Don't put site pages in it; release pages go in root-level `releases.html`.
+- `releases/` - **Album-art workspace, not part of the site.** Cover-art HTML/PNG design files live here and are never deployed. Don't put site pages in it; each release gets a root-level page named `track-<name>.html` (e.g. `track-bad.html`).
 - `content/` - **Dropzone for raw/originals. Gitignored.** Anything dropped here that needs to go live must be moved (or copied) into a tracked `assets/` subdirectory (e.g., `assets/photos/` for show imagery) before referencing it from HTML.
 
 ## Development Notes
