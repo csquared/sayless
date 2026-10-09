@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <!--
+          Looping SAYLESS logo + circuit pulse for projection mapping.
+          Black background, SAYLESS in Stencil Gothic, circuit divider with a
+          band sweeping once per 2s bar (120 BPM), matching the site header.
+          Render with scripts/capture-loop.mjs to assets/video/sayless-loop.mp4.
+          The JS clock is driven by ?t=<seconds> so frames are deterministic.
+        -->
+        <style>
+            @font-face {
+                font-family: "Stencil Gothic";
+                src: url("../../fonts/StencilGothic.ttf") format("truetype");
+            }
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                background: #000;
+            }
+            .stage {
+                width: 1920px;
+                height: 1080px;
+                background: #000;
+                color: #fff;
+                font-family: "Stencil Gothic", monospace;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                overflow: hidden;
+            }
+            h1 {
+                font-size: 320px;
+                letter-spacing: 42px;
+                padding-left: 42px;
+                font-weight: normal;
+                line-height: 1;
+                opacity: 1;
+            }
+            .circuit {
+                width: 1400px;
+            }
+            .circuit svg {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+            .circuit path,
+            .circuit circle {
+                vector-effect: non-scaling-stroke;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="stage">
+            <h1 id="logo">SAYLESS</h1>
+            <div class="circuit" aria-hidden="true">
+                <svg viewBox="0 0 900 64" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="cd-fade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="900" y2="0">
+                            <stop offset="0" stop-color="#fff" />
+                            <stop offset="0.45" stop-color="#999" />
+                            <stop offset="1" stop-color="#3a3a3a" />
+                        </linearGradient>
+                        <mask id="cd-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="900" height="64">
+                            <rect width="900" height="64" fill="url(#cd-fade)" />
+                        </mask>
+                        <pattern id="cd-stipple" width="4" height="4" patternUnits="userSpaceOnUse">
+                            <circle cx="1" cy="1" r="0.6" fill="#fff" />
+                            <circle cx="3" cy="3" r="0.5" fill="#fff" />
+                        </pattern>
+                        <linearGradient id="cd-band">
+                            <stop offset="0" stop-color="#000" />
+                            <stop offset="0.7" stop-color="#fff" />
+                            <stop offset="1" stop-color="#000" />
+                        </linearGradient>
+                        <mask id="cd-pulse-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="900" height="64">
+                            <rect id="band" x="-180" width="180" height="64" fill="url(#cd-band)" />
+                        </mask>
+                        <g id="cd-circuit">
+                            <g fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M0 12 H900" />
+                                <path d="M62 12 L88 38 H170" />
+                                <path d="M228 12 L248 32 H300 L318 50 H380" />
+                                <path d="M420 12 L440 32 H480" />
+                                <path d="M640 12 L656 28 H690" />
+                                <path d="M97 50 H158" />
+                                <path d="M322 58 H368" />
+                                <path d="M662 36 H686" />
+                                <circle cx="174.5" cy="38" r="4" />
+                                <circle cx="484.5" cy="32" r="4" />
+                            </g>
+                            <g fill="#fff">
+                                <circle cx="383" cy="50" r="3" />
+                                <circle cx="693" cy="28" r="2.5" />
+                                <circle cx="95" cy="50" r="2" />
+                                <circle cx="659" cy="36" r="2" />
+                                <circle cx="120" cy="30" r="1.6" />
+                                <circle cx="130" cy="30" r="1.6" />
+                                <circle cx="262" cy="50" r="1.6" />
+                                <circle cx="272" cy="50" r="1.6" />
+                                <circle cx="282" cy="50" r="1.6" />
+                                <circle cx="600" cy="40" r="1.4" />
+                                <circle cx="610" cy="40" r="1.4" />
+                            </g>
+                        </g>
+                    </defs>
+                    <g mask="url(#cd-mask)" opacity="0.5">
+                        <g opacity="0.7">
+                            <polygon points="62,12 88,12 88,38" fill="url(#cd-stipple)" />
+                            <polygon points="300,32 318,50 340,50 322,32" fill="url(#cd-stipple)" />
+                            <polygon points="14,30 40,30 40,44 28,44" fill="url(#cd-stipple)" opacity="0.6" />
+                        </g>
+                        <use href="#cd-circuit" />
+                    </g>
+                    <g mask="url(#cd-pulse-mask)" opacity="0.85">
+                        <use href="#cd-circuit" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <script>
+            // Deterministic clock: ?t=<seconds> freezes the frame for capture.
+            // No ?t renders live via requestAnimationFrame.
+            const PERIOD = 2.0; // one 120 BPM bar
+            const logo = document.getElementById("logo");
+            const band = document.getElementById("band");
+            // band travels from x=-180 to x=1080 over the first half, rests the
+            // second half; matches index.html keyTimes "0;0.5;1".
+            function render(t) {
+                const p = ((t % PERIOD) + PERIOD) % PERIOD;
+                const half = PERIOD / 2;
+                const sweep = p < half ? p / half : 1; // 0..1 then hold
+                const x = -180 + sweep * (1080 - -180);
+                band.setAttribute("x", x.toFixed(2));
+                // flicker: opacity 1 -> 0.8 -> 1 over the bar (matches header)
+                const phase = p / PERIOD; // 0..1
+                logo.style.opacity = (1 - 0.2 * Math.sin(phase * Math.PI)).toFixed(3);
+            }
+            const params = new URLSearchParams(location.search);
+            if (params.has("t")) {
+                render(parseFloat(params.get("t")));
+                document.documentElement.setAttribute("data-ready", "1");
+            } else {
+                const start = performance.now();
+                (function tick(now) {
+                    render((now - start) / 1000);
+                    requestAnimationFrame(tick);
+                })(start);
+            }
+        </script>
+    </body>
+</html>
