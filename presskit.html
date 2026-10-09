@@ -147,6 +147,17 @@
 
             .download-card {
                 padding: 8px;
+                margin-bottom: 20px;
+            }
+
+            .download-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .download-list .download-link {
+                margin-right: 0;
             }
 
             .download-card video {
@@ -262,12 +273,6 @@
             <div class="epk-section">
                 <h2>DOWNLOADS</h2>
                 <a
-                    href="assets/social/sayless-og.png"
-                    download="sayless-circuit-card.png"
-                    class="download-link"
-                    >SAYLESS CIRCUIT CARD (PNG)</a
-                >
-                <a
                     href="assets/video/sayless-loop.mp4"
                     download="sayless-loop.mp4"
                     class="download-link download-card"
@@ -281,6 +286,13 @@
                     ></video>
                     <span>LOGO LOOP (MP4)</span>
                 </a>
+                <div class="download-list">
+                <a
+                    href="assets/social/sayless-og.png"
+                    download="sayless-circuit-card.png"
+                    class="download-link"
+                    >SAYLESS CIRCUIT CARD (PNG)</a
+                >
                 <a
                     href="presskit/sayless-emoji.png"
                     download
@@ -299,6 +311,7 @@
                 <a href="presskit/fun.jpeg" download class="download-link"
                     >PRESS PHOTO 2 (JPEG)</a
                 >
+                </div>
             </div>
 
             <div class="epk-section">
