@@ -145,6 +145,24 @@
                 border-color: white;
             }
 
+            .download-card {
+                padding: 8px;
+            }
+
+            .download-card video {
+                display: block;
+                width: 160px;
+                height: 90px;
+                object-fit: cover;
+                background: #000;
+                margin-bottom: 8px;
+            }
+
+            .download-card span {
+                display: block;
+                text-align: center;
+            }
+
             .photo-placeholder {
                 width: 100%;
                 aspect-ratio: 16/9;
@@ -252,9 +270,17 @@
                 <a
                     href="assets/video/sayless-loop.mp4"
                     download="sayless-loop.mp4"
-                    class="download-link"
-                    >LOGO LOOP (MP4)</a
+                    class="download-link download-card"
                 >
+                    <video
+                        src="assets/video/sayless-loop.mp4"
+                        autoplay
+                        loop
+                        muted
+                        playsinline
+                    ></video>
+                    <span>LOGO LOOP (MP4)</span>
+                </a>
                 <a
                     href="presskit/sayless-emoji.png"
                     download
