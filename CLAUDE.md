@@ -43,7 +43,10 @@ The name says it all - show, don't tell.
 This is a static HTML site with no build process or package management. Changes are made directly to HTML files.
 
 ### Deploy
-`./go-live` pushes and runs `hetzner/deploy.sh`, which rsyncs only root-level `*.html`, `favicon.ico`, and `assets/`, `emoji/`, `shows/`, `flyers/`, `fonts/`, `presskit/`. New pages should fit that setup (a root `.html` file or one of those folders) rather than changing `deploy.sh`. Production Caddy config lives in `hetzner/setup-caddy.sh`; the root `Caddyfile` is for local dev only. The GitHub Pages workflow (`.github/workflows/static.yml`) is not used; Hetzner is the only real deploy.
+`./go-live` pushes and runs `../hetzner/sites/sayless/deploy.sh` from the private `hetzner` repo, a sibling checkout. It rsyncs only root-level `*.html`, `favicon.ico`, and `assets/`, `emoji/`, `shows/`, `flyers/`, `fonts/`, `presskit/`. New pages should fit that setup (a root `.html` file or one of those folders). Production Caddy config also lives in the hetzner repo; the root `Caddyfile` is for local dev only.
+
+### What belongs in this repo
+This repo is public. It holds only the site, the API behind it, and the art tooling (album art, flyers, social cards, QR). Server setup, IPs and hostnames go in `../hetzner`. Personal writing, interviews, plans and production notes go in `../sayless-private`.
 
 ### Design Philosophy
 - Black and white aesthetic
@@ -63,7 +66,7 @@ When creating new HTML pages, maintain consistency with the existing design:
 - Follow the minimalist aesthetic
 
 ### The Emoji (former brand element)
-The shush-face image (`emoji/SAYLESS-TRANSPARENT.png`; copies at `assets/images/emoji.png` and `presskit/sayless-emoji.png`) is "the emoji". Never call it the logo. It was removed from the homepage header and social preview cards in Oct 2026; don't add it to new pages unless asked. The current look is the SAYLESS text in Stencil Gothic with the circuit underline (see `assets/social/sayless-og.html`).
+The shush-face image (`emoji/SAYLESS-TRANSPARENT.png`; copies at `assets/images/emoji.png` and `presskit/sayless-emoji.png`) is "the emoji". Never call it the logo. It was removed from the homepage header and social preview cards in Oct 2026; don't add it to new pages unless asked. It stays as the favicon (`favicon.ico`, 16 and 32 px). The current look is the SAYLESS text in Stencil Gothic with the circuit underline (see `assets/social/sayless-og.html`).
 
 ### Font Implementation
 The official font is located at `fonts/StencilGothic.ttf` and should be used for all text elements to maintain brand consistency.

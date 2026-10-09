@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-git push && ./hetzner/deploy.sh
+# Deploy scripts live in the private ../hetzner checkout.
+set -e
+git push && "$(cd "$(dirname "$0")" && pwd)/../hetzner/sites/sayless/deploy.sh"
