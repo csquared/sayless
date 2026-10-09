@@ -12,7 +12,7 @@ From the terminal to the turntables.
 
 ## What's Here
 
-Tech stack for hosting HTML website + navidrome music server on a linux box.
+The justsayless.xyz site, its signup API, and the art tooling for album covers, flyers and social cards.
 
 ## Tech
 
