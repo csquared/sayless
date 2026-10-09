@@ -46,7 +46,7 @@ This is a static HTML site with no build process or package management. Changes 
 `./go-live` pushes and runs `../hetzner/sites/sayless/deploy.sh` from the private `hetzner` repo, a sibling checkout. It rsyncs only root-level `*.html`, `favicon.ico`, and `assets/`, `emoji/`, `shows/`, `flyers/`, `fonts/`, `presskit/`. New pages should fit that setup (a root `.html` file or one of those folders). Production Caddy config also lives in the hetzner repo; the root `Caddyfile` is for local dev only.
 
 ### What belongs in this repo
-This repo is public. It holds only the site, the API behind it, and the art tooling (album art, flyers, social cards, QR). Server setup, IPs and hostnames go in `../hetzner`. Personal writing, interviews, plans and production notes go in `../sayless-private`.
+This repo is public. It holds only the static site and the art tooling (album art, flyers, social cards, QR). Server setup, IPs and hostnames go in `../hetzner`. Personal writing, interviews, plans and production notes go in `../sayless-private`.
 
 ### Design Philosophy
 - Black and white aesthetic
