@@ -205,7 +205,9 @@
 }
 
 .sp-credit {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     margin-top: 12px;
     font-family: "Stencil Gothic", monospace;
     font-size: 10px;
@@ -217,6 +219,54 @@
 
 .sp-credit:hover {
     color: #fff;
+}
+
+.sp-credit-icon {
+    width: 14px;
+    height: 14px;
+    flex: none;
+}
+
+#player .sp-credit-icon path {
+    fill: #fff;
+    animation: sp-glitch-fill 3s infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes sp-glitch-fill {
+    0%,
+    80%,
+    100% {
+        fill: white;
+        transform: scale(1);
+    }
+    82% {
+        fill: #ff0000;
+        transform: scale(0.8) translateX(-2px);
+    }
+    85% {
+        fill: #00ff00;
+        transform: scale(1.2) translateY(2px);
+    }
+    88% {
+        fill: #0000ff;
+        transform: scale(0.9) translateX(2px);
+    }
+    92% {
+        fill: #ff00ff;
+        transform: scale(1.1) translateY(-2px);
+    }
+    95% {
+        fill: #ffff00;
+        transform: scale(1) translateX(-1px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #player .sp-credit-icon path {
+        animation: none;
+    }
 }
 
 @media (max-width: 480px) {

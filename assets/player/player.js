@@ -113,10 +113,20 @@
         if (playlist.description) {
             footer.appendChild(el("div", "sp-playlist-description", playlist.description));
         }
-        var credit = el("a", "sp-credit", "BUILT WITH DEADBEA7");
+        var credit = el("a", "sp-credit");
         credit.setAttribute("href", "https://github.com/csquared/DEADBEA7");
         credit.setAttribute("target", "_blank");
         credit.setAttribute("rel", "noopener");
+
+        var icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        icon.setAttribute("class", "sp-credit-icon");
+        icon.setAttribute("viewBox", "0 0 24 24");
+        icon.setAttribute("aria-hidden", "true");
+        var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", "M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1.01.07 1.54 1.04 1.54 1.04.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.64-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.02 10.02 0 0022 12c0-5.52-4.48-10-10-10z");
+        icon.appendChild(path);
+        credit.appendChild(icon);
+        credit.appendChild(el("span", null, "BUILT WITH DEADBEA7"));
         footer.appendChild(credit);
         root.appendChild(footer);
 
