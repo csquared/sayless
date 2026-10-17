@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Build the site's web-player data: transcode each master to a 44.1/48 kHz
 # AAC .m4a stream, run deadbea7 analysis (grid, key, three_band_preview
-# waveform), and write assets/player/playlist.json (Contract B) for the player.
+# waveform) on the lossless masters, and write assets/player/playlist.json
+# (Contract B) for the player.
 #
 # Usage: scripts/build-player.sh
 #   TRACKS      tracks json (default scripts/player-tracks.json)
@@ -74,9 +75,9 @@ for i in "${!slugs[@]}"; do
     echo "encoded $slug"
 done
 
-# Analyze every stream in one call (stdout is Contract A JSON Lines, in order).
+# Analyze the masters in one call (stdout is Contract A JSON Lines, in order).
 analyze_log=$(mktemp)
-if ! "$DEADBEA7" analyze -tasks grid,key,waveform -waveforms three_band_preview "${out_paths[@]}" > "$analyze_log"; then
+if ! "$DEADBEA7" analyze -tasks grid,key,waveform -waveforms three_band_preview "${sources[@]}" > "$analyze_log"; then
     echo "deadbea7 analyze failed" >&2
     exit 1
 fi
@@ -95,8 +96,8 @@ for i in "${!lines[@]}"; do
     if [ "$ok" != "true" ]; then
         echo "analyze failed for ${slugs[$i]} (file: $file): $(printf '%s' "$line" | jq -c '.errors // []' 2>/dev/null)" >&2
         fails=$((fails + 1))
-    elif [ "$file" != "${out_paths[$i]}" ]; then
-        echo "analyze out of order at ${slugs[$i]}: got $file, want ${out_paths[$i]}" >&2
+    elif [ "$file" != "${sources[$i]}" ]; then
+        echo "analyze out of order at ${slugs[$i]}: got $file, want ${sources[$i]}" >&2
         fails=$((fails + 1))
     fi
 done

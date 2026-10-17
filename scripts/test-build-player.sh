@@ -34,6 +34,7 @@ cat > "$tmp/bin/deadbea7" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 [ "$1" = "analyze" ] || { echo "unexpected deadbea7 invocation: $*" >&2; exit 1; }
+printf '%s\n' "$@" >> "${ARGS_LOG:-/dev/null}"
 shift
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -58,8 +59,11 @@ chmod +x "$tmp/bin/deadbea7"
 sleep 1
 
 # ---- first build ----------------------------------------------------------
-DEADBEA7="$tmp/bin/deadbea7" TRACKS="$tmp/tracks.json" OUT="$tmp/out/playlist.json" \
+ARGS_LOG="$tmp/args.log" DEADBEA7="$tmp/bin/deadbea7" TRACKS="$tmp/tracks.json" OUT="$tmp/out/playlist.json" \
     STREAM_DIR="$tmp/stream" bash "$build"
+
+grep -q "A track (v1).wav" "$tmp/args.log" || fail "deadbea7 was not called with the A master WAV path"
+grep -q "B.wav" "$tmp/args.log" || fail "deadbea7 was not called with the B master WAV path"
 
 [ "$(jq '.tracks | length' "$tmp/out/playlist.json")" = "2" ] || fail "expected 2 tracks in playlist"
 [ "$(jq -r '.tracks[0].n' "$tmp/out/playlist.json")" = "1" ] || fail "track 0 n != 1"
