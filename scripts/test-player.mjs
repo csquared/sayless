@@ -151,6 +151,18 @@ try {
     const rowCount = await page.locator(".sp-row").count();
     check("3 rows rendered", rowCount === 3);
 
+    const credit = page.locator("#player a.sp-credit");
+    check("exactly one DEADBEA7 credit link", await credit.count() === 1);
+    check("credit link href is the DEADBEA7 repo", await credit.getAttribute("href") === "https://github.com/csquared/DEADBEA7");
+    check("credit link opens in a new tab", await credit.getAttribute("target") === "_blank");
+    check("credit link text is BUILT WITH DEADBEA7", (await credit.textContent()).trim() === "BUILT WITH DEADBEA7");
+
+    const creditAnimation = await page.evaluate(() => {
+        const path = document.querySelector("#player a.sp-credit svg.sp-credit-icon path");
+        return path ? getComputedStyle(path).animationName : null;
+    });
+    check("credit icon path glitches", creditAnimation === "sp-glitch-fill");
+
     const titles = await page.locator(".sp-row-name").allTextContents();
     check("row titles match fixture", JSON.stringify(titles) === JSON.stringify([
         "1 \u00b7 SAYLESS \u2013 BOOGIE-2 (extended mix - v9)",
