@@ -68,5 +68,8 @@ When creating new HTML pages, maintain consistency with the existing design:
 ### The Emoji (former brand element)
 The shush-face image (`emoji/SAYLESS-TRANSPARENT.png`; copies at `assets/images/emoji.png` and `presskit/sayless-emoji.png`) is "the emoji". Never call it the logo. It was removed from the homepage header and social preview cards in Oct 2026; don't add it to new pages unless asked. It stays as the favicon (`favicon.ico`, 16 and 32 px). The current look is the SAYLESS text in Stencil Gothic with the circuit underline (see `assets/social/sayless-og.html`).
 
+### Free download gates (Hypeddit-style)
+`scripts/new-dl.sh <slug> "<TITLE>" <cover> <file>` writes a root `dl-<slug>.html`. The page asks visitors to follow @justsayless on Instagram and just-say-less on SoundCloud, then unlocks the download. Following is never verified: a step counts as done once it's been tapped. The links open the app when it's installed (universal links on iOS, `intent://` on Android outside in-app browsers). Progress is saved per track in localStorage. The shared code is in `assets/gate/` (`gate.js`, `gate.css`). Put audio files in `assets/downloads/` so they deploy, or pass a full URL (Dropbox, Drive) if the file shouldn't sit in this public repo.
+
 ### Font Implementation
 The official font is located at `fonts/StencilGothic.ttf` and should be used for all text elements to maintain brand consistency.

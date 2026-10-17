@@ -1,0 +1,159 @@
+/* Download gate: follow on IG + SoundCloud, then download. Used by dl-*.html. */
+@font-face {
+    font-family: "Stencil Gothic";
+    src: url("../fonts/StencilGothic.ttf") format("truetype");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: black;
+    color: white;
+    font-family: "Stencil Gothic", monospace;
+    min-height: 100vh;
+    padding: 48px 24px;
+}
+
+.gate-page {
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.gate-artist {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #666;
+    text-decoration: none;
+}
+
+.gate-title {
+    font-size: 2rem;
+    letter-spacing: 5px;
+    line-height: 1.15;
+    margin: 8px 0 24px;
+}
+
+.gate-cover {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 32px;
+    background: #111;
+}
+
+.gate-label {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #999;
+    margin-bottom: 16px;
+}
+
+.gate-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.gate-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid #333;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 3px;
+    transition:
+        border-color 0.2s,
+        color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.gate-step:hover {
+    border-color: white;
+}
+
+.gate-step svg {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    fill: currentColor;
+}
+
+.gate-step .gate-text {
+    flex: 1;
+}
+
+.gate-step .gate-check {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #555;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.gate-step.pending .gate-check {
+    animation: gate-blink 0.5s steps(2) infinite;
+}
+
+.gate-step.done {
+    color: #666;
+    border-color: #222;
+}
+
+.gate-step.done .gate-check {
+    border-color: white;
+    background: white;
+    color: black;
+}
+
+.gate-step.done .gate-check::after {
+    content: "\2713";
+}
+
+@keyframes gate-blink {
+    50% {
+        border-color: white;
+    }
+}
+
+.gate-download {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    text-align: center;
+    background: white;
+    color: black;
+    border: 1px solid white;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 5px;
+    cursor: pointer;
+}
+
+.gate-download.locked {
+    background: transparent;
+    color: #444;
+    border-color: #222;
+    cursor: not-allowed;
+}
+
+.gate-hint {
+    margin-top: 14px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #555;
+    text-align: center;
+    min-height: 1em;
+}
