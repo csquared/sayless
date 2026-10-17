@@ -35,6 +35,7 @@ The name says it all - show, don't tell.
 - `docs/` - Documentation assets
 - `etc/` - Miscellaneous assets
 - `releases/` - **Album-art workspace, not part of the site.** Cover-art HTML/PNG design files live here and are never deployed. Don't put site pages in it; each release gets a root-level page named `track-<name>.html` (e.g. `track-bad.html`).
+- `downloads/` - **Free-download audio for `dl-*.html` gate pages. Gitignored, but deployed**, after `scripts/check-downloads.sh` confirms every referenced file is present.
 - `content/` - **Dropzone for raw/originals. Gitignored.** Anything dropped here that needs to go live must be moved (or copied) into a tracked `assets/` subdirectory (e.g., `assets/photos/` for show imagery) before referencing it from HTML.
 
 ## Development Notes
@@ -43,7 +44,7 @@ The name says it all - show, don't tell.
 This is a static HTML site with no build process or package management. Changes are made directly to HTML files.
 
 ### Deploy
-`./go-live` pushes and runs `../hetzner/sites/sayless/deploy.sh` from the private `hetzner` repo, a sibling checkout. It rsyncs only root-level `*.html`, `favicon.ico`, and `assets/`, `emoji/`, `shows/`, `flyers/`, `fonts/`, `presskit/`. New pages should fit that setup (a root `.html` file or one of those folders). Production Caddy config also lives in the hetzner repo; the root `Caddyfile` is for local dev only.
+`./go-live` pushes and runs `../hetzner/sites/sayless/deploy.sh` from the private `hetzner` repo, a sibling checkout. It rsyncs only root-level `*.html`, `favicon.ico`, and `assets/`, `emoji/`, `shows/`, `flyers/`, `fonts/`, `presskit/`, `downloads/`. New pages should fit that setup (a root `.html` file or one of those folders). Production Caddy config also lives in the hetzner repo; the root `Caddyfile` is for local dev only.
 
 ### What belongs in this repo
 This repo is public. It holds only the static site and the art tooling (album art, flyers, social cards, QR). Server setup, IPs and hostnames go in `../hetzner`. Personal writing, interviews, plans and production notes go in `../sayless-private`.
@@ -69,7 +70,7 @@ When creating new HTML pages, maintain consistency with the existing design:
 The shush-face image (`emoji/SAYLESS-TRANSPARENT.png`; copies at `assets/images/emoji.png` and `presskit/sayless-emoji.png`) is "the emoji". Never call it the logo. It was removed from the homepage header and social preview cards in Oct 2026; don't add it to new pages unless asked. It stays as the favicon (`favicon.ico`, 16 and 32 px). The current look is the SAYLESS text in Stencil Gothic with the circuit underline (see `assets/social/sayless-og.html`).
 
 ### Free download gates (Hypeddit-style)
-`scripts/new-dl.sh <slug> "<TITLE>" <cover> <file>` writes a root `dl-<slug>.html`. The page asks visitors to follow @justsayless on Instagram and just-say-less on SoundCloud, then unlocks the download. Following is never verified: a step counts as done once it's been tapped. The links open the app when it's installed (universal links on iOS, `intent://` on Android outside in-app browsers). Progress is saved per track in localStorage. The shared code is in `assets/gate/` (`gate.js`, `gate.css`). Put audio files in `assets/downloads/` so they deploy, or pass a full URL (Dropbox, Drive) if the file shouldn't sit in this public repo.
+`scripts/new-dl.sh <slug> "<TITLE>" <cover> <file>` writes a root `dl-<slug>.html`. The page asks visitors to follow @justsayless on Instagram and just-say-less on SoundCloud, then unlocks the download. Following is never verified: a step counts as done once it's been tapped. The links open the app when it's installed (universal links on iOS, `intent://` on Android outside in-app browsers). Progress is saved per track in localStorage. The shared code is in `assets/gate/` (`gate.js`, `gate.css`). Audio goes in `downloads/`, which is gitignored (it's never in this public repo) but deployed. Since it only exists on the machine the file was dropped on, `scripts/check-downloads.sh` runs at the start of every deploy (`deploy.sh`, so `go-live` too) and stops it if any `dl-*.html` points at a file that isn't there; otherwise rsync `--delete` would take the live file off the server. A full URL (Dropbox, Drive) also works and is checked with a fetch.
 
 ### Font Implementation
 The official font is located at `fonts/StencilGothic.ttf` and should be used for all text elements to maintain brand consistency.

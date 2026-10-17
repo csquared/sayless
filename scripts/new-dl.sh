@@ -5,11 +5,12 @@
 #
 # Usage: scripts/new-dl.sh <slug> "<TITLE>" <cover> <file> [description]
 #   cover  path under the repo (e.g. assets/photos/x.jpg)
-#   file   path under the repo (e.g. assets/downloads/x.mp3) or a full URL
+#   file   downloads/<name> (gitignored; scripts/check-downloads.sh checks it
+#          exists before each deploy) or a full URL
 #
 # Example:
 #   scripts/new-dl.sh monster-mash "MONSTER MASH (SAYLESS EDIT)" \
-#       assets/photos/monster-mash-vinyl.jpg assets/downloads/monster-mash.mp3
+#       assets/photos/monster-mash-vinyl.jpg downloads/monster-mash.mp3
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -27,8 +28,8 @@ case $slug in *[!a-z0-9-]*) echo "slug must be lowercase letters, digits, dashes
 [ -f "$cover" ] || { echo "cover not found: $cover" >&2; exit 1; }
 case $file in
     http://*|https://*) ;;
-    *) [ -f "$file" ] || echo "warning: $file doesn't exist yet; add it before deploying" >&2
-       case $file in assets/*) ;; *) echo "warning: only assets/ (and a few other dirs) deploy; put the file under assets/" >&2;; esac ;;
+    downloads/*) [ -s "$file" ] || echo "warning: $file isn't here yet; the deploy stops until it is" >&2 ;;
+    *) echo "file must be downloads/<name> or a full URL" >&2; exit 1 ;;
 esac
 
 ext=${file##*.}; ext=${ext%%\?*}

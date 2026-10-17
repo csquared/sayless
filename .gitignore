@@ -15,3 +15,6 @@ content/
 
 output/ 
 .recall
+
+# Free-download audio (dl-*.html); deployed, checked by scripts/check-downloads.sh
+downloads/
