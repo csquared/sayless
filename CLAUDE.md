@@ -36,8 +36,11 @@ The name says it all - show, don't tell.
   - SAYLESS.png
 - `fonts/` - Font archive: StencilGothic.ttf plus other stencil/grunge fonts tried for art
 - `brand/` - Branding materials and merchandise designs
-- `docs/` - Documentation assets
-- `etc/` - Miscellaneous assets
+- `media/` - Social art, not deployed: Instagram story highlight icons, the SoundCloud banner
+- `qr.sh` + `qr/` - Branded QR code generator (`./qr.sh <url> [output_name]`)
+- `blackify.sh` - Converts colored images to black versions
+- `docs/` - Just `docs/assets/logo.png`
+- `etc/` - Miscellaneous images (font sample, reference art)
 - `releases/` - **Album-art workspace, not part of the site.** Cover-art HTML/PNG design files live here and are never deployed. Don't put site pages in it; each release gets a root-level page named `track-<name>.html` (e.g. `track-bad.html`).
 - `downloads/` - **Free-download audio for `dl-*.html` gate pages. Gitignored, but deployed**, after `scripts/check-downloads.sh` confirms every referenced file is present.
 - `content/` - **Dropzone for raw/originals. Gitignored.** Anything dropped here that needs to go live must be moved (or copied) into a tracked `assets/` subdirectory (e.g., `assets/photos/` for show imagery) before referencing it from HTML.
