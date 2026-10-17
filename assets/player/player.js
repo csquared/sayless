@@ -113,8 +113,8 @@
         if (playlist.description) {
             footer.appendChild(el("div", "sp-playlist-description", playlist.description));
         }
-        var credit = el("a", "sp-credit", "BUILT WITH DEADCA7");
-        credit.setAttribute("href", "https://deadca7.app/");
+        var credit = el("a", "sp-credit", "BUILT WITH DEADBEA7");
+        credit.setAttribute("href", "https://github.com/csquared/DEADBEA7");
         credit.setAttribute("target", "_blank");
         credit.setAttribute("rel", "noopener");
         footer.appendChild(credit);
