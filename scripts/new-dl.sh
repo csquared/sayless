@@ -64,7 +64,7 @@ cat > "$out" <<EOF
             <div id="gate"></div>
             <noscript>
                 <p class="gate-hint">
-                    <a href="https://www.instagram.com/justsayless/" style="color:#999">INSTAGRAM</a> &middot;
+                    <a href="https://www.instagram.com/just.sayless/" style="color:#999">INSTAGRAM</a> &middot;
                     <a href="https://soundcloud.com/just-say-less" style="color:#999">SOUNDCLOUD</a>
                 </p>
             </noscript>

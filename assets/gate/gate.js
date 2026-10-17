@@ -19,8 +19,8 @@
     var DEFAULT_STEPS = [
         {
             id: "instagram",
-            label: "FOLLOW @JUSTSAYLESS",
-            url: "https://www.instagram.com/justsayless/",
+            label: "FOLLOW @JUST.SAYLESS",
+            url: "https://www.instagram.com/just.sayless/",
             android: "com.instagram.android",
         },
         {

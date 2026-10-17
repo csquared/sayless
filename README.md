@@ -7,7 +7,7 @@ From the terminal to the turntables.
 ## Find Me
 
 - **Web**: [justsayless.xyz](https://justsayless.xyz)
-- **Instagram**: [@justsayless](https://instagram.com/justsayless)
+- **Instagram**: [@just.sayless](https://instagram.com/just.sayless)
 - **SoundCloud**: [just-say-less](https://soundcloud.com/just-say-less)
 
 ## What's Here
