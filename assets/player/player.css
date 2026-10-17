@@ -204,6 +204,21 @@
     color: var(--sp-dim);
 }
 
+.sp-credit {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: "Stencil Gothic", monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--sp-dim);
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.sp-credit:hover {
+    color: #fff;
+}
+
 @media (max-width: 480px) {
     .sp-row-right {
         gap: 8px;
