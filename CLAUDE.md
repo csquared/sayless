@@ -44,6 +44,9 @@ The name says it all - show, don't tell.
 - `releases/` - **Album-art workspace, not part of the site.** Cover-art HTML/PNG design files live here and are never deployed. Don't put site pages in it; each release gets a root-level page named `track-<name>.html` (e.g. `track-bad.html`).
 - `downloads/` - **Free-download audio for `dl-*.html` gate pages. Gitignored, but deployed**, after `scripts/check-downloads.sh` confirms every referenced file is present.
 - `content/` - **Dropzone for raw/originals. Gitignored.** Anything dropped here that needs to go live must be moved (or copied) into a tracked `assets/` subdirectory (e.g., `assets/photos/` for show imagery) before referencing it from HTML.
+- `assets/player/` - the press-kit web player (`player.js`, `player.css`) and its data `playlist.json` (committed)
+- `downloads/stream/` - the player's AAC streams (`<slug>.m4a`), gitignored but deployed like the rest of `downloads/`
+- `content/masters/` - lossless masters the player's streams are made from (gitignored, never deployed)
 
 ## Development Notes
 
@@ -75,6 +78,9 @@ The shush-face image (`emoji/SAYLESS-TRANSPARENT.png`; copies at `assets/images/
 
 ### Free download gates (Hypeddit-style)
 `scripts/new-dl.sh <slug> "<TITLE>" <cover> <file>` writes a root `dl-<slug>.html`. The page asks visitors to follow @just.sayless on Instagram and just-say-less on SoundCloud, then unlocks the download. Following is never verified: a step counts as done once it's been tapped. The links open the app when it's installed (universal links on iOS, `intent://` on Android outside in-app browsers). Progress is saved per track in localStorage. The shared code is in `assets/gate/` (`gate.js`, `gate.css`). Audio goes in `downloads/`, which is gitignored (it's never in this public repo) but deployed. Since it only exists on the machine the file was dropped on, `scripts/check-downloads.sh` runs at the start of every deploy (`deploy.sh`, so `go-live` too) and stops it if any `dl-*.html` points at a file that isn't there; otherwise rsync `--delete` would take the live file off the server. A full URL (Dropbox, Drive) also works and is checked with a fetch.
+
+### Web player
+The EPK (`presskit.html`) plays the "ADE 2026 - UN(re)LEASED top 10" set with our own player instead of the SoundCloud embed (the private set is only visible logged in), and links to the set. The tracklist is `scripts/player-tracks.json` (slug, title, source master in `content/masters/`). To rebuild: run `make install` once in `../DEADBEA7` (installs the `deadbea7` CLI over the DEADBEA7 analysis engine), then `scripts/build-player.sh`: it encodes each master to AAC-LC 160 kbps `.m4a` (ffmpeg's built-in `aac`, `+faststart`, 44.1 or 48 kHz) in `downloads/stream/`, runs `deadbea7 analyze` on the streams for the three-band waveform, BPM and key, and writes `assets/player/playlist.json`. Commit `playlist.json`; the streams deploy from `downloads/` and `scripts/check-downloads.sh` stops a deploy when any stream the playlist names is missing. `scripts/fixtures/player-fixture.json` is a test playlist: open `presskit.html?playlist=scripts/fixtures/player-fixture.json` under `./dev.sh`.
 
 ### Font Implementation
 The official font is Stencil Gothic. Root pages load it from `assets/fonts/StencilGothic.ttf` (pages in `shows/` use `../../assets/fonts/StencilGothic.ttf`). Use it for headings and UI text; the EPK sets body text in Helvetica for readability.
