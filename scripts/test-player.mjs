@@ -129,6 +129,21 @@ try {
     check("canvas has non-zero size", canvas.width > 0 && canvas.height > 0);
     check("canvas has non-blank pixels", canvas.nonBlank > 0);
 
+    const bandColors = await page.evaluate(() => {
+        const c = document.querySelector("#player .sp-wave");
+        const ctx = c.getContext("2d");
+        const data = ctx.getImageData(0, 0, c.width, c.height).data;
+        const seen = new Set();
+        for (let i = 0; i < data.length; i += 4) {
+            if (data[i + 3] === 0) continue;
+            const r = data[i], g = data[i + 1], b = data[i + 2];
+            if (r === 0 && g === 0 && b === 0) continue;
+            seen.add(`${r},${g},${b}`);
+        }
+        return seen.size;
+    });
+    check("waveform shows at least 3 distinct non-black bands", bandColors >= 3);
+
     await page.locator(".sp-row").nth(1).click();
     await page.waitForFunction(() => {
         const a = document.querySelector("#player audio");
@@ -191,6 +206,46 @@ try {
     if (errors.length) console.log("console errors:", errors);
 
     await context.close();
+
+    const freshContext = await browser.newContext({ viewport: { width: 1000, height: 900 } });
+    const freshPage = await freshContext.newPage();
+    await freshPage.goto(`${base}/presskit.html?playlist=scripts/fixtures/player-fixture.json`, {
+        waitUntil: "domcontentloaded"
+    });
+    await freshPage.waitForSelector(".sp-wave");
+    const freshSeek = await freshPage.evaluate(async () => {
+        const c = document.querySelector("#player .sp-wave");
+        const rect = c.getBoundingClientRect();
+        c.dispatchEvent(new PointerEvent("pointerdown", {
+            bubbles: true,
+            clientX: rect.left + rect.width * 0.5,
+            clientY: rect.top + rect.height / 2,
+            pointerId: 7,
+            isPrimary: true
+        }));
+        c.dispatchEvent(new PointerEvent("pointerup", {
+            bubbles: true,
+            clientX: rect.left + rect.width * 0.5,
+            clientY: rect.top + rect.height / 2,
+            pointerId: 7,
+            isPrimary: true
+        }));
+        const deadline = Date.now() + 5000;
+        while (Date.now() < deadline) {
+            const a = document.querySelector("#player audio");
+            if (a.readyState > 0 && a.duration > 0) {
+                return { currentTime: a.currentTime, duration: a.duration, paused: a.paused };
+            }
+            await new Promise((r) => setTimeout(r, 100));
+        }
+        const a = document.querySelector("#player audio");
+        return { currentTime: a.currentTime, duration: a.duration, paused: a.paused };
+    });
+    check("seeking an unloaded track loads it and seeks near half duration",
+        freshSeek.duration > 0 && Math.abs(freshSeek.currentTime - freshSeek.duration / 2) < 3);
+    check("seeking an unloaded track starts playback", freshSeek.paused === false);
+    await freshPage.evaluate(() => document.querySelector("#player audio").pause());
+    await freshContext.close();
 
     const narrowContext = await browser.newContext({ viewport: { width: 360, height: 800 } });
     const narrowPage = await narrowContext.newPage();

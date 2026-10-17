@@ -299,9 +299,9 @@
                 var w = bar * dpr;
                 var played = (i + 1) / barCount <= progress;
 
-                drawBand(ctx, x, w, midY, high / max * maxAmp, played ? COLORS.playedHigh : COLORS.unplayedHigh);
+                drawBand(ctx, x, w, midY, (high + mid + low) / max * maxAmp, played ? COLORS.playedHigh : COLORS.unplayedHigh);
                 drawBand(ctx, x, w, midY, (high + mid) / max * maxAmp, played ? COLORS.playedMid : COLORS.unplayedMid);
-                drawBand(ctx, x, w, midY, (high + mid + low) / max * maxAmp, played ? COLORS.playedLow : COLORS.unplayedLow);
+                drawBand(ctx, x, w, midY, low / max * maxAmp, played ? COLORS.playedLow : COLORS.unplayedLow);
             }
         }
 
@@ -320,19 +320,22 @@
             var src = audio.getAttribute("src");
             var selectedUrl = new URL(track.audio, location.href).href;
             var seekTo = ratio * (track.duration_ms / 1000);
+            var unloaded = !src || src !== selectedUrl;
             function doSeek() {
-                if (audio.readyState === 0) {
+                if (audio.readyState > 0) {
+                    try { audio.currentTime = seekTo; } catch (err) {}
+                } else {
                     audio.addEventListener("loadedmetadata", function once() {
                         audio.removeEventListener("loadedmetadata", once);
-                        audio.currentTime = seekTo;
+                        try { audio.currentTime = seekTo; } catch (err) {}
                     });
-                } else {
-                    try { audio.currentTime = seekTo; } catch (err) {}
                 }
             }
-            if (!src || src !== selectedUrl) {
+            if (unloaded) {
                 audio.src = selectedUrl;
                 doSeek();
+                var p = audio.play();
+                if (p && p.catch) p.catch(function () {});
             } else {
                 doSeek();
             }
@@ -341,7 +344,7 @@
         var seeking = false;
         canvas.addEventListener("pointerdown", function (e) {
             seeking = true;
-            canvas.setPointerCapture(e.pointerId);
+            try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
             seekFromPointer(e);
         });
         canvas.addEventListener("pointermove", function (e) {
