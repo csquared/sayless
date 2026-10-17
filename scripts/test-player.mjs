@@ -86,6 +86,46 @@ function check(name, cond) {
     }
 }
 
+async function checkHeaderLayout(page, width) {
+    const data = await page.evaluate(() => {
+        const box = (sel) => {
+            const el = document.querySelector(sel);
+            const r = el.getBoundingClientRect();
+            return { left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+        };
+        const textEl = document.querySelector(".sp-cover-text");
+        const textBox = textEl.getBoundingClientRect();
+        return {
+            cover: box(".sp-cover"),
+            play: box(".sp-play"),
+            controls: box(".sp-controls"),
+            canvas: box(".sp-wave"),
+            list: box(".sp-list"),
+            text: { left: textBox.left, right: textBox.right, top: textBox.top, bottom: textBox.bottom },
+            textScrollWidth: textEl.scrollWidth,
+            textClientWidth: textEl.clientWidth
+        };
+    });
+
+    const label = `at ${width}px`;
+    check(`${label}: cover sits left of the play button`, data.cover.right < data.play.left);
+    check(`${label}: cover and controls share the top row`,
+        Math.abs(data.cover.top - data.controls.top) <= 4);
+    check(`${label}: cover text fits inside its box`,
+        data.textScrollWidth <= data.textClientWidth);
+    check(`${label}: cover text sits inside the cover`,
+        data.text.left >= data.cover.left && data.text.right <= data.cover.right &&
+        data.text.top >= data.cover.top && data.text.bottom <= data.cover.bottom);
+
+    if (width >= 1000) {
+        check(`${label}: cover spans the controls and waveform rows`,
+            data.cover.bottom >= data.play.bottom);
+    } else {
+        check(`${label}: waveform spans full width next to the list`,
+            Math.abs(data.canvas.left - data.list.left) <= 2);
+    }
+}
+
 const { chromium } = await loadPlaywright();
 const srv = server();
 const port = await listen(srv);
@@ -105,6 +145,8 @@ try {
         waitUntil: "domcontentloaded"
     });
     await page.waitForSelector(".sp-row");
+
+    await checkHeaderLayout(page, 1000);
 
     const rowCount = await page.locator(".sp-row").count();
     check("3 rows rendered", rowCount === 3);
@@ -253,6 +295,7 @@ try {
         waitUntil: "domcontentloaded"
     });
     await narrowPage.waitForSelector(".sp-row");
+    await checkHeaderLayout(narrowPage, 360);
     const scrollWidth = await narrowPage.evaluate(() => document.documentElement.scrollWidth);
     check("at 360px no horizontal overflow", scrollWidth <= 360);
     if (scrollWidth > 360) console.log("scrollWidth:", scrollWidth);

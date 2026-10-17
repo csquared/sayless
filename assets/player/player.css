@@ -15,15 +15,18 @@
 }
 
 .sp-header {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    column-gap: 20px;
+    row-gap: 16px;
 }
 
 .sp-cover {
-    width: 64px;
-    height: 64px;
-    flex: 0 0 64px;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 120px;
+    aspect-ratio: 1;
+    align-self: start;
     background: #111;
     border: 1px solid var(--sp-line);
     display: flex;
@@ -33,7 +36,7 @@
 
 .sp-cover-text {
     font-family: "Stencil Gothic", monospace;
-    font-size: 13px;
+    font-size: 20px;
     letter-spacing: 1px;
     text-align: center;
     line-height: 1.1;
@@ -42,6 +45,8 @@
 }
 
 .sp-controls {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
     align-items: center;
     gap: 14px;
@@ -95,6 +100,8 @@
 }
 
 .sp-stage {
+    grid-column: 2;
+    grid-row: 2;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -121,6 +128,8 @@
 }
 
 .sp-list {
+    grid-column: 1 / -1;
+    grid-row: 3;
     border-top: 1px solid var(--sp-line);
 }
 
@@ -218,13 +227,34 @@
     }
 
     .sp-cover {
-        width: 56px;
-        height: 56px;
-        flex-basis: 56px;
+        grid-column: 1;
+        grid-row: 1;
+        width: 72px;
     }
 
     .sp-cover-text {
-        font-size: 11px;
+        font-size: 12px;
+    }
+
+    .sp-stage {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        position: relative;
+        padding-top: 16px;
+    }
+
+    .sp-elapsed,
+    .sp-total {
+        position: absolute;
+        top: 0;
+    }
+
+    .sp-elapsed {
+        left: 0;
+    }
+
+    .sp-total {
+        right: 0;
     }
 
     .sp-wave {
