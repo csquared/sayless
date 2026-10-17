@@ -14,23 +14,27 @@ The name says it all - show, don't tell.
 - **Former brand elements:** the emoji (🤫💋 shush-face with heart)
 - **Tagline:** "Show up, read the room, let the music speak. Oh, and don't forget to have fun 💃🕺"
 
-## Web properites:
+## Web properties
 
-  - soundcloud.com/just-say-less/
-  - instagram.com/just.sayless
-  - justsayless.xyz
+- soundcloud.com/just-say-less
+- instagram.com/just.sayless
+- justsayless.xyz
 
 
 ## Project Structure
 
-- `index.html` - Main landing page (2MB+ file)
+- `index.html` - Homepage: releases, upcoming and past shows, about
+- `presskit.html` - The EPK (`press.html` redirects to it)
+- `track-<name>.html` - One page per release (e.g. `track-bad.html`)
+- `dl-<slug>.html` - Free-download gate pages (see below)
+- `shows/<date>/` - One page per show; `flyers/<date>/` - show flyers
+- `assets/` - Deployed images, video, fonts (`assets/fonts/StencilGothic.ttf`), JS and the download gate (`assets/gate/`)
+- `scripts/` - `new-dl.sh`, `check-downloads.sh`, video capture for social loops
 - `emoji/` - The **emoji** (shush-face with heart) PNGs. Call it "the emoji", never "the logo".
   - SAYLESS-TRANSPARENT.png
   - SAYLESS-BLACK-BG.png
   - SAYLESS.png
-- `fonts/` - Typography assets
-  - StencilGothic.ttf (official font)
-  - Various other stencil/grunge font archives
+- `fonts/` - Font archive: StencilGothic.ttf plus other stencil/grunge fonts tried for art
 - `brand/` - Branding materials and merchandise designs
 - `docs/` - Documentation assets
 - `etc/` - Miscellaneous assets
@@ -55,9 +59,6 @@ This repo is public. It holds only the static site and the art tooling (album ar
 - Minimalist approach ("making marks, not advertisements")
 - Independent spirit and DIY ethos
 
-### Working with Large Files
-The index.html file exceeds 256KB. Use grep or specific line ranges when reading/editing this file.
-
 ## Common Tasks
 
 ### Adding New Pages
@@ -73,4 +74,4 @@ The shush-face image (`emoji/SAYLESS-TRANSPARENT.png`; copies at `assets/images/
 `scripts/new-dl.sh <slug> "<TITLE>" <cover> <file>` writes a root `dl-<slug>.html`. The page asks visitors to follow @just.sayless on Instagram and just-say-less on SoundCloud, then unlocks the download. Following is never verified: a step counts as done once it's been tapped. The links open the app when it's installed (universal links on iOS, `intent://` on Android outside in-app browsers). Progress is saved per track in localStorage. The shared code is in `assets/gate/` (`gate.js`, `gate.css`). Audio goes in `downloads/`, which is gitignored (it's never in this public repo) but deployed. Since it only exists on the machine the file was dropped on, `scripts/check-downloads.sh` runs at the start of every deploy (`deploy.sh`, so `go-live` too) and stops it if any `dl-*.html` points at a file that isn't there; otherwise rsync `--delete` would take the live file off the server. A full URL (Dropbox, Drive) also works and is checked with a fetch.
 
 ### Font Implementation
-The official font is located at `fonts/StencilGothic.ttf` and should be used for all text elements to maintain brand consistency.
+The official font is Stencil Gothic. Root pages load it from `assets/fonts/StencilGothic.ttf` (pages in `shows/` use `../../assets/fonts/StencilGothic.ttf`). Use it for headings and UI text; the EPK sets body text in Helvetica for readability.

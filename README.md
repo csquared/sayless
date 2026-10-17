@@ -12,11 +12,11 @@ From the terminal to the turntables.
 
 ## What's Here
 
-The justsayless.xyz site, its signup API, and the art tooling for album covers, flyers and social cards.
+The justsayless.xyz site (homepage, EPK, show and release pages, free-download pages) and the art tooling for album covers, flyers, social cards and QR codes.
 
 ## Tech
 
-Static HTML. 
+Static HTML, no build step. `./dev.sh` serves it locally; `./go-live` deploys.
 
 ![SAYLESS](emoji/SAYLESS-TRANSPARENT.png)
 
