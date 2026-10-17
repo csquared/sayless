@@ -86,6 +86,44 @@ function check(name, cond) {
     }
 }
 
+const fixture = JSON.parse(await readFile(join(root, "scripts/fixtures/player-fixture.json"), "utf8"));
+
+async function checkTopLayout(page, width) {
+    const data = await page.evaluate(() => {
+        const rect = (sel) => {
+            const el = document.querySelector(sel);
+            if (!el) return null;
+            const r = el.getBoundingClientRect();
+            return { top: r.top, bottom: r.bottom };
+        };
+        const title = document.querySelector(".sp-top .sp-playlist-title");
+        const footer = document.querySelector(".sp-footer");
+        const credit = document.querySelector(".sp-footer a.sp-credit");
+        const rows = document.querySelectorAll(".sp-row");
+        const lastRow = rows.length ? rows[rows.length - 1] : null;
+        return {
+            titleInTop: !!title,
+            titleText: title ? title.textContent.trim() : "",
+            titleTop: title ? title.getBoundingClientRect().top : null,
+            titleBottom: title ? title.getBoundingClientRect().bottom : null,
+            headerTop: rect(".sp-header") && rect(".sp-header").top,
+            footerHasCredit: !!credit,
+            footerHasTitle: !!footer.querySelector(".sp-playlist-title"),
+            creditTop: credit ? credit.getBoundingClientRect().top : null,
+            lastRowBottom: lastRow ? lastRow.getBoundingClientRect().bottom : null
+        };
+    });
+
+    const label = `at ${width}px`;
+    check(`${label}: playlist title is inside .sp-top`, data.titleInTop);
+    check(`${label}: playlist title matches the fixture title`, data.titleText === fixture.title);
+    check(`${label}: playlist title sits above the header`,
+        data.titleTop !== null && data.headerTop !== null && data.titleBottom <= data.headerTop);
+    check(`${label}: footer keeps only the credit link`, data.footerHasCredit && !data.footerHasTitle);
+    check(`${label}: credit sits below the last track row`,
+        data.creditTop !== null && data.lastRowBottom !== null && data.creditTop >= data.lastRowBottom);
+}
+
 async function checkHeaderLayout(page, width) {
     const data = await page.evaluate(() => {
         const box = (sel) => {
@@ -147,6 +185,7 @@ try {
     await page.waitForSelector(".sp-row");
 
     await checkHeaderLayout(page, 1000);
+    await checkTopLayout(page, 1000);
 
     const rowCount = await page.locator(".sp-row").count();
     check("3 rows rendered", rowCount === 3);
@@ -308,6 +347,7 @@ try {
     });
     await narrowPage.waitForSelector(".sp-row");
     await checkHeaderLayout(narrowPage, 360);
+    await checkTopLayout(narrowPage, 360);
     const scrollWidth = await narrowPage.evaluate(() => document.documentElement.scrollWidth);
     check("at 360px no horizontal overflow", scrollWidth <= 360);
     if (scrollWidth > 360) console.log("scrollWidth:", scrollWidth);

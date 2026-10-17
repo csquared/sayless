@@ -71,6 +71,13 @@
         audio.className = "sp-audio";
         root.appendChild(audio);
 
+        var top = el("div", "sp-top");
+        top.appendChild(el("div", "sp-playlist-title", playlist.title || ""));
+        if (playlist.description) {
+            top.appendChild(el("div", "sp-playlist-description", playlist.description));
+        }
+        root.appendChild(top);
+
         var header = el("div", "sp-header");
         header.appendChild(makeCover());
 
@@ -109,10 +116,6 @@
         root.appendChild(header);
 
         var footer = el("div", "sp-footer");
-        footer.appendChild(el("div", "sp-playlist-title", playlist.title || ""));
-        if (playlist.description) {
-            footer.appendChild(el("div", "sp-playlist-description", playlist.description));
-        }
         var credit = el("a", "sp-credit");
         credit.setAttribute("href", "https://github.com/csquared/DEADBEA7");
         credit.setAttribute("target", "_blank");

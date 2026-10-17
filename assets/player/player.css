@@ -193,6 +193,10 @@
     color: var(--sp-dim);
 }
 
+.sp-top {
+    margin-bottom: 20px;
+}
+
 .sp-footer {
     margin-top: 16px;
     border-top: 1px solid var(--sp-line);
@@ -201,9 +205,10 @@
 
 .sp-playlist-title {
     font-family: "Stencil Gothic", monospace;
-    font-size: 13px;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 6px;
 }
 
 .sp-playlist-description {
@@ -282,6 +287,10 @@
     .sp-header {
         grid-template-columns: 72px minmax(0, 1fr);
         column-gap: 14px;
+    }
+
+    .sp-playlist-title {
+        font-size: 15px;
     }
 
     .sp-row-right {
