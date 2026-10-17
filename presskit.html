@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="SAYLESS - Electronic Press Kit" />
-        <meta property="og:title" content="SAYLESS - Press Kit" />
+        <meta property="og:title" content="SAYLESS - EPK" />
         <meta
             property="og:description"
             content="Electronic press kit for SAYLESS. Indie dance. Austin, TX."
@@ -14,7 +14,7 @@
             content="https://justsayless.xyz/assets/social/sayless-og.png"
         />
         <meta property="og:url" content="https://justsayless.xyz/presskit.html" />
-        <title>SAYLESS - Press Kit</title>
+        <title>SAYLESS - EPK</title>
         <style>
             @font-face {
                 font-family: "Stencil Gothic";
@@ -30,7 +30,8 @@
             body {
                 background-color: black;
                 color: white;
-                font-family: "Stencil Gothic", monospace;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                text-transform: uppercase;
                 padding: 60px 24px;
                 min-height: 100vh;
             }
@@ -115,17 +116,27 @@
                 border-color: white;
             }
 
+            h1,
+            h2,
+            .epk-header .tagline {
+                font-family: "Stencil Gothic", monospace;
+            }
+
+            .bio {
+                font-family: "Stencil Gothic", monospace;
+                text-transform: none;
+            }
+
             .sc-set-link {
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
                 margin-left: 8px;
+                white-space: nowrap;
             }
 
             .sc-set-link svg {
                 width: 16px;
                 height: 16px;
-                vertical-align: middle;
+                vertical-align: -2px;
+                margin-right: 4px;
             }
 
             .download-link {
@@ -216,6 +227,21 @@
             <div class="epk-header">
                 <h1>SAYLESS</h1>
                 <div class="tagline">ELECTRONIC PRESS KIT</div>
+            </div>
+
+            <div class="epk-section">
+                <h2>MUSIC</h2>
+                <ul>
+                    <li>
+                        <a
+                            href="https://soundcloud.com/just-say-less"
+                            target="_blank"
+                            >SOUNDCLOUD</a
+                        >
+                    </li>
+                    <!-- Add streaming links as they become available -->
+                </ul>
+                <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2315351262%3Fsecret_token%3Ds-xKcsBj8rc2p&color=%23d6a15a&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/just-say-less" title="SAYLESS" target="_blank" style="color: #cccccc; text-decoration: none; border-bottom: none;">SAYLESS</a> · <a href="https://soundcloud.com/just-say-less/sets/ade-2026-un-re-leased-10/s-xKcsBj8rc2p" title="ADE 2026 - UN(re)LEASED top 10" target="_blank" style="color: #cccccc; text-decoration: none; border-bottom: none;">ADE 2026 - UN(re)LEASED top 10</a></div>
             </div>
 
             <div class="epk-section">
@@ -316,21 +342,7 @@
 
             <div class="epk-section">
                 <h2>BIO</h2>
-                <p>Show up. Read the room. Let the music speak.</p>
-            </div>
-
-            <div class="epk-section">
-                <h2>MUSIC</h2>
-                <ul>
-                    <li>
-                        <a
-                            href="https://soundcloud.com/just-say-less"
-                            target="_blank"
-                            >SOUNDCLOUD</a
-                        >
-                    </li>
-                    <!-- Add streaming links as they become available -->
-                </ul>
+                <p class="bio">Show up. Read the room. Let the music speak.</p>
             </div>
 
             <div class="epk-section">
