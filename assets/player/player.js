@@ -300,7 +300,7 @@
                 var played = (i + 1) / barCount <= progress;
 
                 drawBand(ctx, x, w, midY, (high + mid + low) / max * maxAmp, played ? COLORS.playedHigh : COLORS.unplayedHigh);
-                drawBand(ctx, x, w, midY, (high + mid) / max * maxAmp, played ? COLORS.playedMid : COLORS.unplayedMid);
+                drawBand(ctx, x, w, midY, (low + mid) / max * maxAmp, played ? COLORS.playedMid : COLORS.unplayedMid);
                 drawBand(ctx, x, w, midY, low / max * maxAmp, played ? COLORS.playedLow : COLORS.unplayedLow);
             }
         }
