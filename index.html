@@ -175,7 +175,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: 16px;
-                max-width: 500px;
+                max-width: 400px;
                 margin: 0 auto;
             }
 
@@ -224,6 +224,13 @@
 
             .past-header {
                 margin-top: 60px;
+            }
+
+            .show-card .show-lineup {
+                font-size: 12px;
+                letter-spacing: 2px;
+                color: #999;
+                margin-top: 6px;
             }
 
             /* ---- PHOTOS ---- */
@@ -728,7 +735,23 @@
 
         <!-- Shows -->
         <section id="shows" class="section">
-            <h2 class="section-header">PAST SHOWS</h2>
+            <h2 class="section-header">UPCOMING</h2>
+            <div class="shows-grid upcoming">
+                <div class="show-card">
+                    <img
+                        src="assets/photos/monster-mash-vinyl.jpg"
+                        alt="Monster Mash @ ReyRey Lounge"
+                        loading="lazy"
+                    />
+                    <div class="show-info">
+                        <div class="show-date">OCT 31, 2026 &mdash; 9PM&ndash;2AM</div>
+                        <div class="show-venue">MONSTER MASH @ REYREY LOUNGE</div>
+                        <div class="show-lineup">KODY SUN &middot; SAYLESS &middot; CORTADO</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-header past-header">PAST SHOWS</h2>
             <div id="past-shows" class="shows-grid">
                 <a href="shows/2026-09-26/" class="show-card">
                     <img
