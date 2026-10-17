@@ -214,6 +214,11 @@
 }
 
 @media (max-width: 480px) {
+    .sp-header {
+        grid-template-columns: 72px minmax(0, 1fr);
+        column-gap: 14px;
+    }
+
     .sp-row-right {
         gap: 8px;
     }
