@@ -215,7 +215,7 @@
             if (i < 0 || i >= tracks.length) return;
             var track = tracks[i];
             select(i, false);
-            audio.src = new URL(track.audio, location.href).href;
+            audio.src = new URL(track.audio, location.origin + "/").href;
             audio.play().then(function () {
                 setPlayIcon(true);
             }).catch(function () {
@@ -227,7 +227,7 @@
             if (state.selectedIndex < 0) return;
             var src = audio.getAttribute("src");
             var selected = tracks[state.selectedIndex];
-            var selectedUrl = selected ? new URL(selected.audio, location.href).href : "";
+            var selectedUrl = selected ? new URL(selected.audio, location.origin + "/").href : "";
             if (!src || src !== selectedUrl) {
                 playTrack(state.selectedIndex);
                 return;
@@ -439,7 +439,7 @@
         var root = document.getElementById("player");
         if (!root) return;
         var params = new URLSearchParams(location.search);
-        var url = params.get("playlist") || "assets/player/playlist.json";
+        var url = params.get("playlist") || "/assets/player/playlist.json";
         fetch(url)
             .then(function (res) {
                 if (!res.ok) throw new Error("playlist fetch failed");
