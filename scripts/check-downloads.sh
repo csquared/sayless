@@ -29,7 +29,7 @@ for page in dl-*.html; do
             if [ -s "$file" ]; then
                 echo "ok       $page -> $file ($(du -h "$file" | cut -f1 | tr -d ' '))"
             else
-                echo "MISSING  $page -> $file (drop it in downloads/ on this machine)" >&2; fail=1
+                echo "MISSING  $page -> $file (drop it in downloads/ on this machine, or run ../hetzner/sites/sayless/sync-media.sh from the drop machine)" >&2; fail=1
             fi ;;
         *)
             echo "BAD PATH $page -> $file (must be under downloads/ or a full URL)" >&2; fail=1 ;;
@@ -62,7 +62,7 @@ if [ -e "$playlist" ]; then
                             if [ -s "$audio" ]; then
                                 echo "ok       playlist -> $audio ($(du -h "$audio" | cut -f1 | tr -d ' '))"
                             else
-                                echo "MISSING  playlist -> $audio (run scripts/build-player.sh on this machine)" >&2; fail=1
+                                echo "MISSING  playlist -> $audio (run scripts/build-player.sh on this machine, or ../hetzner/sites/sayless/sync-media.sh from the drop machine)" >&2; fail=1
                             fi ;;
                     esac ;;
                 *)
