@@ -40,10 +40,18 @@ done
 
 playlist=${PLAYLIST:-assets/player/playlist.json}
 if [ -e "$playlist" ]; then
-    if ! command -v jq >/dev/null 2>&1; then
-        echo "ERROR    playlist -> $playlist: jq is required to check player streams" >&2
-        fail=1
+    have_list=0
+    if command -v jq >/dev/null 2>&1; then
+        list_streams() { jq -r '.tracks[].audio // empty' "$1"; }
+        have_list=1
+    elif command -v python3 >/dev/null 2>&1; then
+        list_streams() { python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("\n".join(t["audio"] for t in d.get("tracks", []) if t.get("audio")))' "$1"; }
+        have_list=1
     else
+        echo "ERROR    playlist -> $playlist: jq or python3 is required to check player streams" >&2
+        fail=1
+    fi
+    if [ "$have_list" -eq 1 ]; then
         while IFS= read -r audio; do
             case $audio in
                 downloads/*)
@@ -60,7 +68,7 @@ if [ -e "$playlist" ]; then
                 *)
                     echo "BAD PATH playlist -> $audio" >&2; fail=1 ;;
             esac
-        done < <(jq -r '.tracks[].audio // empty' "$playlist")
+        done < <(list_streams "$playlist")
     fi
 fi
 
