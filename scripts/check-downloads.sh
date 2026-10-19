@@ -39,9 +39,23 @@ done
 [ $n -eq 0 ] && echo "no dl-*.html pages"
 
 playlist=${PLAYLIST:-assets/player/playlist.json}
+# The stream paths come out of playlist.json with jq when it is installed,
+# else python3 (the deploy host has python3 but not necessarily jq).
+playlist_audio() {
+    if command -v jq >/dev/null 2>&1; then
+        jq -r '.tracks[].audio // empty' "$1"
+    elif command -v python3 >/dev/null 2>&1; then
+        python3 -c 'import json,sys
+for t in json.load(open(sys.argv[1])).get("tracks", []):
+    a = t.get("audio")
+    if a: print(a)' "$1"
+    else
+        return 1
+    fi
+}
 if [ -e "$playlist" ]; then
-    if ! command -v jq >/dev/null 2>&1; then
-        echo "ERROR    playlist -> $playlist: jq is required to check player streams" >&2
+    if ! command -v jq >/dev/null 2>&1 && ! command -v python3 >/dev/null 2>&1; then
+        echo "ERROR    playlist -> $playlist: jq or python3 is required to check player streams" >&2
         fail=1
     else
         while IFS= read -r audio; do
@@ -60,7 +74,7 @@ if [ -e "$playlist" ]; then
                 *)
                     echo "BAD PATH playlist -> $audio" >&2; fail=1 ;;
             esac
-        done < <(jq -r '.tracks[].audio // empty' "$playlist")
+        done < <(playlist_audio "$playlist")
     fi
 fi
 
