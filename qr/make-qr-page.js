@@ -90,6 +90,10 @@ QRCode.toString(url, {
                 0%, 100% { opacity: 1; }
                 50% { opacity: 0.8; }
             }
+
+            /* ?stop=true: freeze every animation for a clean screenshot */
+            body.no-anim h1 { animation: none; }
+            body.no-anim .cd-pulse { display: none; }
         </style>
     </head>
     <body>
@@ -169,6 +173,15 @@ QRCode.toString(url, {
         </div>
         <div class="qr">${svg}</div>
         <div class="caption">JUSTSAYLESS.XYZ / CONTACT</div>
+        <script>
+            (function () {
+                var p = new URLSearchParams(location.search);
+                var stop = p.get("stop");
+                if (stop !== null && stop !== "false" && stop !== "0") {
+                    document.body.classList.add("no-anim");
+                }
+            })();
+        </script>
     </body>
 </html>
 `;
